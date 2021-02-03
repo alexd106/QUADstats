@@ -30,12 +30,15 @@ To download the solutions for each of the exercises as individual R scripts clic
 
 \  
 
+TBC
+<!--
 ```{r sol_GDE, results='asis', eval = isTRUE(show_text_GDE)}
 link_name <- "Graphical data exploration exercise"
 file_name <- "exercise_solutions/graphical_data_exploration_exercise_solutions.R"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
+-->
 
 \  
 
@@ -59,6 +62,11 @@ cat(sep="\n\n")
 
 ### Day 3
 
+\  
+
+TBC
+
+<!--
 ```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
 link_name <- "Linear model with multiple explanatory variables exercise"
 file_name <- "exercise_solutions/LM_3_multiple_exercise_solutions.R"
@@ -72,3 +80,4 @@ file_name <- "exercise_solutions/LM_4_Selection_exercise_solutions.R"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
+-->
