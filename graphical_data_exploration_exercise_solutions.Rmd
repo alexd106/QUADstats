@@ -1,0 +1,237 @@
+---
+title: 'Exercise Solutions'
+output: 
+  html_document:
+    toc: false
+    code_folding: hide
+---
+
+
+```{r setup, echo=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, eval = FALSE, cache = FALSE)
+```
+
+\  
+
+## Exercise: Graphical data exploration using R
+
+\  
+
+1. As in previous exercises, either create a new R script (perhaps call it graphical_data_exploration) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
+
+\  
+
+2. If you haven't already, download the data file *'loyn.xlsx'* from the **[<i class="fa fa-download"></i> Data](data.html)** link and save it to the `data` directory you created during exercise 1. Open this file in Microsoft Excel (or even better use an open source equivalent - [LibreOffice](https://www.libreoffice.org/download/download/) is a good free alternative) and save it as a tab delimited file type. Name the file *'loyn.txt'* and also save it to the `data` directory.
+
+\  
+
+3. These data are from a study originally conducted by Loyn (1987)^1^ and subsequently re-analysed by Quinn and Keough (2002)^2^ and Zuur et al (2009)^3^. The aim of the study was to relate bird density in 56 forest patches to a number of different environmental variables and management practices. A summary of the variables is: **ABUND**: Density of birds, Continuous response; **AREA**: Size of forest patch, Continuous explanatory; **DIST**: Distance to nearest patch, Continuous explanatory; **LDIST**: Distance to nearest larger patch, Continuous explanatory; **ALTITUDE**: Mean altitude of patch, Continuous explanatory; **YEAR.ISOL**: Year of isolation of clearance, Continuous explanatory; **GRAZE**: Index of livestock grazing intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze  
+
+\  
+
+4. Import your *'loyn.txt'* file into R using the `read.table()` function and assign it to a variable called `loyn`. Use the `str()` function to display the structure of the dataset and the `summary()` function to summarise the dataset. How many observations are in this dataset? How many variables? How is the variable `GRAZE` coded? (as a number or a string?). If you think this will cause a problem (hint: it will!), create a new variable called `FGRAZE` **in** the dataframe with `GRAZE` recoded as a factor.
+
+\  
+
+```{r Q4, eval=TRUE, echo=TRUE, collapse=TRUE}
+loyn <- read.table("./data/loyn.txt", header = TRUE, 
+                   stringsAsFactors = TRUE)
+str(loyn)
+
+# 56 observations and 8 variables (from str())
+
+summary(loyn)
+
+# GRAZE is coded as numeric (i.e. 1,2,3,5)
+
+# create a new factor variable variable FGRAZE which is a factor of GRAZE
+loyn$FGRAZE <- factor(loyn$GRAZE)
+```
+    
+\  
+
+5. Use the function `table()` (or `xtabs()`) to determine how many observations are in each `FGRAZE` level. See [section 3.5](https://intro2r.com/summarising-data-frames.html) of the Introduction to R book to remind yourself how to do this.
+
+\  
+
+```{r Q5, eval=TRUE, echo=TRUE, collapse=TRUE}
+table(loyn$FGRAZE)
+
+# or use xtabs function
+xtabs(~ FGRAZE, data = loyn)
+```
+
+\  
+
+6. Using the `tapply()` function what is the mean bird abundance (`ABUND`) for each levels of `FGRAZE`? Can you determine the variance, the minimum and maximum for each `FGRAZE` level? Again see [section 3.5](https://intro2r.com/summarising-data-frames.html) of the Introduction to R book to remind yourself how to do this.
+
+\  
+
+```{r Q6, eval=TRUE, echo=TRUE, collapse=TRUE}
+# mean abundance of birds for each level of FGRAZE
+tapply(loyn$ABUND, loyn$FGRAZE, mean, na.rm = TRUE)
+
+# variance in the abundance of birds for each level of FGRAZE
+tapply(loyn$ABUND, loyn$FGRAZE, var, na.rm = TRUE)
+
+# minimum abundance of birds for each level of FGRAZE
+tapply(loyn$ABUND, loyn$FGRAZE, min, na.rm = TRUE)
+
+# maximum abundance of birds for each level of FGRAZE
+tapply(loyn$ABUND, loyn$FGRAZE, max, na.rm = TRUE)
+
+# OR use the summary function
+tapply(loyn$ABUND, loyn$FGRAZE, summary, na.rm = TRUE)
+```
+
+\  
+
+7. Now onto some plotting action. Use a Cleveland dotchart of each variable separately to assess whether there are any outliers in the response variable (`ABUND`) or any of the explanatory variables (see table above)? Produce a Cleveland dotchart of each variable separately to assess this (hint: use the `dotplot()` function). If you feel in the mood, then output these plots to an external PDF file.
+
+\  
+
+```{r Q7a, eval=TRUE, echo=TRUE, collapse=TRUE}
+# first split the plotting device into 2 rows
+# and 3 columns
+par(mfrow = c(2,3))
+
+# now produce the plots
+dotchart(loyn$AREA, main = "Area")
+dotchart(loyn$DIST, main = "Distance")
+dotchart(loyn$LDIST, main = "Distance to larger patch")
+dotchart(loyn$YR.ISOL, main = "Year of isolation")
+dotchart(loyn$ALT, main = "Altitude")
+dotchart(loyn$GRAZE, main = "Grazing levels")
+```
+
+\  
+
+```{r Q7b, eval=TRUE, echo=TRUE, collapse=TRUE}
+# A fancier version of a dotplot - just for fun!
+Z <- cbind(loyn$ABUND, loyn$AREA, loyn$DIST,
+           loyn$LDIST,loyn$YR.ISOL,loyn$ALT,
+           loyn$GRAZE)
+
+colnames(Z) <- c("Abundance", "Area","Distance",
+                 "larger dist","year of isolation",
+                 "Altitude", "Grazing")
+                 
+library(lattice)
+dotplot(as.matrix(Z),
+      groups=FALSE,
+      strip = strip.custom(bg = 'white',
+            par.strip.text = list(cex = 0.8)),
+        scales = list(x = list(relation = "free"),
+                      y = list(relation = "free"),
+                      draw = FALSE),
+        col=1, cex  =0.5, pch = 16,
+        xlab = "Value of the variable",
+        ylab = "Order of the data from text file")
+```
+
+8. If you do spot any unusual observations have a think about what you want to do with them (NOTE: do **not** just remove them without justification!). If you're unsure, be sure to speak to an instructor to discuss your options during our synchronous practical sessions. Perhaps you should you apply a data transformation to see if this reduces the magnitude of any outlier. The best thing to do here is to play around with different transformations (i.e. `log`, `sqrt`) to see which one does what you want it to do. After you have applied these data transformations make sure you re-plot your dotcharts with any transformed variable to double check what the transformation is doing.
+
+\  
+
+```{r Q8, eval=TRUE, echo=TRUE, collapse=TRUE}
+# There appears to be two unusually large forest patches compared to the rest
+# Also one potentially large distance in DIST
+# One option would be to log10 transform AREA, DIST 
+# log base 10 transform variables 
+
+loyn$LOGAREA <- log10(loyn$AREA)
+loyn$LOGDIST <- log10(loyn$DIST)
+
+# check the dataframe
+str(loyn)
+```
+
+\  
+
+9. Is there any potential collinearity between any of the explanatory variables? Plot these variables using the `pairs()` function. Remember, you only need to check for collinearity between your explanatory variables so you will need to extract these variables from the `loyn` dataframe either before you use the `pairs()` function or whilst using it. Optionally, include the correlation coefficient between variables in the upper panel of the pairs plot (see [section 4.2.5](https://intro2r.com/simple-base-r-plots.html#pairs-plots) of the introduction to R book for details).
+
+\  
+
+```{r Q9a, eval=TRUE, echo=TRUE, collapse=TRUE}
+# Vanilla pairs plot
+
+pairs(loyn[,c("LOGAREA","LOGDIST","DIST",
+               "YR.ISOL","ALT","GRAZE")])
+
+# or first create a new dataframe and then use this 
+# data frame with the pairs function
+
+explan_vars <- loyn[,c("LOGAREA","LOGDIST","DIST",
+               "YR.ISOL","ALT","GRAZE")]
+pairs(explan_vars)
+```
+
+\  
+
+```{r Q9b, eval=TRUE, echo=TRUE, collapse=TRUE}
+# And with correlations in the upper panel
+
+# first need to define the panel.cor function
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(0, 1, 0, 1))
+    r <- abs(cor(x, y))
+    txt <- format(c(r, 0.123456789), digits = digits)[1]
+    txt <- paste0(prefix, txt)
+    if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+    text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+
+# then use the panel.cor function when we use pairs
+pairs(loyn[,c("LOGAREA","LOGDIST","DIST",
+               "YR.ISOL","ALT","GRAZE")],
+      upper.panel = panel.cor)
+```
+
+\  
+
+10. Are there any clear relationships between the response variable (`ABUND`) and individual explanatory variables? Use the appropriate plotting functions (`plot()`, `boxplot()`) to visualise these relationships.
+
+\  
+
+```{r Q10a, eval=TRUE, echo=TRUE, collapse=TRUE}
+pairs(loyn[,c("ABUND","LOGAREA","LOGDIST","DIST",
+    	"YR.ISOL","ALT","GRAZE")],
+      	lower.panel = panel.cor)
+```
+
+\  
+
+```{r Q10b, eval=TRUE, echo=TRUE, collapse=TRUE}
+plot(loyn$LOGAREA, loyn$ABUND, xlab = "log area", ylab = "bird abundance")
+```
+
+\  
+
+11. One of the main aims of this study was to determine whether management practices such as grazing intensity (`GRAZE`) and size of the forest (`AREA`) affected the abundance of birds (`ABUND`). One hypothesis was that the size of the forest impacted birds, but this was dependent of the intensity of the grazing regime (in other words, there is an interaction between `AREA` and `GRAZE`). Use an appropriate plotting function to explore these data for such an interaction (perhaps a `coplot()` or `xyplot()` might be helpful?). 
+
+\  
+
+```{r Q11a, eval=TRUE, echo=TRUE, collapse=TRUE}
+# Interaction between LOGAREA and FGRAZE? 
+# Do the slopes look similar or different? 
+coplot(ABUND ~ LOGAREA | FGRAZE, data = loyn)
+```
+
+\  
+
+```{r Q11b, eval=TRUE, echo=TRUE, collapse=TRUE}
+# Fancier version of the above plot 
+# with a line of best fit included just for fun
+coplot(ABUND ~ LOGAREA | FGRAZE,
+      data = loyn,
+        panel = function(x, y, ...) {
+         tmp <- lm(y ~ x, na.action = na.omit)
+         abline(tmp)
+         points(x, y) })
+```
+
+\  
+
+End of Graphical data exploration using R Exercise
+

@@ -1,0 +1,66 @@
+name: "QUADstats"
+output_dir: "."
+navbar:
+  title: "QUADstats"
+  icon: fa-home
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "Setup"
+      icon: fa-cog
+      href: setup.html
+    - text: "Learn"
+      icon: fa-desktop
+      menu:
+        - text: "How-to"
+          icon: fa-tv
+          href: howto.html
+    - text: "R Book"
+      icon: fa-book
+      menu:
+        - text: "Web book"
+          icon: fa-firefox
+          href: https://intro2r.com
+        - text: "----"
+        - text: "PDF book"
+          icon: fa-file-pdf
+          href: https://github.com/alexd106/Rbook/raw/master/docs/Rbook.pdf
+    - text: "Exercises"
+      icon: fa-book
+      href: exercises.html
+    - text: "Exercise Solutions"
+      icon: fa-book
+      href: exercise_solutions.html
+    - text: "Data"
+      icon: fa-download
+      href: "data.html"
+    - text: "Info"
+      icon: fa-question-circle
+      menu:
+        - text: "Resources"
+          icon: fa-book
+          href: "resources.html"
+        - text: "Source code"
+          icon: fa-github fa-lg
+          href: https://github.com/alexd106/BI5009
+        - text: "Twitter"
+          icon: fa-twitter fa-lg
+          href: https://twitter.com/Scedacity
+
+output:
+  html_document:
+    theme: flatly
+    highlight: tango
+    toc: true
+    toc_depth: 2
+    toc_float:
+      collapsed: false
+    fig_align: center
+    includes:
+    # css: 'styles.css'
+    # css:
+    #  - https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
+    #  - styles.css
+
+exclude: ["LICENSE", "README.md", "*.Rproj", "*.key", "*.psd"]

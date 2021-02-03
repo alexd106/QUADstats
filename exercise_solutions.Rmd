@@ -1,0 +1,78 @@
+---
+title: "Exercise Solutions"
+output: 
+  html_document:
+    toc: false
+---
+
+```{r setup-alex, include=FALSE}
+library(knitr)
+library(stringr)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, eval=TRUE, echo=FALSE)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(stringr))
+source('reveal.R')
+```
+
+\  
+
+Follow the links below for solutions to each of the exercises you have completed on this course. Click on the 'code' buttons to reveal the R code associated with each question. If you would prefer these solutions as R scripts for later offline use then you can [find these here](course_code.html).
+
+\  
+
+```{r sol_GDE, results='asis', eval = isTRUE(show_text_GDE)}
+link_name <- "Graphical data exploration exercise"
+file_name <- "graphical_data_exploration_exercise_solutions.html"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm1, results='asis', eval = isTRUE(show_text_lm1)}
+link_name <- "Linear model with single continuous explanatory variable exercise"
+file_name <- "linear_model_1_exercise_solutions.html"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm2, results='asis', eval = isTRUE(show_text_lm2)}
+link_name <- "Linear model with single categorical explanatory variable exercise"
+file_name <- "linear_model_2_exercise_solutions.html"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
+link_name <- "Linear model with multiple explanatory variables exercise"
+file_name <- "LM_3_multiple_exercise_solutions.html"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm4, results='asis', eval = isTRUE(show_text_lm4)}
+link_name <- "Linear model - model selection exercise"
+file_name <- "LM_4_Selection_exercise_solutions.html"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+\  
+
+#### PDF versions of exercise solutions
+
+\  
+
+[Offline R scripts](course_code.html)
+
+```{r code-out, include = FALSE}
+# TODO: generate list automagically
+
+knitr::purl('./graphical_data_exploration_exercise_solutions.Rmd', output = './exercise_solutions/graphical_data_exploration_exercise_solutions.R', quiet = TRUE)
+knitr::purl('./linear_model_1_exercise_solutions.Rmd', output = './exercise_solutions/linear_model_1_exercise_solutions.R', quiet = TRUE)
+knitr::purl('./linear_model_2_exercise_solutions.Rmd', output = './exercise_solutions/linear_model_2_exercise_solutions.R', quiet = TRUE)
+knitr::purl('./LM_3_multiple_exercise_solutions.Rmd', output = './exercise_solutions/LM_3_multiple_exercise_solutions.R', quiet = TRUE)
+knitr::purl('./LM_4_Selection_exercise_solutions.Rmd', output = './exercise_solutions/LM_4_Selection_exercise_solutions.R', quiet = TRUE)
+```
+
+
+
+

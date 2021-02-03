@@ -1,0 +1,306 @@
+---
+title: 'Exercise Solutions'
+output: 
+  html_document:
+    toc: false
+    code_folding: hide
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, eval = FALSE, cache = FALSE)
+
+SOLUTIONS<- TRUE
+```
+
+\  
+
+# Exercise: Model selection with the Loyn data
+
+\  
+
+This exercise revisits the Loyn data, asking if a better model for the data could be achieved by including additional predictors, and applying a systematic model selection procedure.
+
+\  
+
+1. As in previous exercises, either create a new R script (perhaps call it linear_model_4) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
+
+\  
+
+2. Import the data file 'loyn.txt' into R and take a look at the structure of this dataframe using the `str()` function. It seems so far that the abundance of birds `ABUND` is explained by both the area of the patch `LOGAREA`, and the grazing intensity `FGRAZE`, but some observations are still poorly fitted by the model. Here we will be using all the explanatory variables to explain variation in bird density. If needed, remind yourself of your data exploration you conducted in Section 1. Do any of the variables need transforming? If so, what transformation did you apply? Add the required variables to the data set.
+
+\  
+
+```{r Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+loyn <- read.table("./data/loyn.txt", header = TRUE,
+                   stringsAsFactors = TRUE)
+str(loyn)
+loyn$FGRAZE <- factor(loyn$GRAZE)
+loyn$LOGAREA <- log10(loyn$AREA)
+loyn$LOGDIST <- log10(loyn$DIST)
+loyn$LOGLDIST <- log10(loyn$LDIST)
+```
+
+\
+
+3. We assume that all the predictors have been collected by the authors *because* they are believed to be biologically relevant for explaining bird abundance. However, it is a good idea to pause and think what might be relevant or not-so relevant or partly redundant and why, before even exploring the relationships with bird abundance (even graphically). You could do this in a table format, and include a hypothetical ranking of importance. Is there anything that limits your ability to fill that table?
+
+\  
+
+```{r Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+# Example:
+
+# Rank	|	Predictor	|	Biological effect
+# 1	    |	LOGAREA	  |	Large patches containing proportionally
+#                     more core habitat: enable persistence of
+#                     species with larger home ranges. 
+# 3	    |	LOGDIST	  |	?
+# ?	    |	LOGLDIST	|	?
+# 2	    |	YR.ISOL	  |	?
+# ?	    |	ALT		    |	?
+# ?	    |	FGRAZE	  |	?
+
+# expect to come up with different predictions!
+# The main limitation is our lack of insider and expert knowledge of the
+# study system and area, of course.
+```
+
+
+\
+
+4. Start with a graphical exploration of the relationships between predictors and between predictors and response. A pair-plot with `pairs()` is a very effective way of doing this when the number of variables is not too large. Hints:
+  + restrict the plot to the variables you actually need
+  + an effective way of doing this is to store the names of the variables of interest in a vector `VOI<- c("Var1", "Var2", ...)`
+  + and then use the naming method for subsetting the data set `Mydata[, VOI]`
+
+\  
+
+```{r Q4, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+VOI<- c("ABUND", "LOGAREA", "LOGDIST", "LOGLDIST", "YR.ISOL", "ALT", "FGRAZE")
+pairs(loyn[, VOI])
+
+# There is variable degrees of imbalance (correlation) between predictors
+# such as:
+# LOGAREA and FGRAZE, 
+# LOGDIST and LOGLDIST (quite expected), 
+# YR.ISOL and other variables like LOGAREA or FGRAZE, 
+# LOGAREA and ALT, 
+# but overall a decent spread of observations across these pairs of predictors.
+
+# The relationship between the response variable ABUND and all the predictors
+# is visible in the top row:
+#  Some potential correlations present like with LOGAREA (positive), 
+# YR.ISOl (positive), maybe ALT (positive) and FGRAZE (negative).
+```
+
+\
+
+5. Start with a model of ABUND containing all predictors. Don’t include any interactions at this point, we will simplify the exercise by including only the main effects (unless you have identified some interactions that you expect to be important?).
+
+\  
+
+```{r Q5, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+M1 <- lm(ABUND ~ LOGAREA + LOGDIST + LOGLDIST +
+                 YR.ISOL + ALT + FGRAZE,
+         data = loyn)
+```
+
+\
+
+6. Obtain summaries of the model output using the `anova()` and `summary()` functions. Make sure you understand the difference between these two summaries, and the mathematical and biological interpretation of the different coefficients (i.e. would you be able to reconstruct and use the model formula to make predictions? In doubt, try it and seek assistance!).
+
+\  
+
+```{r Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+anova(M1)
+summary(M1)
+```
+
+\
+
+7. Check for collinearity using the `vif()` function in the `car` package.
+
+\  
+
+```{r Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+library(car)
+vif(M1)
+
+# potential problem with FGRAZE (as seen from data exploration) with LOGAREA
+# or YR.ISOL
+# ignore for the moment
+```
+
+\
+
+8. Is everything significant? Which of the summaries do you prefer to use, and why?
+
+\  
+
+```{r Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+anova(M1)
+summary(M1)
+
+# ANOVA allows testing overall significance for categorical predictors,
+# which is more handy. 
+# But the results of this ANOVA depend on the order of the variables,
+# which is arbitrary here.
+# We could change the order but there are too many possible permutations
+# Summary p-values don't suffer that problem but test different hypotheses
+# It would be useful to use an ANOVA that doesn't depend on the order
+# of inclusion of the variables
+```
+
+\
+
+9. If not, perform a model selection step using `drop1()` for choosing which single term is the best candidate for deletion (remember to use the test = ”F” argument to perform F tests). What is that term?
+
+\  
+
+```{r Q9, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+drop1(M1, test = "F")
+
+# LOGDIST is the least significant, hence makes the least 
+# contribution to the variability explained by the model, 
+# with respect to the number of degrees of freedom it uses (1)
+```
+
+
+\
+
+10. Update the model and repeat single term deletions with `drop1()`, until there are no longer any non-significant terms.
+
+\  
+
+```{r Q10, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+M2 <- lm(ABUND ~ LOGAREA + LOGLDIST + # removing LOGDIST here
+                 YR.ISOL + ALT + FGRAZE,
+         data = loyn)
+
+# or use the shortcut:
+
+M2<- update(M1, formula = . ~ . - LOGDIST) # "." means all previous variables
+drop1(M2, test = "F")
+
+# YR.ISOL is now the least significant, hence makes the least 
+# contribution to the variability explained by the model, 
+# with respect to the number of degrees of freedom it uses (1)
+
+M3 <- update(M2, formula = . ~ . - YR.ISOL)
+drop1(M3, test = "F")
+
+# LOGLDIST and ALT now the least significant. Choosing on the basis of
+# p-values this similar is really quite arbitrary, so would be best guided
+# by expert knowledge if we have it.
+# in the absence of strong a-priori expertise, we'll go for LOGLDIST
+
+M4 <- update(M3, formula = . ~ . - LOGLDIST)
+drop1(M4, test = "F")
+
+# and finally drop ALT from the model
+M5 <- lm(ABUND ~ LOGAREA + FGRAZE, data = loyn) # writing model in full for clarity
+drop1(M5, test = "F")
+# All significant: no more terms to drop. Here we are, back to a
+# familiar version of the model!
+```
+
+\
+
+11. At this stage, you should validate this model, if it is our final model. Hint: you probably have done it for this model already, in previous exercises.
+
+\  
+
+```{r Q11, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+par(mfrow = c(2,2))
+plot(M5)
+
+# Seen that already!
+# For info:
+# To test the normality of residuals assumption we use the Normal Q-Q plot. 
+# The central residuals are not too far from the Q-Q line but the extremes
+# are too extreme (the tails of the distribution are too long).
+
+# Some observations, both high and low, are poorly explained by the model.
+# The plot of the residuals against the fitted values suggests
+# these extreme residuals happen for intermediate fitted values.
+
+# Looking at the homogeneity of variance assumption
+# (Residuals vs Fitted and Scale-Location plot),
+# the graphs are mostly messy, with no clear pattern emerging.
+# There is a hint of smaller variance with the lowest fitted values,
+# which is not ideal.
+# This could mean that the homogeneity of variance assumption is not met
+# (i.e. the variances are not the same). 
+# The observations with the highest leverage don't appear to be overly
+# influential, based on Cook's distances in the Residuals vs Leverage plot.  
+
+# ABUND being bounded by zero, it wouldn't be too surprising that the
+# variance increases with the mean abundance.
+```
+
+\
+
+12. Let's now get back to a previous model `birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA)`, which we left with non-significant terms. Do you need to use `drop1()` to simplify that model?
+
+\  
+
+```{r Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+# No we don't, in this simple case:
+# when an interaction is significant, the main effects should be left
+# in irrespective of significance, because the interaction cannot be
+# interpreted correctly without its main effect.
+
+# Likewise, when an interaction is non-significant it must go first,
+# and only then the evidence for the main effects can be assessed.
+
+# Because R always includes interactions *after* their main effects
+# in the models, the anova of the model returns the same result as drop1, 
+# in our simple model which has no interactions with other terms
+
+# Demo:
+M6<- lm(ABUND ~ LOGAREA * FGRAZE, data = loyn) # writing the model in full for clarity
+anova(M6)
+drop1(M6, test= "F") # drop1 is clever enough that it doesn't let you
+# see the p-values for the main effect, in the presence of their interaction.
+```
+
+\
+
+13. What is the final model then? What are the final conclusions or lessons you take away from this analysis of the Loyn data?
+
+\
+
+```{r Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
+# Biologically: what we already found out in the previous LM exercises:
+# There is a significant effect of grazing levels, especially the highest
+# level with a negative effect on bird abundance
+
+# There is a significant positive effect of patch area, too.
+
+# The relative importance of patch area and grazing is not clear, as these
+# are correlated, with smaller patches also having higher grazing intensity
+# on average, and larger patches lower grazing intensity.
+
+# Some observations are poorly predicted (fitted) using the set of
+# available predictors.
+
+# Methodologically:
+# Doing model selection is difficult without an intrinsic / expert knowledge
+# of the system, to guide what variables to include.
+# Even with this dataset, many more models could have been formulated.
+# For example, for me, theory would have suggested to test an interaction 
+# between YR.ISOL and LOGDIST (or LOGLDIST?), 
+# because LOGDIST will affect dispersal, 
+# and the time since isolation of the patch may affect how important
+# dispersal has been to maintain or rescue populations 
+# (for recently isolated patches, dispersal, and hence distance to nearest
+# patches may have a less important effect)
+```
+
+\  
+
+End of the Linear model with interactive continuous and categorical predictors exercise
+
+\

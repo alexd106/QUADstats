@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Exercise Solutions</title>
+
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">QUADstats</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="setup.html">
+    <span class="fa fa-cog"></span>
+     
+    Setup
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-desktop"></span>
+     
+    Learn
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="howto.html">
+        <span class="fa fa-tv"></span>
+         
+        How-to
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+    R Book
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://intro2r.com">
+        <span class="fa fa-firefox"></span>
+         
+        Web book
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="https://github.com/alexd106/Rbook/raw/master/docs/Rbook.pdf">
+        <span class="fa fa-file-pdf"></span>
+         
+        PDF book
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="exercises.html">
+    <span class="fa fa-book"></span>
+     
+    Exercises
+  </a>
+</li>
+<li>
+  <a href="exercise_solutions.html">
+    <span class="fa fa-book"></span>
+     
+    Exercise Solutions
+  </a>
+</li>
+<li>
+  <a href="data.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-question-circle"></span>
+     
+    Info
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="resources.html">
+        <span class="fa fa-book"></span>
+         
+        Resources
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/alexd106/BI5009">
+        <span class="fa fa-github fa-lg"></span>
+         
+        Source code
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/Scedacity">
+        <span class="fa fa-twitter fa-lg"></span>
+         
+        Twitter
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Exercise Solutions</h1>
+
+</div>
+
+
+<p> </p>
+<div id="exercise-graphical-data-exploration-using-r" class="section level2">
+<h2>Exercise: Graphical data exploration using R</h2>
+<p> </p>
+<ol style="list-style-type: decimal">
+<li>As in previous exercises, either create a new R script (perhaps call it graphical_data_exploration) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and don’t forget to comment out your metadata with a <code>#</code> at the beginning of the line.</li>
+</ol>
+<p> </p>
+<ol start="2" style="list-style-type: decimal">
+<li>If you haven’t already, download the data file <em>‘loyn.xlsx’</em> from the <strong><a href="data.html"><i class="fa fa-download"></i> Data</a></strong> link and save it to the <code>data</code> directory you created during exercise 1. Open this file in Microsoft Excel (or even better use an open source equivalent - <a href="https://www.libreoffice.org/download/download/">LibreOffice</a> is a good free alternative) and save it as a tab delimited file type. Name the file <em>‘loyn.txt’</em> and also save it to the <code>data</code> directory.</li>
+</ol>
+<p> </p>
+<ol start="3" style="list-style-type: decimal">
+<li>These data are from a study originally conducted by Loyn (1987)<sup>1</sup> and subsequently re-analysed by Quinn and Keough (2002)<sup>2</sup> and Zuur et al (2009)<sup>3</sup>. The aim of the study was to relate bird density in 56 forest patches to a number of different environmental variables and management practices. A summary of the variables is: <strong>ABUND</strong>: Density of birds, Continuous response; <strong>AREA</strong>: Size of forest patch, Continuous explanatory; <strong>DIST</strong>: Distance to nearest patch, Continuous explanatory; <strong>LDIST</strong>: Distance to nearest larger patch, Continuous explanatory; <strong>ALTITUDE</strong>: Mean altitude of patch, Continuous explanatory; <strong>YEAR.ISOL</strong>: Year of isolation of clearance, Continuous explanatory; <strong>GRAZE</strong>: Index of livestock grazing intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze</li>
+</ol>
+<p> </p>
+<ol start="4" style="list-style-type: decimal">
+<li>Import your <em>‘loyn.txt’</em> file into R using the <code>read.table()</code> function and assign it to a variable called <code>loyn</code>. Use the <code>str()</code> function to display the structure of the dataset and the <code>summary()</code> function to summarise the dataset. How many observations are in this dataset? How many variables? How is the variable <code>GRAZE</code> coded? (as a number or a string?). If you think this will cause a problem (hint: it will!), create a new variable called <code>FGRAZE</code> <strong>in</strong> the dataframe with <code>GRAZE</code> recoded as a factor.</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>loyn &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/loyn.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-2"><a href="#cb1-2"></a>                   <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">str</span>(loyn)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">## &#39;data.frame&#39;:    56 obs. of  8 variables:</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">##  $ Site   : int  1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">##  $ ABUND  : num  5.3 2 1.5 17.1 13.8 14.1 3.8 2.2 3.3 3 ...</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">##  $ AREA   : num  0.1 0.5 0.5 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">##  $ DIST   : int  39 234 104 66 246 234 467 284 156 311 ...</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">##  $ LDIST  : int  39 234 311 66 246 285 467 1829 156 571 ...</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">##  $ YR.ISOL: int  1968 1920 1900 1966 1918 1965 1955 1920 1965 1900 ...</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">##  $ GRAZE  : int  2 5 5 3 5 3 5 5 4 5 ...</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">##  $ ALT    : int  160 60 140 160 140 130 90 60 130 130 ...</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># 56 observations and 8 variables (from str())</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="kw">summary</span>(loyn)</span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">##       Site           ABUND            AREA              DIST            LDIST           YR.ISOL    </span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">##  Min.   : 1.00   Min.   : 1.50   Min.   :   0.10   Min.   :  26.0   Min.   :  26.0   Min.   :1890  </span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">##  1st Qu.:14.75   1st Qu.:12.40   1st Qu.:   2.00   1st Qu.:  93.0   1st Qu.: 158.2   1st Qu.:1928  </span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">##  Median :28.50   Median :21.05   Median :   7.50   Median : 234.0   Median : 338.5   Median :1962  </span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co">##  Mean   :28.50   Mean   :19.51   Mean   :  69.27   Mean   : 240.4   Mean   : 733.3   Mean   :1950  </span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co">##  3rd Qu.:42.25   3rd Qu.:28.30   3rd Qu.:  29.75   3rd Qu.: 333.2   3rd Qu.: 913.8   3rd Qu.:1966  </span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="co">##  Max.   :56.00   Max.   :39.60   Max.   :1771.00   Max.   :1427.0   Max.   :4426.0   Max.   :1976  </span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co">##      GRAZE            ALT       </span></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co">##  Min.   :1.000   Min.   : 60.0  </span></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="co">##  1st Qu.:2.000   1st Qu.:120.0  </span></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="co">##  Median :3.000   Median :140.0  </span></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="co">##  Mean   :2.982   Mean   :146.2  </span></span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="co">##  3rd Qu.:4.000   3rd Qu.:182.5  </span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co">##  Max.   :5.000   Max.   :260.0</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="co"># GRAZE is coded as numeric (i.e. 1,2,3,5)</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co"># create a new factor variable variable FGRAZE which is a factor of GRAZE</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>loyn<span class="op">$</span>FGRAZE &lt;-<span class="st"> </span><span class="kw">factor</span>(loyn<span class="op">$</span>GRAZE)</span></code></pre></div>
+<p> </p>
+<ol start="5" style="list-style-type: decimal">
+<li>Use the function <code>table()</code> (or <code>xtabs()</code>) to determine how many observations are in each <code>FGRAZE</code> level. See <a href="https://intro2r.com/summarising-data-frames.html">section 3.5</a> of the Introduction to R book to remind yourself how to do this.</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">table</span>(loyn<span class="op">$</span>FGRAZE)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">## </span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">##  1  2  3  4  5 </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">## 13  8 15  7 13</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># or use xtabs function</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>FGRAZE, <span class="dt">data =</span> loyn)</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">## FGRAZE</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">##  1  2  3  4  5 </span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">## 13  8 15  7 13</span></span></code></pre></div>
+<p> </p>
+<ol start="6" style="list-style-type: decimal">
+<li>Using the <code>tapply()</code> function what is the mean bird abundance (<code>ABUND</code>) for each levels of <code>FGRAZE</code>? Can you determine the variance, the minimum and maximum for each <code>FGRAZE</code> level? Again see <a href="https://intro2r.com/summarising-data-frames.html">section 3.5</a> of the Introduction to R book to remind yourself how to do this.</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># mean abundance of birds for each level of FGRAZE</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">tapply</span>(loyn<span class="op">$</span>ABUND, loyn<span class="op">$</span>FGRAZE, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">##         1         2         3         4         5 </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">## 28.623077 21.950000 21.286667 20.571429  6.292308</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># variance in the abundance of birds for each level of FGRAZE</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">tapply</span>(loyn<span class="op">$</span>ABUND, loyn<span class="op">$</span>FGRAZE, var, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">##        1        2        3        4        5 </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">## 32.63859 75.80571 90.29552 70.08571 23.10744</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># minimum abundance of birds for each level of FGRAZE</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">tapply</span>(loyn<span class="op">$</span>ABUND, loyn<span class="op">$</span>FGRAZE, min, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">##    1    2    3    4    5 </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">## 14.6  5.3  2.9  3.3  1.5</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co"># maximum abundance of birds for each level of FGRAZE</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="kw">tapply</span>(loyn<span class="op">$</span>ABUND, loyn<span class="op">$</span>FGRAZE, max, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">##    1    2    3    4    5 </span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">## 39.6 34.4 37.7 27.8 13.8</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co"># OR use the summary function</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="kw">tapply</span>(loyn<span class="op">$</span>ABUND, loyn<span class="op">$</span>FGRAZE, summary, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">## $`1`</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">##   14.60   27.30   29.50   28.62   30.90   39.60 </span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">## </span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">## $`2`</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">##    5.30   18.70   22.80   21.95   26.57   34.40 </span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">## </span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">## $`3`</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">##    2.90   16.05   20.90   21.29   28.30   37.70 </span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">## </span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">## $`4`</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">##    3.30   19.35   21.70   20.57   26.25   27.80 </span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">## </span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">## $`5`</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co">##   1.500   2.200   3.800   6.292  11.500  13.800</span></span></code></pre></div>
+<p> </p>
+<ol start="7" style="list-style-type: decimal">
+<li>Now onto some plotting action. Use a Cleveland dotchart of each variable separately to assess whether there are any outliers in the response variable (<code>ABUND</code>) or any of the explanatory variables (see table above)? Produce a Cleveland dotchart of each variable separately to assess this (hint: use the <code>dotplot()</code> function). If you feel in the mood, then output these plots to an external PDF file.</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># first split the plotting device into 2 rows</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># and 3 columns</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># now produce the plots</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">dotchart</span>(loyn<span class="op">$</span>AREA, <span class="dt">main =</span> <span class="st">&quot;Area&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">dotchart</span>(loyn<span class="op">$</span>DIST, <span class="dt">main =</span> <span class="st">&quot;Distance&quot;</span>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">dotchart</span>(loyn<span class="op">$</span>LDIST, <span class="dt">main =</span> <span class="st">&quot;Distance to larger patch&quot;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">dotchart</span>(loyn<span class="op">$</span>YR.ISOL, <span class="dt">main =</span> <span class="st">&quot;Year of isolation&quot;</span>)</span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">dotchart</span>(loyn<span class="op">$</span>ALT, <span class="dt">main =</span> <span class="st">&quot;Altitude&quot;</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="kw">dotchart</span>(loyn<span class="op">$</span>GRAZE, <span class="dt">main =</span> <span class="st">&quot;Grazing levels&quot;</span>)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q7a-1.png" width="672" /></p>
+<p> </p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># A fancier version of a dotplot - just for fun!</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>Z &lt;-<span class="st"> </span><span class="kw">cbind</span>(loyn<span class="op">$</span>ABUND, loyn<span class="op">$</span>AREA, loyn<span class="op">$</span>DIST,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>           loyn<span class="op">$</span>LDIST,loyn<span class="op">$</span>YR.ISOL,loyn<span class="op">$</span>ALT,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>           loyn<span class="op">$</span>GRAZE)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">colnames</span>(Z) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Abundance&quot;</span>, <span class="st">&quot;Area&quot;</span>,<span class="st">&quot;Distance&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>                 <span class="st">&quot;larger dist&quot;</span>,<span class="st">&quot;year of isolation&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>                 <span class="st">&quot;Altitude&quot;</span>, <span class="st">&quot;Grazing&quot;</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>                 </span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">library</span>(lattice)</span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="kw">dotplot</span>(<span class="kw">as.matrix</span>(Z),</span>
+<span id="cb5-12"><a href="#cb5-12"></a>      <span class="dt">groups=</span><span class="ot">FALSE</span>,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>      <span class="dt">strip =</span> <span class="kw">strip.custom</span>(<span class="dt">bg =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>            <span class="dt">par.strip.text =</span> <span class="kw">list</span>(<span class="dt">cex =</span> <span class="fl">0.8</span>)),</span>
+<span id="cb5-15"><a href="#cb5-15"></a>        <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">relation =</span> <span class="st">&quot;free&quot;</span>),</span>
+<span id="cb5-16"><a href="#cb5-16"></a>                      <span class="dt">y =</span> <span class="kw">list</span>(<span class="dt">relation =</span> <span class="st">&quot;free&quot;</span>),</span>
+<span id="cb5-17"><a href="#cb5-17"></a>                      <span class="dt">draw =</span> <span class="ot">FALSE</span>),</span>
+<span id="cb5-18"><a href="#cb5-18"></a>        <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">cex  =</span><span class="fl">0.5</span>, <span class="dt">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb5-19"><a href="#cb5-19"></a>        <span class="dt">xlab =</span> <span class="st">&quot;Value of the variable&quot;</span>,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>        <span class="dt">ylab =</span> <span class="st">&quot;Order of the data from text file&quot;</span>)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q7b-1.png" width="672" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>If you do spot any unusual observations have a think about what you want to do with them (NOTE: do <strong>not</strong> just remove them without justification!). If you’re unsure, be sure to speak to an instructor to discuss your options during our synchronous practical sessions. Perhaps you should you apply a data transformation to see if this reduces the magnitude of any outlier. The best thing to do here is to play around with different transformations (i.e. <code>log</code>, <code>sqrt</code>) to see which one does what you want it to do. After you have applied these data transformations make sure you re-plot your dotcharts with any transformed variable to double check what the transformation is doing.</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># There appears to be two unusually large forest patches compared to the rest</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># Also one potentially large distance in DIST</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># One option would be to log10 transform AREA, DIST </span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># log base 10 transform variables </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>loyn<span class="op">$</span>LOGAREA &lt;-<span class="st"> </span><span class="kw">log10</span>(loyn<span class="op">$</span>AREA)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>loyn<span class="op">$</span>LOGDIST &lt;-<span class="st"> </span><span class="kw">log10</span>(loyn<span class="op">$</span>DIST)</span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># check the dataframe</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="kw">str</span>(loyn)</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">## &#39;data.frame&#39;:    56 obs. of  11 variables:</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##  $ Site   : int  1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">##  $ ABUND  : num  5.3 2 1.5 17.1 13.8 14.1 3.8 2.2 3.3 3 ...</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">##  $ AREA   : num  0.1 0.5 0.5 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">##  $ DIST   : int  39 234 104 66 246 234 467 284 156 311 ...</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">##  $ LDIST  : int  39 234 311 66 246 285 467 1829 156 571 ...</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">##  $ YR.ISOL: int  1968 1920 1900 1966 1918 1965 1955 1920 1965 1900 ...</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">##  $ GRAZE  : int  2 5 5 3 5 3 5 5 4 5 ...</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">##  $ ALT    : int  160 60 140 160 140 130 90 60 130 130 ...</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">##  $ FGRAZE : Factor w/ 5 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 2 5 5 3 5 3 5 5 4 5 ...</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">##  $ LOGAREA: num  -1 -0.301 -0.301 0 0 ...</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">##  $ LOGDIST: num  1.59 2.37 2.02 1.82 2.39 ...</span></span></code></pre></div>
+<p> </p>
+<ol start="9" style="list-style-type: decimal">
+<li>Is there any potential collinearity between any of the explanatory variables? Plot these variables using the <code>pairs()</code> function. Remember, you only need to check for collinearity between your explanatory variables so you will need to extract these variables from the <code>loyn</code> dataframe either before you use the <code>pairs()</code> function or whilst using it. Optionally, include the correlation coefficient between variables in the upper panel of the pairs plot (see <a href="https://intro2r.com/simple-base-r-plots.html#pairs-plots">section 4.2.5</a> of the introduction to R book for details).</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Vanilla pairs plot</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">pairs</span>(loyn[,<span class="kw">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)])</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co"># or first create a new dataframe and then use this </span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># data frame with the pairs function</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a></span>
+<span id="cb7-9"><a href="#cb7-9"></a>explan_vars &lt;-<span class="st"> </span>loyn[,<span class="kw">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)]</span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="kw">pairs</span>(explan_vars)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q9a-1.png" width="672" /></p>
+<p> </p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># And with correlations in the upper panel</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># first need to define the panel.cor function</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>panel.cor &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">prefix =</span> <span class="st">&quot;&quot;</span>, cex.cor, ...){</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    usr &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="kw">on.exit</span>(<span class="kw">par</span>(usr))</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">par</span>(<span class="dt">usr =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    r &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">cor</span>(x, y))</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    txt &lt;-<span class="st"> </span><span class="kw">format</span>(<span class="kw">c</span>(r, <span class="fl">0.123456789</span>), <span class="dt">digits =</span> digits)[<span class="dv">1</span>]</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    txt &lt;-<span class="st"> </span><span class="kw">paste0</span>(prefix, txt)</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="cf">if</span>(<span class="kw">missing</span>(cex.cor)) cex.cor &lt;-<span class="st"> </span><span class="fl">0.8</span><span class="op">/</span><span class="kw">strwidth</span>(txt)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="kw">text</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, txt, <span class="dt">cex =</span> cex.cor <span class="op">*</span><span class="st"> </span>r)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>}</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co"># then use the panel.cor function when we use pairs</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="kw">pairs</span>(loyn[,<span class="kw">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
+<span id="cb8-17"><a href="#cb8-17"></a>      <span class="dt">upper.panel =</span> panel.cor)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q9b-1.png" width="672" /></p>
+<p> </p>
+<ol start="10" style="list-style-type: decimal">
+<li>Are there any clear relationships between the response variable (<code>ABUND</code>) and individual explanatory variables? Use the appropriate plotting functions (<code>plot()</code>, <code>boxplot()</code>) to visualise these relationships.</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">pairs</span>(loyn[,<span class="kw">c</span>(<span class="st">&quot;ABUND&quot;</span>,<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
+<span id="cb9-2"><a href="#cb9-2"></a>        <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
+<span id="cb9-3"><a href="#cb9-3"></a>        <span class="dt">lower.panel =</span> panel.cor)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q10a-1.png" width="672" /></p>
+<p> </p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">plot</span>(loyn<span class="op">$</span>LOGAREA, loyn<span class="op">$</span>ABUND, <span class="dt">xlab =</span> <span class="st">&quot;log area&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;bird abundance&quot;</span>)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q10b-1.png" width="672" /></p>
+<p> </p>
+<ol start="11" style="list-style-type: decimal">
+<li>One of the main aims of this study was to determine whether management practices such as grazing intensity (<code>GRAZE</code>) and size of the forest (<code>AREA</code>) affected the abundance of birds (<code>ABUND</code>). One hypothesis was that the size of the forest impacted birds, but this was dependent of the intensity of the grazing regime (in other words, there is an interaction between <code>AREA</code> and <code>GRAZE</code>). Use an appropriate plotting function to explore these data for such an interaction (perhaps a <code>coplot()</code> or <code>xyplot()</code> might be helpful?).</li>
+</ol>
+<p> </p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Interaction between LOGAREA and FGRAZE? </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co"># Do the slopes look similar or different? </span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">coplot</span>(ABUND <span class="op">~</span><span class="st"> </span>LOGAREA <span class="op">|</span><span class="st"> </span>FGRAZE, <span class="dt">data =</span> loyn)</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q11a-1.png" width="672" /></p>
+<p> </p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Fancier version of the above plot </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># with a line of best fit included just for fun</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">coplot</span>(ABUND <span class="op">~</span><span class="st"> </span>LOGAREA <span class="op">|</span><span class="st"> </span>FGRAZE,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>      <span class="dt">data =</span> loyn,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>        <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
+<span id="cb12-6"><a href="#cb12-6"></a>         tmp &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">na.action =</span> na.omit)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>         <span class="kw">abline</span>(tmp)</span>
+<span id="cb12-8"><a href="#cb12-8"></a>         <span class="kw">points</span>(x, y) })</span></code></pre></div>
+<p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q11b-1.png" width="672" /></p>
+<p> </p>
+<p>End of Graphical data exploration using R Exercise</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+---
+title: "Offline exercise solutions"
+output: 
+  html_document:
+    toc: false
+---
+
+```{r, include=FALSE}
+library(knitr)
+library(stringr)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, eval=TRUE, echo=FALSE)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(stringr))
+source('reveal.R')
+```
+
+\  
+
+```{r, reveal, echo = FALSE, eval = isFALSE(show_text12)}
+cat("solutions will be released as the course progresses")
+```
+
+\  
+
+To download the solutions for each of the exercises as individual R scripts click the relevant links below. If the code opens in a browser window then right click on the link and select 'save link as' (or similar). 
+
+\  
+
+#### Section 1 Exercises
+
+\  
+
+```{r sol12, results='asis', , eval = isTRUE(show_text12)}
+dir <- "exercise_solutions/"
+file_name <- list.files(dir) %>%
+             sort %>% 
+             grep("(exercise_[12]_solution.R)", . , value=TRUE) 
+
+link_name <- file_name %>%
+            gsub("\\.R", "", .) %>%
+            paste0(., "s") %>%
+            gsub("_", " ", .) %>%
+            str_to_sentence(.)
+
+paste0("- [", link_name, "](", "exercise_solutions/", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol34, results='asis', , eval = isTRUE(show_text34)}
+dir <- "exercise_solutions/"
+file_name <- list.files(dir) %>%
+             sort %>% 
+             # grep("(exercise_[34]_solution.R|exercise_[34]_ggplot_solution.R)", . , value=TRUE) %>% 
+             grep("(exercise_[34]_solution.R)", . , value=TRUE) %>%
+             # .[c(1,3,2)]
+             .[c(1,2)]
+
+link_name <- file_name %>%
+            gsub("\\.R", "", .) %>%
+            paste0(., "s") %>%
+            gsub("_", " ", .) %>%
+            str_to_sentence(.)
+
+paste0("- [", link_name, "](", "exercise_solutions/", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol5, results='asis', , eval = isTRUE(show_text5)}
+dir <- "exercise_solutions/"
+file_name <- list.files(dir) %>%
+             sort %>% 
+             grep("(exercise_[5]_solution.R)", . , value=TRUE) 
+
+link_name <- file_name %>%
+            gsub("\\.R", "", .) %>%
+            paste0(., "s") %>%
+            gsub("_", " ", .) %>%
+            str_to_sentence(.)
+
+paste0("- [", link_name, "](", "exercise_solutions/", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+\  
+
+#### Section 2 Exercises
+
+\  
+
+```{r sol_GDE, results='asis', eval = isTRUE(show_text_GDE)}
+link_name <- "Graphical data exploration exercise"
+file_name <- "exercise_solutions/graphical_data_exploration_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm1, results='asis', eval = isTRUE(show_text_lm1)}
+link_name <- "Linear model with single continuous explanatory variable exercise"
+file_name <- "exercise_solutions/linear_model_1_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm2, results='asis', eval = isTRUE(show_text_lm2)}
+link_name <- "Linear model with single categorical explanatory variable exercise"
+file_name <- "exercise_solutions/linear_model_2_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
+link_name <- "Linear model with multiple explanatory variables exercise"
+file_name <- "exercise_solutions/LM_3_multiple_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_lm4, results='asis', eval = isTRUE(show_text_lm4)}
+link_name <- "Linear model - model selection exercise"
+file_name <- "exercise_solutions/LM_4_Selection_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_glm1, results='asis', eval = isTRUE(show_text_glm1)}
+link_name <- "Generalised linear models 1 - Poisson GLM exercise"
+file_name <- "exercise_solutions/GLM_1_Poisson_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_glm2, results='asis', eval = isTRUE(show_text_glm2)}
+link_name <- "Generalised linear models 2 - Binomial GLM exercise"
+file_name <- "exercise_solutions/GLM_2_Binomial_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```
+
+```{r sol_glm3, results='asis', eval = isTRUE(show_text_glm3)}
+link_name <- "Generalised linear models 3 - Binomial GLM exercise"
+file_name <- "exercise_solutions/GLM_3_BinomialProportions_exercise_solutions.R"
+paste0("- [", link_name, "](", file_name, ")") %>%
+cat(sep="\n\n")
+```

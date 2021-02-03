@@ -1,0 +1,24 @@
+---
+title: "QUADstats"
+output: 
+  html_document:
+    toc: no
+---
+
+\  
+
+### Course Introduction
+
+\  
+
+Hello and welcome to your QUADRAT DTP QUADstats course! This website compliments the QUADstats MyAberdeen course site and is mainly used to host exercises and associated exercise solutions and data files. You can find all other material for this QUADstats course on the [MyAberdeen course website](https://abdn.blackboard.com/ultra/).   
+
+\  
+
+#### How do I use this website?
+
+\  
+
+The first thing you will need to do is download and install both R and RStudio on your computer. Take a look at the **[Setup <i class="fa fa-cog" aria-hidden="true"></i>](setup.html)** link on the navbar at the top of this page for further instructions on how to set up your computer. At the heart of this course is our open access online 'Introduction to R book' which you can find by either clicking on the **[R Book <i class="fa fa-book" aria-hidden="true"></i>]** link in the navbar or by clicking on this [link](https://intro2r.com). The book is split into 9 Chapters which cover different aspects of using R and RStudio, from general orientation, basic R operations, importing and manipulating data, plotting data, programming in R, R markdown and using version control. During this course we will be covering the first four Chapters only. You can test your understanding of each of these Chapters by completing the associated exercises which you can find by clicking on **[Exercises <i class="fa fa-book" aria-hidden="true"></i>](exercises.html)**. Solutions to all the exercises are given [here](exercise_solutions.html). We suggest that you don't peek at the solutions too quickly and only use them to confirm your answers or if you get stuck and feel like throwing your keyboard out of the window! There are also some additonal resources such as short how-to videos walking you through some important topics which you can find in the **[Learn <i class="fa fa-desktop" aria-hidden="true"></i>](howto.html)** link.
+
+\  
