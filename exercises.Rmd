@@ -16,11 +16,12 @@ source('reveal.R')
 
 \  
 
-### Exercises
 
-**Section 1** of the exercises will introduce you to using R and comprises four exercises which corresponds to material covered in the first four Chapters of the [Introduction to R book](https://intro2r.com). We will be covering these exercises during the first two weeks of the course. It’s entirely up to you how you progress through these exercises, everyone learns at their own pace and in their own way. You can either work your way through each section of the book and then test your understanding of the material by completing the associated exercise. Alternatively, you can start with each exercise and refer back to the appropriate material in the book. Or find another way that works for you. Whichever approach you use, make sure that you write your R code in RStudio (or your favourite script editor), annotate it liberally and save it regularly. At the end of the course you will have many hundreds of lines of code that you can refer back to at a later date when you’ve forgotten most of it! There is also an additional optional exercise (Exercise 5) which covers the book Chapter 7 - Programming in R. This exercise is entirely optional and should only be completed after you have finshed the first four exercises. 
+These exercises will help gauge your understanding of the material covered during this course. Each exercise contains a series of questions which will help reinforce statistical theory, how to implement this theory in R and also take you through a typical workflow when asking and answering research questions with your data. 
 
-**Section 2** exercises will cover material introduced during the third to fifth week of the course. These exercises will help you learn how to fit linear and generalised linear models using R, how to validate these models and how to interpret these models.   
+Whilst working through the exercises we recommend that you create a new R script for each exercise in an RStudio project. Make sure you include plenty of comments and notes to yourself for future reference, or, perhaps even better, include your code and commentary in an R markdown document. Of course, how you want to work is entirely up to you!
+
+During each exercise you will be working in a synchronous session on Blackboard collaborate where you will be able to ask questions and get one-to-one help from the course instructors. Towards the end of each session, one of the instructors will go through each exercise with you in real time to help clear up any lingering doubts and also provide you with an opportunity to discuss analytical decisions.
 
 I will release the [solutions to the exercises](exercise_solutions.html){target="_blank"} after each of our synchronous sessions. If you prefer to download these exercises in pdf format you can [find them here](exercise_pdf.html){target="_blank"}. 
 
@@ -48,17 +49,25 @@ rmarkdown::render("LM_4_Selection_exercise.Rmd", output_format = "pdf_document",
 
 \  
 
+### Day 1
+
  - [Graphical data Exploration exercise](graphical_data_exploration_exercise.html)
+ 
+ \  
+ 
+### Day 2
 
  - [Linear model with single continuous explanatory variable exercise](linear_model_1_exercise.html)
  
  - [Linear model with single categorical explanatory variable exercise](linear_model_2_exercise.html)
+
+\  
+
+### Day 3
  
  - [Linear model with multiple explanatory variables exercise](LM_3_multiple_exercise.html)
  
  - [Linear model - model selection exercise](LM_4_Selection_exercise.html)
 
 \  
-
-[pdf version of exercises](exercise_pdf.html)
 
