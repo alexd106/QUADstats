@@ -1,4 +1,17 @@
+# R project, history, etc.
 .Rproj.user
 .Rhistory
 .RData
-.Ruserdata
+.Rprofile
+.Rapp.history
+# knitr caches and files.
+*_cache/
+# *_files/
+# OSX Stuff
+.gitconfig.local
+.DS_Store*
+._*
+.Trashes
+# R markdown stuff
+*.log
+.DS_Store

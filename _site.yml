@@ -38,9 +38,26 @@ navbar:
     - text: "Info"
       icon: fa-question-circle
       menu:
+        - text: "Syllabus"
+          icon: fa-graduation-cap
+          href: syllabus.html
+        - text: "People"
+          icon: fa-user-friends
+          href: "People.html"
+        - text: "----"  
         - text: "Resources"
           icon: fa-book
           href: "resources.html"
+        - text: "Feedback"
+          icon: fa-commenting
+          href: https://forms.gle/ezFyn6bMVYCt75rB6
+        - text: "QUADRAT"
+          icon: fa-chrome
+          href: https://www.quadrat.ac.uk/
+        - text: "Contact"
+          icon: fa-envelope fa-lg
+          href: People.html
+        - text: "----"
         - text: "Source code"
           icon: fa-github fa-lg
           href: https://github.com/alexd106/BI5009

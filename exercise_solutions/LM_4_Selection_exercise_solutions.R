@@ -1,4 +1,4 @@
-## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 loyn <- read.table("./data/loyn.txt", header = TRUE,
                    stringsAsFactors = TRUE)
 str(loyn)
@@ -8,7 +8,7 @@ loyn$LOGDIST <- log10(loyn$DIST)
 loyn$LOGLDIST <- log10(loyn$LDIST)
 
 
-## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 # Example:
 
 # Rank	|	Predictor	|	Biological effect
@@ -26,7 +26,7 @@ loyn$LOGLDIST <- log10(loyn$LDIST)
 # study system and area, of course.
 
 
-## ----Q4, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q4, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 VOI<- c("ABUND", "LOGAREA", "LOGDIST", "LOGLDIST", "YR.ISOL", "ALT", "FGRAZE")
 pairs(loyn[, VOI])
 
@@ -44,18 +44,18 @@ pairs(loyn[, VOI])
 # YR.ISOl (positive), maybe ALT (positive) and FGRAZE (negative).
 
 
-## ----Q5, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q5, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 M1 <- lm(ABUND ~ LOGAREA + LOGDIST + LOGLDIST +
                  YR.ISOL + ALT + FGRAZE,
          data = loyn)
 
 
-## ----Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 anova(M1)
 summary(M1)
 
 
-## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 library(car)
 vif(M1)
 
@@ -64,7 +64,7 @@ vif(M1)
 # ignore for the moment
 
 
-## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 anova(M1)
 summary(M1)
 
@@ -78,7 +78,7 @@ summary(M1)
 # of inclusion of the variables
 
 
-## ----Q9, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
+## ----Q9, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------
 drop1(M1, test = "F")
 
 # LOGDIST is the least significant, hence makes the least 
@@ -86,7 +86,7 @@ drop1(M1, test = "F")
 # with respect to the number of degrees of freedom it uses (1)
 
 
-## ----Q10, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
+## ----Q10, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
 M2 <- lm(ABUND ~ LOGAREA + LOGLDIST + # removing LOGDIST here
                  YR.ISOL + ALT + FGRAZE,
          data = loyn)
@@ -118,7 +118,7 @@ drop1(M5, test = "F")
 # familiar version of the model!
 
 
-## ----Q11, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
+## ----Q11, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
 par(mfrow = c(2,2))
 plot(M5)
 
@@ -146,7 +146,7 @@ plot(M5)
 # variance increases with the mean abundance.
 
 
-## ----Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
+## ----Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
 # No we don't, in this simple case:
 # when an interaction is significant, the main effects should be left
 # in irrespective of significance, because the interaction cannot be
@@ -166,7 +166,7 @@ drop1(M6, test= "F") # drop1 is clever enough that it doesn't let you
 # see the p-values for the main effect, in the presence of their interaction.
 
 
-## ----Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
+## ----Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------
 # Biologically: what we already found out in the previous LM exercises:
 # There is a significant effect of grazing levels, especially the highest
 # level with a negative effect on bird abundance
