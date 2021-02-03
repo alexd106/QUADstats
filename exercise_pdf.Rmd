@@ -24,15 +24,31 @@ Click on the links below to download pdf versions of the exercises.
 cat("Exercises will be released as the course progresses")
 ```
 
+### Day 1
+
 \  
 
- - [Graphical data Exploration exercise](./exercises/graphical_data_exploration_exercise.pdf)
+<!-- - [Graphical data Exploration exercise](./exercises/graphical_data_exploration_exercise.pdf)-->
+TBC
+\  
+
+### Day 2
+
+\  
 
  - [Linear model with single continuous explanatory variable exercise](./exercises/linear_model_1_exercise.pdf)
  
  - [Linear model with single categorical explanatory variable exercise](./exercises/linear_model_2_exercise.pdf)
  
- - [Linear model with multiple explanatory variables exercise](./exercises/linear_model_3_exercise.pdf)
+\  
+
+### Day 3
+
+\  
+
+<!-- - [Linear model with multiple explanatory variables exercise](./exercises/linear_model_3_exercise.pdf)
  
  - [Linear model - model selection exercise](./exercises/linear_model_4_exercise.pdf)
+-->
 
+TBC
