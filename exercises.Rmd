@@ -51,7 +51,9 @@ rmarkdown::render("LM_4_Selection_exercise.Rmd", output_format = "pdf_document",
 
 ### Day 1
 
- - [Graphical data Exploration exercise](graphical_data_exploration_exercise.html)
+<!-- - [Graphical data Exploration exercise](graphical_data_exploration_exercise.html) -->
+
+TBC
  
  \  
  
@@ -65,9 +67,12 @@ rmarkdown::render("LM_4_Selection_exercise.Rmd", output_format = "pdf_document",
 
 ### Day 3
  
- - [Linear model with multiple explanatory variables exercise](LM_3_multiple_exercise.html)
+<!-- - [Linear model with multiple explanatory variables exercise](LM_3_multiple_exercise.html)
  
  - [Linear model - model selection exercise](LM_4_Selection_exercise.html)
+-->
+
+TBC
 
 \  
 
