@@ -59,9 +59,9 @@ TBC
  
 ### Day 2
 
- - [Linear model with single continuous explanatory variable exercise](linear_model_1_exercise.html)
+ - [Linear model with a single continuous explanatory variable exercise](linear_model_1_exercise.html)
  
- - [Linear model with single categorical explanatory variable exercise](linear_model_2_exercise.html)
+ - [Linear model with a single categorical explanatory variable exercise](linear_model_2_exercise.html)
 
 \  
 

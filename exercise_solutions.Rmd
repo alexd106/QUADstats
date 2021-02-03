@@ -20,12 +20,22 @@ Follow the links below for solutions to each of the exercises you have completed
 
 \  
 
+### Day 1
+
+\  
+
 ```{r sol_GDE, results='asis', eval = isTRUE(show_text_GDE)}
 link_name <- "Graphical data exploration exercise"
 file_name <- "graphical_data_exploration_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
+
+\  
+
+### Day 2
+
+\  
 
 ```{r sol_lm1, results='asis', eval = isTRUE(show_text_lm1)}
 link_name <- "Linear model with single continuous explanatory variable exercise"
@@ -40,6 +50,12 @@ file_name <- "linear_model_2_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
+
+\  
+
+### Day 3
+
+\  
 
 ```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
 link_name <- "Linear model with multiple explanatory variables exercise"
