@@ -23,7 +23,7 @@ Whilst working through the exercises we recommend that you create a new R script
 
 During each exercise you will be working in a synchronous session on Blackboard collaborate where you will be able to ask questions and get one-to-one help from the course instructors. Towards the end of each session, one of the instructors will go through each exercise with you in real time to help clear up any lingering doubts and also provide you with an opportunity to discuss analytical decisions.
 
-I will release the [solutions to the exercises](exercise_solutions.html){target="_blank"} after each of our synchronous sessions. If you prefer to download these exercises in pdf format you can [find them here](exercise_pdf.html){target="_blank"}. 
+We will release the [solutions to the exercises](exercise_solutions.html){target="_blank"} after each of our synchronous sessions. If you prefer to download these exercises in pdf format you can [find them here](exercise_pdf.html){target="_blank"}. 
 
 
 Have fun!

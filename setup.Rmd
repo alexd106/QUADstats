@@ -13,13 +13,15 @@ During the course we will be using both R and RStudio. To get your computer read
 \  
 
 ## Core Software
-**Install R.** You'll need R version **`r paste(R.Version()$major, ".", R.Version()$minor, sep="")`** or higher. Download and install R for [Windows](http://cran.r-project.org/bin/windows/base/){target="_blank"},  [Mac](http://cran.r-project.org/bin/macosx/){target="_blank"} (download the latest R-3.x.x.pkg file for your appropriate version of Mac OS) or [linux](https://cran.r-project.org/bin/linux){target="_blank"} (choose your flavour of linux).
+**Install R.** Install the latest version of R (**R version `r paste(R.Version()$major, ".", R.Version()$minor, sep="")`**). Download and install R for [Windows](http://cran.r-project.org/bin/windows/base/){target="_blank"},  [Mac](http://cran.r-project.org/bin/macosx/){target="_blank"} (download the latest R-4.x.x.pkg file for your appropriate version of Mac OS) or [linux](https://cran.r-project.org/bin/linux){target="_blank"} (choose your flavour of linux).
 
-**Install RStudio.** Download and install the free [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/){target="_blank"} version.
+**Install RStudio.** Download and install [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/){target="_blank"}.
 
 You will need to download and install R and RStudio separately. **R** is the underlying statistical computing environment. **RStudio** is a graphical integrated development environment (IDE) that makes using R a little easier. You need to install R before you install RStudio.
 
-See the following video for step by step instructionsto installing R and RStudio.
+\  
+
+See Section 1.1 and 1.2 of our [Introduction to R book](https://intro2r.com) for more details about installing R and RStudio. We have also produced a video walking you through the process of installing R and RStudio and also a brief introduction to RStudio.
 
 \  
 
@@ -34,5 +36,4 @@ And see this video for a short introduction to using RStudio.
 <iframe src="https://player.vimeo.com/video/416391353" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 \  
-
 
