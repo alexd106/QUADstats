@@ -22,10 +22,14 @@ navbar:
           href: https://github.com/alexd106/Rbook/raw/master/docs/Rbook.pdf
     - text: "Exercises"
       icon: fa-book
-      href: exercises.html
-    - text: "Exercise Solutions"
-      icon: fa-book
-      href: exercise_solutions.html
+      menu:
+        - text: "Exercises"
+          icon: fa-book
+          href: exercises.html
+        - text: "----"
+        - text: "Exercise Solutions"
+          icon: fa-book
+          href: exercise_solutions.html
     - text: "Data"
       icon: fa-download
       href: "data.html"
