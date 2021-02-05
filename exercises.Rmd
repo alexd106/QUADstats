@@ -51,11 +51,9 @@ rmarkdown::render("linear_model_2_exercise.Rmd", output_format = "pdf_document",
 
 ### Day 1
 
-<!-- - [Graphical data Exploration exercise](graphical_data_exploration_exercise.html) -->
+ - [Graphical data Exploration exercise](graphical_data_exploration_exercise.html)
 
-TBC
- 
- \  
+\  
  
 ### Day 2
 

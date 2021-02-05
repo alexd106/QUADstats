@@ -16,12 +16,6 @@ source('reveal.R')
 
 \  
 
-```{r, reveal, echo = FALSE, eval = isFALSE(show_text12)}
-cat("solutions will be released as the course progresses")
-```
-
-\  
-
 To download the solutions for each of the exercises as individual R scripts click the relevant links below. If the code opens in a browser window then right click on the link and select 'save link as' (or similar). 
 
 \  
@@ -30,15 +24,12 @@ To download the solutions for each of the exercises as individual R scripts clic
 
 \  
 
-TBC
-<!--
 ```{r sol_GDE, results='asis', eval = isTRUE(show_text_GDE)}
 link_name <- "Graphical data exploration exercise"
 file_name <- "exercise_solutions/graphical_data_exploration_exercise_solutions.R"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
--->
 
 \  
 

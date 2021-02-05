@@ -28,8 +28,8 @@ cat("Exercises will be released as the course progresses")
 
 \  
 
-<!-- - [Graphical data Exploration exercise](./exercises/graphical_data_exploration_exercise.pdf)-->
-TBC
+ - [Graphical data Exploration exercise](./exercises/graphical_data_exploration_exercise.pdf)
+
 \  
 
 ### Day 2
