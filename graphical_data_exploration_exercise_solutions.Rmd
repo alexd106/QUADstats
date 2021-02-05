@@ -17,11 +17,13 @@ knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, eval = FALSE,
 
 \  
 
-1. As in previous exercises, either create a new R script (perhaps call it graphical_data_exploration) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
+1.  Start RStudio on your computer. If you haven't already done so, create a new RStudio Project (select File --> New Project on the main menu). Create the Project in a new directory by selecting 'New Directory' and then select 'New Project'. Give the Project a suitable name (quadstats maybe) in the 'Directory name:' box and choose where you would like to create this Project directory by clicking on the 'Browse' button. Finally create the project by clicking on the 'Create Project' button. This will be your main RStudio Project file and directory which you will use throughout this course. See [Section 1.6](https://intro2r.com/rsprojs.html#rsprojs) of the Introduction to R book for more information about RStudio Projects and [here](https://alexd106.github.io/QUADstatR/howto.html#rstudio_proj-vid) for a short video.
+
+Now create a new R script inside this Project by selecting File –> New File –> R Script from the main menu (or use the shortcut button). Before you start writing any code save this script by selecting File –> Save from the main menu. Call this script ‘graphical_data_exploration’ or something similar. Click on the ‘Files’ tab in the bottom right RStudio pane to see whether your file has been saved in the correct location. Ok, at the top of almost every R script (there are very few exceptions to this!) you should include some metadata to help your collaborators (and the future you) know who wrote the script, when it was written and what the script does (amongst other things). Include this information at the top of your R script making sure that you place a # at the beginning of every line to let R know this is a comment. See [Section 1.10](https://intro2r.com/proj-doc.html) for a little more detail.
 
 \  
 
-2. If you haven't already, download the data file *'loyn.xlsx'* from the **[<i class="fa fa-download"></i> Data](data.html)** link and save it to the `data` directory you created during exercise 1. Open this file in Microsoft Excel (or even better use an open source equivalent - [LibreOffice](https://www.libreoffice.org/download/download/) is a good free alternative) and save it as a tab delimited file type. Name the file *'loyn.txt'* and also save it to the `data` directory.
+2. If you haven't already, download the data file *'loyn.xlsx'* from the **[<i class="fa fa-download"></i> Data](data.html)** link and save it to the `data` directory. Open this file in Microsoft Excel (or even better use an open source equivalent - [LibreOffice](https://www.libreoffice.org/download/download/) is a good free alternative) and save it as a tab delimited file type. Name the file *'loyn.txt'* and also save it to the `data` directory.
 
 \  
 
@@ -86,7 +88,7 @@ tapply(loyn$ABUND, loyn$FGRAZE, summary, na.rm = TRUE)
 
 \  
 
-7. Now onto some plotting action. Use a Cleveland dotchart of each variable separately to assess whether there are any outliers in the response variable (`ABUND`) or any of the explanatory variables (see table above)? Produce a Cleveland dotchart of each variable separately to assess this (hint: use the `dotplot()` function). If you feel in the mood, then output these plots to an external PDF file.
+7. Now onto some plotting action. Use a Cleveland dotchart of each variable separately to assess whether there are any outliers in the response variable (`ABUND`) or any of the explanatory variables (see table above)? Produce a Cleveland dotchart of each variable separately to assess this (hint: use the `dotplot()` function). If you feel in the mood, output these plots to an external PDF file.
 
 \  
 
@@ -129,7 +131,7 @@ dotplot(as.matrix(Z),
         ylab = "Order of the data from text file")
 ```
 
-8. If you do spot any unusual observations have a think about what you want to do with them (NOTE: do **not** just remove them without justification!). If you're unsure, be sure to speak to an instructor to discuss your options during our synchronous practical sessions. Perhaps you should you apply a data transformation to see if this reduces the magnitude of any outlier. The best thing to do here is to play around with different transformations (i.e. `log`, `sqrt`) to see which one does what you want it to do. After you have applied these data transformations make sure you re-plot your dotcharts with any transformed variable to double check what the transformation is doing.
+8. If you do spot any unusual observations have a think about what you want to do with them (NOTE: do **not** just remove them without justification!). If you're unsure, be sure to speak to an instructor to discuss your options during our synchronous practical sessions. Perhaps you should apply a data transformation to see if this reduces the magnitude of any outlier. The best thing to do here is to play around with different transformations (i.e. `log`, `sqrt`) to see which one does what you want it to do. After you have applied these data transformations make sure you re-plot your dotcharts with any transformed variable to double check what the transformation is doing.
 
 \  
 
