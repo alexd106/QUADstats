@@ -7,7 +7,7 @@ output:
 
 \  
 
-Hello and welcome to your QUADRAT DTP QUADstats course! This website compliments the QUADstats [MyAberdeen course website](https://abdn.blackboard.com/ultra/) and is mainly used to host exercises and associated exercise solutions and data files. You can find all other material for this QUADstats course on the MyAberdeen course site.   
+Hello and welcome to your QUADRAT DTP QUADstats course! This website compliments the QUADstats [MyAberdeen](https://abdn.blackboard.com/ultra/) course website and is mainly used to host exercises and associated exercise solutions and data files. You can find all other material for this QUADstats course on the MyAberdeen course site.   
 
 \  
 
@@ -15,7 +15,7 @@ Hello and welcome to your QUADRAT DTP QUADstats course! This website compliments
 
 \  
 
-The first thing you will need to do is check that you have both R and RStudio installed on your computer. Most (if not all) of you should already have these installed from when you attended the Introduction to R course. If you haven't used R and RStudio since (:() then its probably a good idea to update both to the latest versions. If for some reason you don't have R and RStudio installed then take a look at the **[<i class="fa fa-cog" aria-hidden="true"></i> Setup](setup.html)** link in the navbar above for further instructions on how to set up your computer.
+The first thing you will need to do is check that you have both R and RStudio installed on your computer. Most (if not all) of you should already have these installed from when you attended the previous Introduction to R course. If you haven't used R and RStudio since (`r emo::ji("frowning_face")`) then its probably a good idea to update both to the latest versions. If for some reason you don't have R and RStudio installed then take a look at the **[<i class="fa fa-cog" aria-hidden="true"></i> Setup](setup.html)** link in the navbar above for further instructions on how to set up your computer.
 
 This course will be delivered entirely online this year and will comprise a mixture of pre-recorded video lectures covering statistical theory and a series of live practical exercises and review sessions during which you will be able to ask questions and receive one-to-one help from the instructors. The recorded lectures will be hosted on our Virtual Learning Environment [MyAberdeen](https://abdn.blackboard.com/ultra/) and the live practical and review sessions with be delivered via Blackboard Collaborate. Full instructions on how to access Blackboard Collaborate will be provided before the course starts. 
 
