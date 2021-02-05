@@ -17,21 +17,21 @@ knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, eval = FALSE,
 
 \  
 
-1.  Start RStudio on your computer. If you haven't already done so, create a new RStudio Project (select File --> New Project on the main menu). Create the Project in a new directory by selecting 'New Directory' and then select 'New Project'. Give the Project a suitable name (quadstats maybe) in the 'Directory name:' box and choose where you would like to create this Project directory by clicking on the 'Browse' button. Finally create the project by clicking on the 'Create Project' button. This will be your main RStudio Project file and directory which you will use throughout this course. See [Section 1.6](https://intro2r.com/rsprojs.html#rsprojs) of the Introduction to R book for more information about RStudio Projects and [here](https://alexd106.github.io/QUADstatR/howto.html#rstudio_proj-vid) for a short video.
+1\.  Start RStudio on your computer. If you haven't already done so, create a new RStudio Project (select File --> New Project on the main menu). Create the Project in a new directory by selecting 'New Directory' and then select 'New Project'. Give the Project a suitable name (quadstats maybe) in the 'Directory name:' box and choose where you would like to create this Project directory by clicking on the 'Browse' button. Finally create the project by clicking on the 'Create Project' button. This will be your main RStudio Project file and directory which you will use throughout this course. See [Section 1.6](https://intro2r.com/rsprojs.html#rsprojs) of the Introduction to R book for more information about RStudio Projects and [here](https://alexd106.github.io/QUADstatR/howto.html#rstudio_proj-vid) for a short video.
 
 Now create a new R script inside this Project by selecting File –> New File –> R Script from the main menu (or use the shortcut button). Before you start writing any code save this script by selecting File –> Save from the main menu. Call this script ‘graphical_data_exploration’ or something similar. Click on the ‘Files’ tab in the bottom right RStudio pane to see whether your file has been saved in the correct location. Ok, at the top of almost every R script (there are very few exceptions to this!) you should include some metadata to help your collaborators (and the future you) know who wrote the script, when it was written and what the script does (amongst other things). Include this information at the top of your R script making sure that you place a # at the beginning of every line to let R know this is a comment. See [Section 1.10](https://intro2r.com/proj-doc.html) for a little more detail.
 
 \  
 
-2. If you haven't already, download the data file *'loyn.xlsx'* from the **[<i class="fa fa-download"></i> Data](data.html)** link and save it to the `data` directory. Open this file in Microsoft Excel (or even better use an open source equivalent - [LibreOffice](https://www.libreoffice.org/download/download/) is a good free alternative) and save it as a tab delimited file type. Name the file *'loyn.txt'* and also save it to the `data` directory.
+2\. If you haven't already, download the data file *'loyn.xlsx'* from the **[<i class="fa fa-download"></i> Data](data.html)** link and save it to the `data` directory. Open this file in Microsoft Excel (or even better use an open source equivalent - [LibreOffice](https://www.libreoffice.org/download/download/) is a good free alternative) and save it as a tab delimited file type. Name the file *'loyn.txt'* and also save it to the `data` directory.
 
 \  
 
-3. These data are from a study originally conducted by Loyn (1987)^1^ and subsequently re-analysed by Quinn and Keough (2002)^2^ and Zuur et al (2009)^3^. The aim of the study was to relate bird density in 56 forest patches to a number of different environmental variables and management practices. A summary of the variables is: **ABUND**: Density of birds, Continuous response; **AREA**: Size of forest patch, Continuous explanatory; **DIST**: Distance to nearest patch, Continuous explanatory; **LDIST**: Distance to nearest larger patch, Continuous explanatory; **ALTITUDE**: Mean altitude of patch, Continuous explanatory; **YEAR.ISOL**: Year of isolation of clearance, Continuous explanatory; **GRAZE**: Index of livestock grazing intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze  
+3\. These data are from a study originally conducted by Loyn (1987)^1^ and subsequently re-analysed by Quinn and Keough (2002)^2^ and Zuur et al (2009)^3^. The aim of the study was to relate bird density in 56 forest patches to a number of different environmental variables and management practices. A summary of the variables is: **ABUND**: Density of birds, Continuous response; **AREA**: Size of forest patch, Continuous explanatory; **DIST**: Distance to nearest patch, Continuous explanatory; **LDIST**: Distance to nearest larger patch, Continuous explanatory; **ALTITUDE**: Mean altitude of patch, Continuous explanatory; **YEAR.ISOL**: Year of isolation of clearance, Continuous explanatory; **GRAZE**: Index of livestock grazing intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze  
 
 \  
 
-4. Import your *'loyn.txt'* file into R using the `read.table()` function and assign it to a variable called `loyn`. Use the `str()` function to display the structure of the dataset and the `summary()` function to summarise the dataset. How many observations are in this dataset? How many variables? How is the variable `GRAZE` coded? (as a number or a string?). If you think this will cause a problem (hint: it will!), create a new variable called `FGRAZE` **in** the dataframe with `GRAZE` recoded as a factor.
+4\. Import your *'loyn.txt'* file into R using the `read.table()` function and assign it to a variable called `loyn`. Use the `str()` function to display the structure of the dataset and the `summary()` function to summarise the dataset. How many observations are in this dataset? How many variables? How is the variable `GRAZE` coded? (as a number or a string?). If you think this will cause a problem (hint: it will!), create a new variable called `FGRAZE` **in** the dataframe with `GRAZE` recoded as a factor.
 
 \  
 
@@ -52,7 +52,7 @@ loyn$FGRAZE <- factor(loyn$GRAZE)
     
 \  
 
-5. Use the function `table()` (or `xtabs()`) to determine how many observations are in each `FGRAZE` level. See [section 3.5](https://intro2r.com/summarising-data-frames.html) of the Introduction to R book to remind yourself how to do this.
+5\. Use the function `table()` (or `xtabs()`) to determine how many observations are in each `FGRAZE` level. See [section 3.5](https://intro2r.com/summarising-data-frames.html) of the Introduction to R book to remind yourself how to do this.
 
 \  
 
@@ -65,7 +65,7 @@ xtabs(~ FGRAZE, data = loyn)
 
 \  
 
-6. Using the `tapply()` function what is the mean bird abundance (`ABUND`) for each levels of `FGRAZE`? Can you determine the variance, the minimum and maximum for each `FGRAZE` level? Again see [section 3.5](https://intro2r.com/summarising-data-frames.html) of the Introduction to R book to remind yourself how to do this.
+6\. Using the `tapply()` function what is the mean bird abundance (`ABUND`) for each levels of `FGRAZE`? Can you determine the variance, the minimum and maximum for each `FGRAZE` level? Again see [section 3.5](https://intro2r.com/summarising-data-frames.html) of the Introduction to R book to remind yourself how to do this.
 
 \  
 
@@ -88,7 +88,7 @@ tapply(loyn$ABUND, loyn$FGRAZE, summary, na.rm = TRUE)
 
 \  
 
-7. Now onto some plotting action. Use a Cleveland dotchart of each variable separately to assess whether there are any outliers in the response variable (`ABUND`) or any of the explanatory variables (see table above)? Produce a Cleveland dotchart of each variable separately to assess this (hint: use the `dotplot()` function). If you feel in the mood, output these plots to an external PDF file.
+7\. Now onto some plotting action. Use a Cleveland dotchart of each variable separately to assess whether there are any outliers in the response variable (`ABUND`) or any of the explanatory variables (see table above)? Produce a Cleveland dotchart of each variable separately to assess this (hint: use the `dotplot()` function). If you feel in the mood, output these plots to an external PDF file.
 
 \  
 
@@ -131,7 +131,7 @@ dotplot(as.matrix(Z),
         ylab = "Order of the data from text file")
 ```
 
-8. If you do spot any unusual observations have a think about what you want to do with them (NOTE: do **not** just remove them without justification!). If you're unsure, be sure to speak to an instructor to discuss your options during our synchronous practical sessions. Perhaps you should apply a data transformation to see if this reduces the magnitude of any outlier. The best thing to do here is to play around with different transformations (i.e. `log`, `sqrt`) to see which one does what you want it to do. After you have applied these data transformations make sure you re-plot your dotcharts with any transformed variable to double check what the transformation is doing.
+8\. If you do spot any unusual observations have a think about what you want to do with them (NOTE: do **not** just remove them without justification!). If you're unsure, be sure to speak to an instructor to discuss your options during our synchronous practical sessions. Perhaps you should apply a data transformation to see if this reduces the magnitude of any outlier. The best thing to do here is to play around with different transformations (i.e. `log`, `sqrt`) to see which one does what you want it to do. After you have applied these data transformations make sure you re-plot your dotcharts with any transformed variable to double check what the transformation is doing.
 
 \  
 
@@ -150,7 +150,7 @@ str(loyn)
 
 \  
 
-9. Is there any potential collinearity between any of the explanatory variables? Plot these variables using the `pairs()` function. Remember, you only need to check for collinearity between your explanatory variables so you will need to extract these variables from the `loyn` dataframe either before you use the `pairs()` function or whilst using it. Optionally, include the correlation coefficient between variables in the upper panel of the pairs plot (see [section 4.2.5](https://intro2r.com/simple-base-r-plots.html#pairs-plots) of the introduction to R book for details).
+9\. Is there any potential collinearity between any of the explanatory variables? Plot these variables using the `pairs()` function. Remember, you only need to check for collinearity between your explanatory variables so you will need to extract these variables from the `loyn` dataframe either before you use the `pairs()` function or whilst using it. Optionally, include the correlation coefficient between variables in the upper panel of the pairs plot (see [section 4.2.5](https://intro2r.com/simple-base-r-plots.html#pairs-plots) of the introduction to R book for details).
 
 \  
 
@@ -192,7 +192,7 @@ pairs(loyn[,c("LOGAREA","LOGDIST","DIST",
 
 \  
 
-10. Are there any clear relationships between the response variable (`ABUND`) and individual explanatory variables? Use the appropriate plotting functions (`plot()`, `boxplot()`) to visualise these relationships.
+10\. Are there any clear relationships between the response variable (`ABUND`) and individual explanatory variables? Use the appropriate plotting functions (`plot()`, `boxplot()`) to visualise these relationships.
 
 \  
 
@@ -210,7 +210,7 @@ plot(loyn$LOGAREA, loyn$ABUND, xlab = "log area", ylab = "bird abundance")
 
 \  
 
-11. One of the main aims of this study was to determine whether management practices such as grazing intensity (`GRAZE`) and size of the forest (`AREA`) affected the abundance of birds (`ABUND`). One hypothesis was that the size of the forest impacted birds, but this was dependent of the intensity of the grazing regime (in other words, there is an interaction between `AREA` and `GRAZE`). Use an appropriate plotting function to explore these data for such an interaction (perhaps a `coplot()` or `xyplot()` might be helpful?). 
+11\. One of the main aims of this study was to determine whether management practices such as grazing intensity (`GRAZE`) and size of the forest (`AREA`) affected the abundance of birds (`ABUND`). One hypothesis was that the size of the forest impacted birds, but this was dependent of the intensity of the grazing regime (in other words, there is an interaction between `AREA` and `GRAZE`). Use an appropriate plotting function to explore these data for such an interaction (perhaps a `coplot()` or `xyplot()` might be helpful?). 
 
 \  
 

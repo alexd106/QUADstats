@@ -432,49 +432,27 @@ $(document).ready(function () {
 <div id="exercise-linear-model-with-single-categorical-explanatory-variable" class="section level2">
 <h2>Exercise: Linear model with single categorical explanatory variable</h2>
 <p> </p>
-<ol style="list-style-type: decimal">
-<li>As in previous exercises, either create a new R script (perhaps call it linear_model_2) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and don’t forget to comment out your metadata with a <code>#</code> at the beginning of the line.</li>
-</ol>
+<p>1. As in previous exercises, either create a new R script (perhaps call it linear_model_2) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and don’t forget to comment out your metadata with a <code>#</code> at the beginning of the line.</p>
 <p> </p>
-<ol start="2" style="list-style-type: decimal">
-<li>Import the data file ‘loyn.txt’ into R and take a look at the structure of this dataframe using the <code>str()</code> function. In this exercise you will investigate whether the abundance of birds (<code>ABUND</code>) is different in areas with different grazing intensities (<code>GRAZE</code>). Remember, the <code>GRAZE</code> variable is an index of livestock grazing intensity. Level 1 = low grazing intensity and level 5 = high grazing intensity.</li>
-</ol>
+<p>2. Import the data file ‘loyn.txt’ into R and take a look at the structure of this dataframe using the <code>str()</code> function. In this exercise you will investigate whether the abundance of birds (<code>ABUND</code>) is different in areas with different grazing intensities (<code>GRAZE</code>). Remember, the <code>GRAZE</code> variable is an index of livestock grazing intensity. Level 1 = low grazing intensity and level 5 = high grazing intensity.</p>
 <p> </p>
-<ol start="3" style="list-style-type: decimal">
-<li>As we discussed in the graphical data exploration exercise the <code>GRAZE</code> variable was originally coded as a numeric (i.e. 1, 2, 3, 4, 5). In this exercise we actually want to treat <code>GRAZE</code> as a categorical variable with five levels. So the first thing we need to do is create a new variable in the loyn dataframe called <code>FGRAZE</code> in which we store the <code>GRAZE</code> variable coerced to be a categorical variable with the <code>factor()</code> function.</li>
-</ol>
+<p>3. As we discussed in the graphical data exploration exercise the <code>GRAZE</code> variable was originally coded as a numeric (i.e. 1, 2, 3, 4, 5). In this exercise we actually want to treat <code>GRAZE</code> as a categorical variable with five levels. So the first thing we need to do is create a new variable in the loyn dataframe called <code>FGRAZE</code> in which we store the <code>GRAZE</code> variable coerced to be a categorical variable with the <code>factor()</code> function.</p>
 <p> </p>
-<ol start="4" style="list-style-type: decimal">
-<li>Explore any potential differences in bird abundance between each level of <code>FGRAZE</code> graphically using an appropriate plot (hint: a boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis?</li>
-</ol>
+<p>4. Explore any potential differences in bird abundance between each level of <code>FGRAZE</code> graphically using an appropriate plot (hint: a boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis?</p>
 <p> </p>
-<ol start="5" style="list-style-type: decimal">
-<li>Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code>, with the explanatory variable <code>FGRAZE</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object (<code>birds.lm</code> if your imagination fails you!).</li>
-</ol>
+<p>5. Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code>, with the explanatory variable <code>FGRAZE</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object (<code>birds.lm</code> if your imagination fails you!).</p>
 <p> </p>
-<ol start="6" style="list-style-type: decimal">
-<li>Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypothesis is being tested? Do you reject or fail to reject the null hypothesis? What summary statistics would you report?</li>
-</ol>
+<p>6. Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypothesis is being tested? Do you reject or fail to reject the null hypothesis? What summary statistics would you report?</p>
 <p> </p>
-<ol start="7" style="list-style-type: decimal">
-<li>Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output what is the estimate of the intercept and what does this represent? What is the null hypothesis associated with the intercept? do you reject or fail to reject this hypothesis? Next we move onto the the <code>FGRAZE2</code> parameter, how do you interpret this parameter? (remember they are contrasts). Again, what is the null hypothesis associated with the <code>FGRAZE2</code> parameter? do you reject or fail to reject this hypothesis? Repeat this interpretation for the <code>FGRAZE3</code>, <code>FGRAZE4</code> and <code>FGRAZE5</code> parameters.</li>
-</ol>
+<p>7. Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output what is the estimate of the intercept and what does this represent? What is the null hypothesis associated with the intercept? do you reject or fail to reject this hypothesis? Next we move onto the the <code>FGRAZE2</code> parameter, how do you interpret this parameter? (remember they are contrasts). Again, what is the null hypothesis associated with the <code>FGRAZE2</code> parameter? do you reject or fail to reject this hypothesis? Repeat this interpretation for the <code>FGRAZE3</code>, <code>FGRAZE4</code> and <code>FGRAZE5</code> parameters.</p>
 <p> </p>
-<ol start="8" style="list-style-type: decimal">
-<li>Now that you have interpreted all the contrasts with <code>FGRAZE</code> level 1, reset the intercept to <code>FGRAZE</code> level 2 using the <code>relevel()</code> function, refit the model, produce the new table of parameter estimates using the <code>summary()</code> function again and interpret. Repeat this for <code>FGRAZE</code> levels 3, 4 and 5. Can you summarise which levels of <code>FGRAZE</code> are different from each other?</li>
-</ol>
+<p>8. Now that you have interpreted all the contrasts with <code>FGRAZE</code> level 1, reset the intercept to <code>FGRAZE</code> level 2 using the <code>relevel()</code> function, refit the model, produce the new table of parameter estimates using the <code>summary()</code> function again and interpret. Repeat this for <code>FGRAZE</code> levels 3, 4 and 5. Can you summarise which levels of <code>FGRAZE</code> are different from each other?</p>
 <p> </p>
-<ol start="9" style="list-style-type: decimal">
-<li>Staying with the summary table of parameter estimates, how much of the variation in bird abundance does the explanatory variable <code>FGRAZE</code> explain?</li>
-</ol>
+<p>9. Staying with the summary table of parameter estimates, how much of the variation in bird abundance does the explanatory variable <code>FGRAZE</code> explain?</p>
 <p> </p>
-<ol start="10" style="list-style-type: decimal">
-<li>Now onto a really important part of the model fitting process. Let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the <code>plot()</code> function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</li>
-</ol>
+<p>10. Now onto a really important part of the model fitting process. Let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the <code>plot()</code> function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</p>
 <p> </p>
-<ol start="11" style="list-style-type: decimal">
-<li>This is an optional question and really just for information. I’ll give you the code in the solutions so don’t overly stress about this! Use Google (yep, this is OK!) to figure out how to plot your fitted values and 95% confidence intervals. Try Googling the <code>gplots</code> package or the <code>effects</code> package. Alternatively, have a go at using our old trusty <code>predict()</code> function to calculate the fitted values and standard error.</li>
-</ol>
+<p>11. This is an optional question and really just for information. I’ll give you the code in the solutions so don’t overly stress about this! Use Google (yep, this is OK!) to figure out how to plot your fitted values and 95% confidence intervals. Try Googling the <code>gplots</code> package or the <code>effects</code> package. Alternatively, have a go at using our old trusty <code>predict()</code> function to calculate the fitted values and standard error.</p>
 <p> </p>
 <p>End of the linear model with single categorical explanatory variable exercise</p>
 </div>
