@@ -47,7 +47,7 @@ class(loyn$FGRAZE)
 
 \  
 
-4. Explore any potential differences in bird abundance between each level of `FGRAZE` graphically using an appropriate plot (hint: boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis? What is the mean number of birds for each level of `FGRAZE`? 
+4. Explore any potential differences in bird abundance between each level of `FGRAZE` graphically using an appropriate plot (hint: a boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis? What is the mean number of birds for each level of `FGRAZE`? 
 
 \  
 
@@ -67,7 +67,7 @@ tapply(loyn$ABUND, loyn$FGRAZE, mean, na.rm = TRUE)
 
 \  
 
-5. Fit an appropriate linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variable `FGRAZE`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`birds.lm` if your imagination fails you!).
+5. Fit an appropriate linear model in R to explain the variation in the response variable, `ABUND`, with the explanatory variable `FGRAZE`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`birds.lm` if your imagination fails you!).
 
 \  
 
@@ -173,7 +173,7 @@ summary(birds.lm4)
 
 \  
 
-10. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals form the model. Remember, you can easily create these plots by using the `plot()` function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
+10. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
 
 \  
 

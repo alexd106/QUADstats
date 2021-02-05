@@ -577,7 +577,7 @@ $(document).ready(function () {
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">## [1] &quot;factor&quot;</span></span></code></pre></div>
 <p> </p>
 <ol start="4" style="list-style-type: decimal">
-<li>Explore any potential differences in bird abundance between each level of <code>FGRAZE</code> graphically using an appropriate plot (hint: boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis? What is the mean number of birds for each level of <code>FGRAZE</code>?</li>
+<li>Explore any potential differences in bird abundance between each level of <code>FGRAZE</code> graphically using an appropriate plot (hint: a boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis? What is the mean number of birds for each level of <code>FGRAZE</code>?</li>
 </ol>
 <p> </p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">boxplot</span>(ABUND <span class="op">~</span><span class="st"> </span>FGRAZE, <span class="dt">xlab =</span> <span class="st">&quot;Grazing level&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Bird abundance&quot;</span>, <span class="dt">data =</span> loyn)</span></code></pre></div>
@@ -596,7 +596,7 @@ $(document).ready(function () {
 <span id="cb4-12"><a href="#cb4-12"></a><span class="co"># levels 2,3 and 4. </span></span></code></pre></div>
 <p> </p>
 <ol start="5" style="list-style-type: decimal">
-<li>Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variable <code>FGRAZE</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object (<code>birds.lm</code> if your imagination fails you!).</li>
+<li>Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code>, with the explanatory variable <code>FGRAZE</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object (<code>birds.lm</code> if your imagination fails you!).</li>
 </ol>
 <p> </p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>birds.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(ABUND <span class="op">~</span><span class="st"> </span>FGRAZE, <span class="dt">data =</span> loyn)</span></code></pre></div>
@@ -774,7 +774,7 @@ $(document).ready(function () {
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co"># the variation in ABUND is explained by FGRAZE</span></span></code></pre></div>
 <p> </p>
 <ol start="10" style="list-style-type: decimal">
-<li>Now onto a really important part of the model fitting process. Let’s check the assumptions of your linear model by creating plots of the residuals form the model. Remember, you can easily create these plots by using the <code>plot()</code> function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</li>
+<li>Now onto a really important part of the model fitting process. Let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the <code>plot()</code> function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</li>
 </ol>
 <p> </p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># first split the plotting device into 2 rows and 2 columns</span></span>
