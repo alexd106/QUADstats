@@ -16,16 +16,38 @@ The course will start at 09:30 each morning and finish at 17:00. We will break f
 
 #### Monday 8^th^ March 2021
 
+\  
+
+|09:30 - 10:30               | 10:30 - 12:30     | 12:30 - 13:30 |13:30 - 14:30    | 14:30 - 15:30      | 15:30 - 17:00|
+|:--------------------------:|:-----------------:|:-------------:|:---------------:|:------------------:|
+|Course introduction (live)  |Graphical data exploration (GDE) theory lecture (recorded MB) |LUNCH|GDE live practical, Live review session (MB)|Linear models theory lectures (recorded AD), Linear models paper exercise|
+
+\  
 
 \  
 
 #### Tuesday 9^th^ March 2021 
 
+\  
+
+|09:30 - 10:30               | 10:30 - 12:30     | 12:30 - 13:30 |13:30 - 14:30    | 14:30 - 15:30      |15:30 - 17:00|
+|:--------------------------:|:-----------------:|:-------------:|:---------------:|:------------------:|:-------------:|
+|Linear model theory(recorded AD)|Linear models live practical (AD) – single continuous explanatory variable|LUNCH|Linear models live practical (AD) – single continuous explanatory variable, Live review session|Linear models theory (recorded AD) – single categorical explanatory variable|Linear models live practical (AD) – single categorical explanatory variable|
+
+\  
 
 \  
 
 #### Wednesday 10^th^ March 2021
 
+\  
 
+|09:30 - 11:30               | 11:30 - 12:30     | 12:30 - 13:30 |13:30 - 16:30    | 16:30 - 17:00      |
+|:--------------------------:|:-----------------:|:-------------:|:---------------:|:------------------:|
+|Linear model live practical (AD) – single categorical explanatory variable | Linear model theory (recorded ME) – categorical & continuous explanatory variables | LUNCH | Linear model live practical (ME) – categorical & continuous explanatory variables, Live review session (ME) | Catchup/course close (ALL)|
 
+\  
 
+MB – Maarten Blaauw, ME – Mark Emmerson, AD – Alex Douglas
+
+\  
