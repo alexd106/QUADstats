@@ -540,16 +540,12 @@ $(document).ready(function () {
 <p> </p>
 <p>This exercise builds on the linear model with one continuous explanatory variable, and the linear model with one categorical explanatory variable, by adding these two sources of variation in the same model. The first part of the exercise will explore fitting an ‘additive’ model and the second part fitting a model with an interaction term.</p>
 <p> </p>
-<div id="part-1-linear-model-with-additive-explanatory-variables" class="section level2">
-<h2>Part 1: Linear model with additive explanatory variables</h2>
+<div id="part-1-linear-model-with-additive-explanatory-variables" class="section level3">
+<h3>Part 1: Linear model with additive explanatory variables</h3>
 <p> </p>
-<ol style="list-style-type: decimal">
-<li>As in previous exercises, either create a new R script (perhaps call it linear_model_3) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and don’t forget to comment out your metadata with a <code>#</code> at the beginning of the line.</li>
-</ol>
+<p>1. As in previous exercises, either create a new R script (perhaps call it linear_model_3) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and don’t forget to comment out your metadata with a <code>#</code> at the beginning of the line.</p>
 <p> </p>
-<ol start="2" style="list-style-type: decimal">
-<li>Import the data file ‘loyn.txt’ into R and take a look at the structure of this dataframe using the <code>str()</code> function. We know that the abundance of birds <code>ABUND</code> increases quickly with the area of the patch <code>LOGAREA</code>, and more slowly for the larger patches. We now also know that bird abundance changes in a non-linear way with the grazing intensity <code>FGRAZE</code>. But how do these effects combine together? Would a small patch with low grazing intensity have more birds than a larger patch with high grazing intensity? Could the poor fit of the <code>ABUND ~ LOGAREA</code> model for the large patches be improved if we accounted for grazing intensity in the patches?</li>
-</ol>
+<p>2. Import the data file ‘loyn.txt’ into R and take a look at the structure of this dataframe using the <code>str()</code> function. We know that the abundance of birds <code>ABUND</code> increases quickly with the area of the patch <code>LOGAREA</code>, and more slowly for the larger patches. We now also know that bird abundance changes in a non-linear way with the grazing intensity <code>FGRAZE</code>. But how do these effects combine together? Would a small patch with low grazing intensity have more birds than a larger patch with high grazing intensity? Could the poor fit of the <code>ABUND ~ LOGAREA</code> model for the large patches be improved if we accounted for grazing intensity in the patches?</p>
 <p> </p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>loyn &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/loyn.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">str</span>(loyn)</span>
@@ -563,17 +559,13 @@ $(document).ready(function () {
 <span id="cb1-10"><a href="#cb1-10"></a><span class="co">##  $ GRAZE  : int  2 5 5 3 5 3 5 5 4 5 ...</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="co">##  $ ALT    : int  160 60 140 160 140 130 90 60 130 130 ...</span></span></code></pre></div>
 <p> </p>
-<ol start="3" style="list-style-type: decimal">
-<li>As previously we want to treat <code>AREA</code> as a log-transformed area to limit the influence of the few disproportionately large patches, and <code>GRAZE</code> as a categorical variable with five levels. So the first thing we need to do is create the corresponding variables in the loyn dataframe, called <code>LOGAREA</code> and <code>FGRAZE</code>.</li>
-</ol>
+<p>3. As previously we want to treat <code>AREA</code> as a log-transformed area to limit the influence of the few disproportionately large patches, and <code>GRAZE</code> as a categorical variable with five levels. So the first thing we need to do is create the corresponding variables in the loyn dataframe, called <code>LOGAREA</code> and <code>FGRAZE</code>.</p>
 <p> </p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>loyn<span class="op">$</span>LOGAREA &lt;-<span class="st"> </span><span class="kw">log10</span>(loyn<span class="op">$</span>AREA)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co"># create factor GRAZE as it was originally coded as an integer</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>loyn<span class="op">$</span>FGRAZE &lt;-<span class="st"> </span><span class="kw">factor</span>(loyn<span class="op">$</span>GRAZE)</span></code></pre></div>
 <p> </p>
-<ol start="4" style="list-style-type: decimal">
-<li>Explore the relationship between grazing and patch area, using a scatterplot. Hint: you may want to use <code>GRAZE</code> rather than <code>FGRAZE</code> for this. Is there any variability in patch area within each grazing level? Is the sampling design balanced, i.e., is the whole range of patch areas evenly represented at each grazing level?</li>
-</ol>
+<p>4. Explore the relationship between grazing and patch area, using a scatterplot. Hint: you may want to use <code>GRAZE</code> rather than <code>FGRAZE</code> for this. Is there any variability in patch area within each grazing level? Is the sampling design balanced, i.e., is the whole range of patch areas evenly represented at each grazing level?</p>
 <p> </p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">plot</span>(LOGAREA <span class="op">~</span><span class="st"> </span>GRAZE, <span class="dt">xlab =</span> <span class="st">&quot;Grazing level&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Patch area&quot;</span>, <span class="dt">data =</span> loyn)</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_solutions_files/figure-html/Q4-1.png" width="672" /></p>
@@ -593,9 +585,7 @@ $(document).ready(function () {
 <span id="cb4-14"><a href="#cb4-14"></a><span class="co"># this would not improve the situation for these patches, at least.</span></span>
 <span id="cb4-15"><a href="#cb4-15"></a><span class="co"># But let&#39;s find out if that&#39;s the case!</span></span></code></pre></div>
 <p> </p>
-<ol start="5" style="list-style-type: decimal">
-<li>You could explore the joint effect of <code>FGRAZE</code> and <code>LOGAREA</code> on <code>ABUND</code>, using panel plots. Hint: See the function <code>coplot</code> in the Data exploration lecture, and/or the help page for <code>coplot</code>. Factor levels increase from the bottom-left panel to the top-right panel. What pattern do you see? What do you expect your model results to look like?</li>
-</ol>
+<p>5. You could explore the joint effect of <code>FGRAZE</code> and <code>LOGAREA</code> on <code>ABUND</code>, using panel plots. Hint: See the function <code>coplot</code> in the Data exploration lecture, and/or the help page for <code>coplot</code>. Factor levels increase from the bottom-left panel to the top-right panel. What pattern do you see? What do you expect your model results to look like?</p>
 <p> </p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">coplot</span>(ABUND <span class="op">~</span><span class="st"> </span>LOGAREA <span class="op">|</span><span class="st"> </span>FGRAZE, <span class="dt">data =</span> loyn)</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_solutions_files/figure-html/Q5-1.png" width="672" /></p>
@@ -607,15 +597,11 @@ $(document).ready(function () {
 <span id="cb6-6"><a href="#cb6-6"></a><span class="co"># It is unclear from this if the slope of the log-area effect is </span></span>
 <span id="cb6-7"><a href="#cb6-7"></a><span class="co"># different between grazing levels</span></span></code></pre></div>
 <p> </p>
-<ol start="6" style="list-style-type: decimal">
-<li>Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variables <code>LOGAREA</code> and <code>FGRAZE</code> acting additively. Hint: combine explanatory variables using a <code>+</code> symbol. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object, like <code>birds.add.1</code>.</li>
-</ol>
+<p>6. Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variables <code>LOGAREA</code> and <code>FGRAZE</code> acting additively. Hint: combine explanatory variables using a <code>+</code> symbol. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object, like <code>birds.add.1</code>.</p>
 <p> </p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>birds.add<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ABUND <span class="op">~</span><span class="st"> </span>LOGAREA <span class="op">+</span><span class="st"> </span>FGRAZE, <span class="dt">data =</span> loyn)</span></code></pre></div>
 <p> </p>
-<ol start="7" style="list-style-type: decimal">
-<li>Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypotheses are being tested? Hint: the <code>anova()</code> function performs sequential tests. Do you reject or fail to reject the null hypotheses?</li>
-</ol>
+<p>7. Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypotheses are being tested? Hint: the <code>anova()</code> function performs sequential tests. Do you reject or fail to reject the null hypotheses?</p>
 <p> </p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">anova</span>(birds.add<span class="fl">.1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">## Analysis of Variance Table</span></span>
@@ -635,9 +621,7 @@ $(document).ready(function () {
 <span id="cb8-16"><a href="#cb8-16"></a></span>
 <span id="cb8-17"><a href="#cb8-17"></a><span class="co"># the p values are all very small therefore reject both null hypotheses.</span></span></code></pre></div>
 <p> </p>
-<ol start="8" style="list-style-type: decimal">
-<li>Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?</li>
-</ol>
+<p>8. Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?</p>
 <p> </p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">summary</span>(birds.add<span class="fl">.1</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">## </span></span>
@@ -690,9 +674,7 @@ $(document).ready(function () {
 <span id="cb9-49"><a href="#cb9-49"></a></span>
 <span id="cb9-50"><a href="#cb9-50"></a><span class="co"># The Multiple R-square value is as we calculated from the anova table</span></span></code></pre></div>
 <p> </p>
-<ol start="9" style="list-style-type: decimal">
-<li>Now let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</li>
-</ol>
+<p>9. Now let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</p>
 <p> </p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># first split the plotting device into 2 rows and 2 columns</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
@@ -735,17 +717,7 @@ $(document).ready(function () {
 <span id="cb12-6"><a href="#cb12-6"></a><span class="co"># new explanatory variables altogether, or interactions: is it okay to assume</span></span>
 <span id="cb12-7"><a href="#cb12-7"></a><span class="co"># the effect of LOGAREA to be the same for all grazing levels?</span></span></code></pre></div>
 <p> </p>
-<ol start="10" style="list-style-type: decimal">
-<li>Let’s plot the predictions of your initial model to figure out how it really fits the data. Here’s a recipe, using the <code>predict()</code> function.</li>
-</ol>
-<ul>
-<li>plot the raw data, using a different colour per <code>FGRAZE</code> level</li>
-<li>for each <code>FGRAZE</code> level in turn,</li>
-<li>create a sequence of <code>LOGAREA</code> from the minimum value to the maximum within the grazing level (unless you wish to predict outside the range of observed values)</li>
-<li>store it in a data frame (e.g. <code>dat4pred</code>) containing the variables <code>FGRAZE</code> and <code>LOGAREA.</code> Remember that <code>FGRAZE</code> is a factor, so it requires double quotes.</li>
-<li>add a predicted column containing the predictions of the model for the new data frame, using <code>predict()</code></li>
-<li>plot the predictions with the appropriate colours</li>
-</ul>
+<p>10. Let’s plot the predictions of your initial model to figure out how it really fits the data. Here’s a recipe, using the <code>predict()</code> function. + plot the raw data, using a different colour per <code>FGRAZE</code> level + for each <code>FGRAZE</code> level in turn, + create a sequence of <code>LOGAREA</code> from the minimum value to the maximum within the grazing level (unless you wish to predict outside the range of observed values) + store it in a data frame (e.g. <code>dat4pred</code>) containing the variables <code>FGRAZE</code> and <code>LOGAREA.</code> Remember that <code>FGRAZE</code> is a factor, so it requires double quotes. + add a predicted column containing the predictions of the model for the new data frame, using <code>predict()</code> + plot the predictions with the appropriate colours</p>
 <p>See the script below, for one of many ways of doing this.</p>
 <p> </p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
@@ -830,9 +802,7 @@ $(document).ready(function () {
 <span id="cb14-19"><a href="#cb14-19"></a> <span class="dt">lwd=</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_solutions_files/figure-html/Q10b-1.png" width="672" /></p>
 <p> </p>
-<ol start="11" style="list-style-type: decimal">
-<li>What have we learned from this analysis so far?</li>
-</ol>
+<p>11. What have we learned from this analysis so far?</p>
 <p> </p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># There is a significant effect of grazing levels, especially the highest</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co"># level with a negative effect on bird abundance</span></span>
@@ -847,20 +817,16 @@ $(document).ready(function () {
 <span id="cb15-11"><a href="#cb15-11"></a><span class="co"># of explanatory variables.</span></span></code></pre></div>
 <p> </p>
 </div>
-<div id="part-2-linear-model-with-interactive-explanatory-variables" class="section level2">
-<h2>Part 2: Linear model with interactive explanatory variables</h2>
+<div id="part-2-linear-model-with-interactive-explanatory-variables" class="section level3">
+<h3>Part 2: Linear model with interactive explanatory variables</h3>
 <p> </p>
 <p>Let’s now explore this question left unanswered: “is it okay to assume the effect of <code>LOGAREA</code> to be the same for all grazing levels?” This is effectively asking if we should let the slope of <code>LOGAREA</code> vary across <code>FGRAZE</code> levels, which is the definition of an interactive effect.</p>
 <p> </p>
-<ol start="12" style="list-style-type: decimal">
-<li>Fit the corresponding linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variables <code>LOGAREA</code> and <code>FGRAZE</code> and the interaction between these variables. Hint: this time, the interaction is included using the <code>*</code> symbol instead of <code>+</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object, like <code>birds.inter.1</code>.</li>
-</ol>
+<p>12. Fit the corresponding linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variables <code>LOGAREA</code> and <code>FGRAZE</code> and the interaction between these variables. Hint: this time, the interaction is included using the <code>*</code> symbol instead of <code>+</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object, like <code>birds.inter.1</code>.</p>
 <p> </p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>birds.inter<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ABUND <span class="op">~</span><span class="st"> </span>FGRAZE <span class="op">*</span><span class="st"> </span>LOGAREA , <span class="dt">data =</span> loyn)</span></code></pre></div>
 <p> </p>
-<ol start="13" style="list-style-type: decimal">
-<li>Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypotheses are being tested? Hint: the <code>anova()</code> function performs sequential tests. Which of these hypotheses are relevant to us? Do you reject or fail to reject the null hypotheses?</li>
-</ol>
+<p>13. Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypotheses are being tested? Hint: the <code>anova()</code> function performs sequential tests. Which of these hypotheses are relevant to us? Do you reject or fail to reject the null hypotheses?</p>
 <p> </p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">anova</span>(birds.inter<span class="fl">.1</span>)</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="co">## Analysis of Variance Table</span></span>
@@ -891,9 +857,7 @@ $(document).ready(function () {
 <span id="cb17-27"><a href="#cb17-27"></a><span class="co"># the p value for the interaction is large, therefore we fail to reject the</span></span>
 <span id="cb17-28"><a href="#cb17-28"></a><span class="co"># null hypothesis: there is no evidence supporting this interaction.</span></span></code></pre></div>
 <p> </p>
-<ol start="14" style="list-style-type: decimal">
-<li>Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?</li>
-</ol>
+<p>14. Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?</p>
 <p> </p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">summary</span>(birds.inter<span class="fl">.1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="co">## </span></span>
@@ -944,9 +908,7 @@ $(document).ready(function () {
 <span id="cb18-47"><a href="#cb18-47"></a><span class="co"># model (but not much, given that we have added a whole 4 parameters to the</span></span>
 <span id="cb18-48"><a href="#cb18-48"></a><span class="co"># model, i.e. nearly doubled its complexity)</span></span></code></pre></div>
 <p> </p>
-<ol start="15" style="list-style-type: decimal">
-<li>Now let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</li>
-</ol>
+<p>15. Now let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</p>
 <p> </p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># first split the plotting device into 2 rows and 2 columns</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
@@ -959,9 +921,7 @@ $(document).ready(function () {
 <span id="cb20-3"><a href="#cb20-3"></a><span class="co"># thanks to increasing the fit slightly (by throwing lots of new model</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a><span class="co"># parameters at the data).</span></span></code></pre></div>
 <p> </p>
-<ol start="16" style="list-style-type: decimal">
-<li>Let’s now plot the predictions of the interactive model to figure out how it really fits the data. Hint: the script from question 11 should work all the same, since the predictor variables involved in the equation are the same. Don’t forget to update the name of the model!</li>
-</ol>
+<p>16. Let’s now plot the predictions of the interactive model to figure out how it really fits the data. Hint: the script from question 11 should work all the same, since the predictor variables involved in the equation are the same. Don’t forget to update the name of the model!</p>
 <p> </p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: I&#39;m using the loop version of the plot, here.</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="co"># If you don&#39;t like it, refer to the long-hand code version at Question 11</span></span>
@@ -984,9 +944,7 @@ $(document).ready(function () {
 <span id="cb21-19"><a href="#cb21-19"></a> <span class="dt">lwd=</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_solutions_files/figure-html/Q16-1.png" width="672" /></p>
 <p> </p>
-<ol start="17" style="list-style-type: decimal">
-<li>Do you think the model is biologically plausible? Is it supported statistically?</li>
-</ol>
+<p>17. Do you think the model is biologically plausible? Is it supported statistically?</p>
 <p> </p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># The slopes of the LOGAREA effect across grazing levels are all over the</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="co"># place, without any coherent pattern (for instance, they could have been</span></span>

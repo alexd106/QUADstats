@@ -26,15 +26,15 @@ This exercise builds on the linear model with one continuous explanatory variabl
 
 \  
 
-## Part 1: Linear model with additive explanatory variables
+### Part 1: Linear model with additive explanatory variables
 
 \  
 
-1. As in previous exercises, either create a new R script (perhaps call it linear_model_3) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
+1\. As in previous exercises, either create a new R script (perhaps call it linear_model_3) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
 
 \  
 
-2. Import the data file 'loyn.txt' into R and take a look at the structure of this dataframe using the `str()` function. We know that the abundance of birds `ABUND` increases quickly with the area of the patch `LOGAREA`, and more slowly for the larger patches. We now also know that bird abundance changes in a non-linear way with the grazing intensity `FGRAZE`. But how do these effects combine together? Would a small patch with low grazing intensity have more birds than a larger patch with high grazing intensity? Could the poor fit of the `ABUND ~ LOGAREA` model for the large patches be improved if we accounted for grazing intensity in the patches?
+2\. Import the data file 'loyn.txt' into R and take a look at the structure of this dataframe using the `str()` function. We know that the abundance of birds `ABUND` increases quickly with the area of the patch `LOGAREA`, and more slowly for the larger patches. We now also know that bird abundance changes in a non-linear way with the grazing intensity `FGRAZE`. But how do these effects combine together? Would a small patch with low grazing intensity have more birds than a larger patch with high grazing intensity? Could the poor fit of the `ABUND ~ LOGAREA` model for the large patches be improved if we accounted for grazing intensity in the patches?
 
 \  
 
@@ -45,7 +45,7 @@ str(loyn)
 
 \  
 
-3. As previously we want to treat `AREA` as a log-transformed area to limit the influence of the few disproportionately large patches, and `GRAZE` as a categorical variable with five levels. So the first thing we need to do is create the corresponding variables in the loyn dataframe, called `LOGAREA` and `FGRAZE`.
+3\. As previously we want to treat `AREA` as a log-transformed area to limit the influence of the few disproportionately large patches, and `GRAZE` as a categorical variable with five levels. So the first thing we need to do is create the corresponding variables in the loyn dataframe, called `LOGAREA` and `FGRAZE`.
 
 \  
 
@@ -57,7 +57,7 @@ loyn$FGRAZE <- factor(loyn$GRAZE)
 
 \  
 
-4. Explore the relationship between grazing and patch area, using a scatterplot. Hint: you may want to use `GRAZE` rather than `FGRAZE` for this. Is there any variability in patch area within each grazing level? Is the sampling design balanced, i.e., is the whole range of patch areas evenly represented at each grazing level?
+4\. Explore the relationship between grazing and patch area, using a scatterplot. Hint: you may want to use `GRAZE` rather than `FGRAZE` for this. Is there any variability in patch area within each grazing level? Is the sampling design balanced, i.e., is the whole range of patch areas evenly represented at each grazing level?
 
 \  
 
@@ -82,7 +82,7 @@ plot(LOGAREA ~ GRAZE, xlab = "Grazing level", ylab = "Patch area", data = loyn)
 
 \  
 
-5. You could explore the joint effect of `FGRAZE` and `LOGAREA` on `ABUND`, using panel plots. Hint: See the function `coplot` in the Data exploration lecture, and/or the help page for `coplot`. Factor levels increase from the bottom-left panel to the top-right panel. What pattern do you see? What do you expect your model results to look like?
+5\. You could explore the joint effect of `FGRAZE` and `LOGAREA` on `ABUND`, using panel plots. Hint: See the function `coplot` in the Data exploration lecture, and/or the help page for `coplot`. Factor levels increase from the bottom-left panel to the top-right panel. What pattern do you see? What do you expect your model results to look like?
 
 \  
 
@@ -99,7 +99,7 @@ coplot(ABUND ~ LOGAREA | FGRAZE, data = loyn)
 
 \  
 
-6. Fit an appropriate linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variables `LOGAREA` and `FGRAZE` acting additively. Hint: combine explanatory variables using a `+` symbol. Remember to use the `data =` argument. Assign this linear model to an appropriately named object, like `birds.add.1`.
+6\. Fit an appropriate linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variables `LOGAREA` and `FGRAZE` acting additively. Hint: combine explanatory variables using a `+` symbol. Remember to use the `data =` argument. Assign this linear model to an appropriately named object, like `birds.add.1`.
 
 \  
 
@@ -109,7 +109,7 @@ birds.add.1 <- lm(ABUND ~ LOGAREA + FGRAZE, data = loyn)
 
 \  
 
-7. Produce the ANOVA table using the `anova()` function on the model object. What null hypotheses are being tested? Hint: the `anova()` function performs sequential tests. Do you reject or fail to reject the null hypotheses? 
+7\. Produce the ANOVA table using the `anova()` function on the model object. What null hypotheses are being tested? Hint: the `anova()` function performs sequential tests. Do you reject or fail to reject the null hypotheses? 
 
 \  
 
@@ -126,7 +126,7 @@ anova(birds.add.1)
 
 \  
 
-8. Use the `summary()` function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
+8\. Use the `summary()` function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
 
 \  
 
@@ -164,7 +164,7 @@ summary(birds.add.1)
 
 \  
 
-9. Now let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
+9\. Now let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
 
 \  
 
@@ -212,7 +212,7 @@ plot(birds.add.3)
 
 \  
 
-10. Let's plot the predictions of your initial model to figure out how it really fits the data. Here's a recipe, using the `predict()` function.
+10\. Let's plot the predictions of your initial model to figure out how it really fits the data. Here's a recipe, using the `predict()` function.
   + plot the raw data, using a different colour per `FGRAZE` level
   + for each `FGRAZE` level in turn,
   + create a sequence of `LOGAREA` from the minimum value to the maximum within the grazing level (unless you wish to predict outside the range of observed values)
@@ -314,7 +314,7 @@ legend("topleft",
 
 \  
 
-11. What have we learned from this analysis so far?
+11\. What have we learned from this analysis so far?
 
 \  
 
@@ -334,7 +334,7 @@ legend("topleft",
 
 \  
 
-## Part 2: Linear model with interactive explanatory variables
+### Part 2: Linear model with interactive explanatory variables
 
 \  
 
@@ -342,7 +342,7 @@ Let's now explore this question left unanswered: "is it okay to assume the effec
 
 \  
 
-12. Fit the corresponding linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variables `LOGAREA` and `FGRAZE` and the interaction between these variables. Hint: this time, the interaction is included using the `*` symbol instead of `+`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object, like `birds.inter.1`.
+12\. Fit the corresponding linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variables `LOGAREA` and `FGRAZE` and the interaction between these variables. Hint: this time, the interaction is included using the `*` symbol instead of `+`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object, like `birds.inter.1`.
 
 \  
 
@@ -352,7 +352,7 @@ birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA , data = loyn)
 
 \  
 
-13. Produce the ANOVA table using the `anova()` function on the model object. What null hypotheses are being tested? Hint: the `anova()` function performs sequential tests. Which of these hypotheses are relevant to us? Do you reject or fail to reject the null hypotheses? 
+13\. Produce the ANOVA table using the `anova()` function on the model object. What null hypotheses are being tested? Hint: the `anova()` function performs sequential tests. Which of these hypotheses are relevant to us? Do you reject or fail to reject the null hypotheses? 
 
 \  
 
@@ -379,7 +379,7 @@ anova(birds.inter.1)
 
 \  
 
-14. Use the `summary()` function on the  model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
+14\. Use the `summary()` function on the  model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
 
 \  
 
@@ -411,7 +411,7 @@ summary(birds.inter.1)
 
 \  
 
-15. Now let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
+15\. Now let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
 
 \  
 
@@ -429,7 +429,7 @@ plot(birds.inter.1)
 
 \  
 
-16. Let's now plot the predictions of the interactive model to figure out how it really fits the data. Hint: the script from question 11 should work all the same, since the predictor variables involved in the equation are the same. Don't forget to update the name of the model!
+16\. Let's now plot the predictions of the interactive model to figure out how it really fits the data. Hint: the script from question 11 should work all the same, since the predictor variables involved in the equation are the same. Don't forget to update the name of the model!
 
 \  
 
@@ -458,7 +458,7 @@ legend("topleft",
 
 \  
 
-17. Do you think the model is biologically plausible? Is it supported statistically?
+17\. Do you think the model is biologically plausible? Is it supported statistically?
 
 \  
 
