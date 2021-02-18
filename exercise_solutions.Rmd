@@ -58,7 +58,7 @@ cat(sep="\n\n")
 \  
 
 ```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
-link_name <- "Linear model with continuous and categorical expolanatory variables exercise"
+link_name <- "Linear model with continuous and categorical explanatory variables exercise"
 file_name <- "LM_3_multiple_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
