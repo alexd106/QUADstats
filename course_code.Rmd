@@ -55,20 +55,9 @@ cat(sep="\n\n")
 
 \  
 
-TBC
-
-<!--
 ```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
-link_name <- "Linear model with multiple explanatory variables exercise"
+link_name <- "Linear model with continuous and categorical expolanatory variables exercise"
 file_name <- "exercise_solutions/LM_3_multiple_exercise_solutions.R"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
-
-```{r sol_lm4, results='asis', eval = isTRUE(show_text_lm4)}
-link_name <- "Linear model - model selection exercise"
-file_name <- "exercise_solutions/LM_4_Selection_exercise_solutions.R"
-paste0("- [", link_name, "](", file_name, ")") %>%
-cat(sep="\n\n")
-```
--->

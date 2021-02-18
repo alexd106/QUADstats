@@ -43,8 +43,7 @@ cat("Exercises will be released as the course progresses")
 rmarkdown::render("graphical_data_exploration_exercise.Rmd", output_format = "pdf_document", output_file = "./exercises/graphical_data_exploration_exercise.pdf", quiet = TRUE)
 rmarkdown::render("linear_model_1_exercise.Rmd", output_format = "pdf_document", output_file = "./exercises/linear_model_1_exercise.pdf", quiet = TRUE)
 rmarkdown::render("linear_model_2_exercise.Rmd", output_format = "pdf_document", output_file = "./exercises/linear_model_2_exercise.pdf", quiet = TRUE)
-#rmarkdown::render("LM_3_multiple_exercise.Rmd", output_format = "pdf_document", output_file = "./exercises/linear_model_3_exercise.pdf", quiet = TRUE)
-#rmarkdown::render("LM_4_Selection_exercise.Rmd", output_format = "pdf_document", output_file = "./exercises/linear_model_4_exercise.pdf", quiet = TRUE)
+rmarkdown::render("LM_3_multiple_exercise.Rmd", output_format = "pdf_document", output_file = "./exercises/linear_model_3_exercise.pdf", quiet = TRUE)
 ```
 
 \  
@@ -65,12 +64,7 @@ rmarkdown::render("linear_model_2_exercise.Rmd", output_format = "pdf_document",
 
 ### Day 3
  
-<!-- - [Linear model with multiple explanatory variables exercise](LM_3_multiple_exercise.html)
+ - [Linear model with continuous and categorical expolanatory variables exercise](LM_3_multiple_exercise.html)
  
- - [Linear model - model selection exercise](LM_4_Selection_exercise.html)
--->
-
-TBC
-
 \  
 
