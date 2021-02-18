@@ -10,7 +10,7 @@ loyn$FGRAZE <- factor(loyn$GRAZE)
 
 
 ## ----Q4, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------------------
-## plot(LOGAREA ~ GRAZE, xlab = "Grazing level", ylab = "Patch area", data = loyn)
+## plot(loyn$LOGAREA ~ loyn$GRAZE, xlab = "Grazing level", ylab = "Patch area")
 ## 
 ## # There is a good spread of patch areas within each grazing level overall,
 ## # although there is a trend for more grazing the smaller the patch is.
@@ -116,7 +116,7 @@ summary(birds.add.1)
 ## # This is often improved by log-transforming the response
 ## loyn$logABUND<- log(loyn$ABUND + 1) # here the natural log
 ## birds.add.3 <- lm(logABUND ~ LOGAREA + FGRAZE, data = loyn)
-## par(mfrow = c(2,2))
+## par(mfrow = c(2, 2))
 ## plot(birds.add.3)
 ## 
 ## # Not this time! Lots of extreme negative residuals generated.
@@ -130,7 +130,7 @@ summary(birds.add.1)
 
 ## ----Q10a, eval=TRUE, echo=TRUE, collapse=FALSE------------------------------------------------------------------------------
 par(mfrow= c(1, 1))
-plot(ABUND ~ LOGAREA, data= loyn, col= GRAZE, pch= 16)
+plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 # Note: # colour 1 means black in R
 # colour 2 means red in R
 # colour 3 means green in R
@@ -139,75 +139,75 @@ plot(ABUND ~ LOGAREA, data= loyn, col= GRAZE, pch= 16)
 
 # FGRAZE1
 # create a sequence of increasing Biomass within the observed range
-LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == 1]),
-					to= max(loyn$LOGAREA[loyn$FGRAZE == 1]),
-					length= 20)
+LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == 1]),
+					to = max(loyn$LOGAREA[loyn$FGRAZE == 1]),
+					length = 20)
 # create data frame for prediction
-dat4pred<- data.frame(FGRAZE= "1", LOGAREA= LOGAREA.seq)
+dat4pred <- data.frame(FGRAZE= "1", LOGAREA = LOGAREA.seq)
 # predict for new data
-dat4pred$predicted<- predict(birds.add.1, newdata= dat4pred)
+dat4pred$predicted <- predict(birds.add.1, newdata = dat4pred)
 # add the predictions to the plot of the data
-lines(predicted ~ LOGAREA, data= dat4pred, col= 1, lwd= 2)
+lines(predicted ~ LOGAREA, data = dat4pred, col = 1, lwd = 2)
 
 # FGRAZE2
-LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == 2]),
-					to= max(loyn$LOGAREA[loyn$FGRAZE == 2]),
-					length= 20)
-dat4pred<- data.frame(FGRAZE= "2", LOGAREA= LOGAREA.seq)
-dat4pred$predicted<- predict(birds.add.1, newdata= dat4pred)
-lines(predicted ~ LOGAREA, data= dat4pred, col= 2, lwd= 2)
+LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == 2]),
+					to = max(loyn$LOGAREA[loyn$FGRAZE == 2]),
+					length = 20)
+dat4pred <- data.frame(FGRAZE = "2", LOGAREA = LOGAREA.seq)
+dat4pred$predicted <- predict(birds.add.1, newdata= dat4pred)
+lines(predicted ~ LOGAREA, data = dat4pred, col = 2, lwd = 2)
 
 # FGRAZE3
-LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == 3]),
-					to= max(loyn$LOGAREA[loyn$FGRAZE == 3]),
-					length= 20)
-dat4pred<- data.frame(FGRAZE= "3", LOGAREA= LOGAREA.seq)
-dat4pred$predicted<- predict(birds.add.1, newdata= dat4pred)
-lines(predicted ~ LOGAREA, data= dat4pred, col= 3, lwd= 2)
+LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == 3]),
+					to = max(loyn$LOGAREA[loyn$FGRAZE == 3]),
+					length = 20)
+dat4pred <- data.frame(FGRAZE = "3", LOGAREA = LOGAREA.seq)
+dat4pred$predicted <- predict(birds.add.1, newdata = dat4pred)
+lines(predicted ~ LOGAREA, data = dat4pred, col = 3, lwd = 2)
 
 # FGRAZE4
-LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == 4]),
-					to= max(loyn$LOGAREA[loyn$FGRAZE == 4]),
-					length= 20)
-dat4pred<- data.frame(FGRAZE= "4", LOGAREA= LOGAREA.seq)
-dat4pred$predicted<- predict(birds.add.1, newdata= dat4pred)
-lines(predicted ~ LOGAREA, data= dat4pred, col= 4, lwd= 2)
+LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == 4]),
+					to = max(loyn$LOGAREA[loyn$FGRAZE == 4]),
+					length = 20)
+dat4pred <- data.frame(FGRAZE = "4", LOGAREA = LOGAREA.seq)
+dat4pred$predicted <- predict(birds.add.1, newdata= dat4pred)
+lines(predicted ~ LOGAREA, data = dat4pred, col = 4, lwd = 2)
 
 # FGRAZE5
-LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == 5]),
-					to= max(loyn$LOGAREA[loyn$FGRAZE == 5]),
-					length= 20)
-dat4pred<- data.frame(FGRAZE= "5", LOGAREA= LOGAREA.seq)
-dat4pred$predicted<- predict(birds.add.1, newdata= dat4pred)
-lines(predicted ~ LOGAREA, data= dat4pred, col= 5, lwd= 2)
+LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == 5]),
+					to = max(loyn$LOGAREA[loyn$FGRAZE == 5]),
+					length = 20)
+dat4pred <- data.frame(FGRAZE = "5", LOGAREA = LOGAREA.seq)
+dat4pred$predicted <- predict(birds.add.1, newdata = dat4pred)
+lines(predicted ~ LOGAREA, data = dat4pred, col = 5, lwd = 2)
 
 legend("topleft", 
  legend= paste("Graze = ", 5:1), 
- col= c(5:1), bty= "n",
- lty= c(1, 1, 1), 
- lwd= c(1, 1, 1))
+ col = c(5:1), bty = "n",
+ lty = c(1, 1, 1), 
+ lwd = c(1, 1, 1))
 
 
 ## ----Q10b, eval=TRUE, echo=TRUE, collapse=FALSE------------------------------------------------------------------------------
 # Okay, that was a long-winded way of doing this.
 # If, like me, you prefer more compact code and less risks of errors,
 # you can use a loop, to save repeating the sequence 5 times:
-par(mfrow= c(1, 1))
-plot(ABUND ~ LOGAREA, data= loyn, col= GRAZE, pch= 16)
+par(mfrow = c(1, 1))
+plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 
 for(g in levels(loyn$FGRAZE)){# `g` will take the values "1", "2",..., "5" in turn
-	LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == g]),
-										to= max(loyn$LOGAREA[loyn$FGRAZE == g]),
-														length= 20)
-	dat4pred<- data.frame(FGRAZE= g, LOGAREA= LOGAREA.seq)
-	dat4pred$predicted<- predict(birds.add.1, newdata= dat4pred)
-	lines(predicted ~ LOGAREA, data= dat4pred, col= as.numeric(g), lwd= 2)
+	LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == g]),
+										to = max(loyn$LOGAREA[loyn$FGRAZE == g]),
+														length = 20)
+	dat4pred <- data.frame(FGRAZE= g, LOGAREA= LOGAREA.seq)
+	dat4pred$predicted <- predict(birds.add.1, newdata= dat4pred)
+	lines(predicted ~ LOGAREA, data = dat4pred, col = as.numeric(g), lwd = 2)
 }
 legend("topleft", 
- legend= paste("Graze = ", 5:1), 
- col= c(5:1), bty= "n",
- lty= c(1, 1, 1), 
- lwd= c(1, 1, 1))
+ legend = paste("Graze = ", 5:1), 
+ col = c(5:1), bty = "n",
+ lty = c(1, 1, 1), 
+ lwd = c(1, 1, 1))
 
 
 ## ----Q11, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------------------
@@ -291,22 +291,22 @@ summary(birds.inter.1)
 ## # NOTE: I'm using the loop version of the plot, here.
 ## # If you don't like it, refer to the long-hand code version at Question 11
 ## 
-## par(mfrow= c(1, 1))
-## plot(ABUND ~ LOGAREA, data= loyn, col= GRAZE, pch= 16)
+## par(mfrow = c(1, 1))
+## plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 ## 
 ## for(g in levels(loyn$FGRAZE)){# `g` will take the values "1", "2",..., "5" in turn
-## 	LOGAREA.seq<- seq(from= min(loyn$LOGAREA[loyn$FGRAZE == g]),
-## 										to= max(loyn$LOGAREA[loyn$FGRAZE == g]),
-## 														length= 20)
-## 	dat4pred<- data.frame(FGRAZE= g, LOGAREA= LOGAREA.seq)
-## 	dat4pred$predicted<- predict(birds.inter.1, newdata= dat4pred)
-## 	lines(predicted ~ LOGAREA, data= dat4pred, col= as.numeric(g), lwd= 2)
+## 	LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == g]),
+## 										to = max(loyn$LOGAREA[loyn$FGRAZE == g]),
+## 														length = 20)
+## 	dat4pred <- data.frame(FGRAZE = g, LOGAREA = LOGAREA.seq)
+## 	dat4pred$predicted <- predict(birds.inter.1, newdata = dat4pred)
+## 	lines(predicted ~ LOGAREA, data = dat4pred, col = as.numeric(g), lwd = 2)
 ## }
 ## legend("topleft",
-##  legend= paste("Graze = ", 5:1),
-##  col= c(5:1), bty= "n",
-##  lty= c(1, 1, 1),
-##  lwd= c(1, 1, 1))
+##  legend = paste("Graze = ", 5:1),
+##  col = c(5:1), bty = "n",
+##  lty = c(1, 1, 1),
+##  lwd = c(1, 1, 1))
 
 
 ## ----Q17, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE----------------------------------------------------------------------
