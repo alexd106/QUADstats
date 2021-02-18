@@ -50,7 +50,7 @@ rmarkdown::render("LM_3_multiple_exercise.Rmd", output_format = "pdf_document", 
 
 ### Day 1
 
- - [Graphical data Exploration exercise](graphical_data_exploration_exercise.html)
+ - [Graphical data exploration exercise](graphical_data_exploration_exercise.html)
 
 \  
  

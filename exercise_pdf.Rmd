@@ -28,7 +28,7 @@ cat("Exercises will be released as the course progresses")
 
 \  
 
- - [Graphical data Exploration exercise](./exercises/graphical_data_exploration_exercise.pdf)
+ - [Graphical data exploration exercise](./exercises/graphical_data_exploration_exercise.pdf)
 
 \  
 
@@ -46,9 +46,5 @@ cat("Exercises will be released as the course progresses")
 
 \  
 
-<!-- - [Linear model with multiple explanatory variables exercise](./exercises/linear_model_3_exercise.pdf)
- 
- - [Linear model - model selection exercise](./exercises/linear_model_4_exercise.pdf)
--->
+- [Linear model with continuous and categorical explanatory variables exercise](./exercises/linear_model_3_exercise.pdf)
 
-TBC
