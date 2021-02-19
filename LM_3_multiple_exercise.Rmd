@@ -216,8 +216,8 @@ plot(birds.add.3)
   + plot the raw data, using a different colour per `FGRAZE` level
   + for each `FGRAZE` level in turn,
   + create a sequence of `LOGAREA` from the minimum value to the maximum within the grazing level (unless you wish to predict outside the range of observed values)
-  + store it in a data frame (e.g. `dat4pred`) containing the variables `FGRAZE` and `LOGAREA.` Remember that `FGRAZE` is a factor, so it requires double quotes.
-  + add a predicted column containing the predictions of the model for the new data frame, using `predict()`
+  + store it in a data frame (e.g. `dat4pred`) containing the variables `FGRAZE` and `LOGAREA.` Remember that `FGRAZE` is a factor, so it requires quotes.
+  + add a predicted column containing the explanatory variables from the model for the new data frame, using `predict()`
   + plot the predictions with the appropriate colours
   
 See the script below, for one of many ways of doing this.
