@@ -7,42 +7,48 @@ output:
 
 \  
 
-### R resources
+### Learning R and statistics resources
 
 \  
 
-#### Getting Help
-
-- [Google it!](http://lmgtfy.com/?q=R+Error+in+library+there+is+no+package+called): Try Googling any error messages you get. It's not cheating and everyone does it! You'll be surprised how many other people have probably had the same problem and solved it.
-- [Stack Overflow](http://stackoverflow.com/questions/tagged/r): There are many thousands of questions relevant to R on Stack Overflow. [Here](https://stackoverflow.com/questions/tagged/r?sort=votes) are the most popular ones, ranked by vote. Make sure you search for similar questions before asking your own, and make sure you include a [reproducible example](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example/5963610#5963610) to get the most useful advice. A reproducible example is a minimal example that lets others who are trying to help you to see the error themselves.
+Here are some further resources for learning R, statistics and statistics with R. All of these resources are free and open source. This is by no means a comprehensive list so feel free to add your own by issuing a pull request on GitHub or [contact me](People.html) directly.
 
 \  
 
-#### General R Resources
+#### General R resources
 
 - [R-Project](https://cran.r-project.org/other-docs.html): User contributed documentation
+
 - [The R Journal](https://journal.r-project.org/): Journal of the R project for statistical computing
+
 - [Swirl](http://swirlstats.com/): An R package that teaches you R from within R
+
 - [RStudio's printable cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
+
 - [Rseek](http://rseek.org/): A custom Google search for R-related sites
 
 \  
 
-#### R markdown resources
-
-- [Basic markdown + R markdown reference](http://bioconnector.github.io/markdown)
-- [A good markdown reference](http://commonmark.org/help/)
-- [A good 10-minute markdown tutorial](http://commonmark.org/help/tutorial/)
-- [RStudio's R markdown cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) and [R markdown reference sheet](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-- [The R markdown documentation](<http://rmarkdown.rstudio.com/>) including a [getting started guide](http://rmarkdown.rstudio.com/lesson-1.html), a [gallery of demos](http://rmarkdown.rstudio.com/gallery.html), and several [articles](http://rmarkdown.rstudio.com/articles.html) for more advanced usage.
-- [The knitr website](<http://yihui.name/knitr/>) has lots of useful reference material about how knitr works.
+#### Free Statistics books and resources
 
 \  
 
-#### Git and GitHub resources
+- [Learning statistics with R](https://learningstatisticswithr.com/book/): A fantastic book written by Danielle Navarro which comprehensively takes you through the basics up to more complicated statistical approaches.
 
-- [Happy Git](https://happygitwithr.com/): Great resource for using Git and GitHub
-- [Version control with RStudio](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN): RStudio support document for using version control
-- [Using Git from RStudio](https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html): Good 10 minute guide
-- [The R Class](https://r-bio.github.io/intro-git-rstudio/): In depth guide to using Git and GitHub with RStudio
+- [Exploratory Data Analysis with R](https://bookdown.org/rdpeng/exdata/): Covers the essential exploratory techniques for summarising data. Written by Roger D. Peng. 
+
+- [Modern Statistics for Modern Biology](https://www.huber.embl.de/msmb/index.html): A really nice book with an interesting take on learning and using statistics by Susan Holmes and Wolfgang Huber.
+
+- [Answering questions with data](https://crumplab.github.io/statistics/index.html): Aimed at Psychology students but a good read for other students. Mostly lays out statistics in a more traditional way but pretty comprehensive. By Matthew J. C. Crump.
+
+- [Applied Statistics with R](https://daviddalpiaz.github.io/appliedstats/): Comprehensive book with good coverage of a range of additional topics by David Dalpiaz.
+
+- [Beyond Multiple Linear Regression](https://bookdown.org/roback/bookdown-BeyondMLR/): Covering generalised linear models and multilevel models in R but also has a good introduction to linear models. Written by Paul Roback and Julie Legler.
+
+- [Mixed Models with R](https://m-clark.github.io/mixed-models-with-R/): A short introductory book on using and fitting mixed models in R by Michael Clark.
+
+- [R for Data Science](https://r4ds.had.co.nz/): A tidyverse centric book for learning R and data science written by Hadley Wickham.
+
+-[Statistical Inference via Data Science](https://moderndive.com/): Takes you from data wrangling through to inferential statistics using the tidyverse by Chester Ismay and Albert Y. Kim.
+
 
