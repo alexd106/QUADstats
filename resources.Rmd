@@ -13,6 +13,8 @@ output:
 
 Here are some further resources for learning R, statistics and statistics with R. All of these resources are free and open source. This is by no means a comprehensive list so feel free to add your own by issuing a pull request on GitHub or [contact me](People.html) directly.
 
+You can also find additional resources on the [R-Project website](https://cran.r-project.org/other-docs.html) and also this [GitHub repository](https://github.com/rstudio-education/rstats-ed).
+
 \  
 
 #### General R resources
@@ -41,7 +43,7 @@ Here are some further resources for learning R, statistics and statistics with R
 
 - [Answering questions with data](https://crumplab.github.io/statistics/index.html): Aimed at Psychology students but a good read for other students. Mostly lays out statistics in a more traditional way but pretty comprehensive. By Matthew J. C. Crump.
 
-- [Applied Statistics with R](https://daviddalpiaz.github.io/appliedstats/): Comprehensive book with good coverage of a range of additional topics by David Dalpiaz.
+- [Applied Statistics with R](https://daviddalpiaz.github.io/appliedstats/): A comprehensive statistics book which also contains specific chapters covering a range of statistical concepts by David Dalpiaz.
 
 - [Beyond Multiple Linear Regression](https://bookdown.org/roback/bookdown-BeyondMLR/): Covering generalised linear models and multilevel models in R but also has a good introduction to linear models. Written by Paul Roback and Julie Legler.
 
@@ -49,6 +51,6 @@ Here are some further resources for learning R, statistics and statistics with R
 
 - [R for Data Science](https://r4ds.had.co.nz/): A tidyverse centric book for learning R and data science written by Hadley Wickham.
 
--[Statistical Inference via Data Science](https://moderndive.com/): Takes you from data wrangling through to inferential statistics using the tidyverse by Chester Ismay and Albert Y. Kim.
+- [Statistical Inference via Data Science](https://moderndive.com/): Takes you from data wrangling through to inferential statistics using the tidyverse by Chester Ismay and Albert Y. Kim.
 
 
