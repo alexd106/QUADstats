@@ -26,7 +26,7 @@ Now create a new R script inside this Project by selecting File â€“> New File â€
 
 \  
 
-3\. These data are from a study originally conducted by Loyn (1987)^1^ and subsequently re-analysed by Quinn and Keough (2002)^2^ and Zuur et al (2009)^3^. The aim of the study was to relate bird density in 56 forest patches to a number of different environmental variables and management practices. A summary of the variables is: **ABUND**: Density of birds, Continuous response; **AREA**: Size of forest patch, Continuous explanatory; **DIST**: Distance to nearest patch, Continuous explanatory; **LDIST**: Distance to nearest larger patch, Continuous explanatory; **ALT**: Mean altitude of patch, Continuous explanatory; **YR.ISOL**: Year of isolation of clearance, Continuous explanatory; **GRAZE**: Index of livestock grazing intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze  
+3\. These data are from a study originally conducted by Loyn (1987)^1^ and subsequently re-analysed by Quinn and Keough (2002)^2^ and Zuur et al (2009)^3^. The aim of the study was to relate bird density in 56 forest patches to a number of different environmental variables and management practices. A summary of the variables is: **ABUND**: Density of birds, Continuous response; **AREA**: Size of forest patch, Continuous explanatory; **DIST**: Distance to nearest patch, Continuous explanatory; **LDIST**: Distance to nearest larger patch, Continuous explanatory; **ALT**: Mean altitude of patch, Continuous explanatory; **YR.ISOL**: Year of isolation of clearance, Continuous explanatory; **GRAZE**: Index of livestock grazing intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze.  
 
 \  
 
