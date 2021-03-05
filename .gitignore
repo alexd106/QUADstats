@@ -15,3 +15,4 @@
 # R markdown stuff
 *.log
 .DS_Store
+attendee_email
