@@ -13,18 +13,24 @@
 
 <title>Exercises</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -38,11 +44,20 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -119,13 +134,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -133,39 +155,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -175,10 +167,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -195,40 +183,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -256,7 +220,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -268,7 +232,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -278,11 +242,28 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.parent().addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -294,13 +275,12 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -308,16 +288,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -364,7 +337,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -388,7 +361,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-book"></span>
      
     R Book
@@ -414,7 +387,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-book"></span>
      
     Exercises
@@ -447,7 +420,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-question-circle"></span>
      
     Info
@@ -477,13 +450,7 @@ $(document).ready(function () {
         Resources
       </a>
     </li>
-    <li>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJw6izeHZqnhujfmz5Dgs0GLDBKplQykCPmKuPHuJWigk8ag/viewform?usp=sf_link">
-        <span class="fa fa-commenting"></span>
-         
-        Feedback
-      </a>
-    </li>
+    <li class="dropdown-header">Feedback</li>
     <li>
       <a href="https://www.quadrat.ac.uk/">
         <span class="fa fa-chrome"></span>
@@ -523,11 +490,11 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 </ul>
@@ -541,153 +508,253 @@ $(document).ready(function () {
 
 
 <p> </p>
-<div id="exercise-linear-model-with-continuous-and-categorical-explanatory-variables" class="section level1">
-<h1>Exercise: Linear model with continuous and categorical explanatory variables</h1>
+<div
+id="exercise-linear-model-with-continuous-and-categorical-explanatory-variables"
+class="section level1">
+<h1>Exercise: Linear model with continuous and categorical explanatory
+variables</h1>
 <p> </p>
-<p>This exercise builds on the linear model with one continuous explanatory variable, and the linear model with one categorical explanatory variable, by adding these two sources of variation in the same model. The first part of the exercise will explore fitting an ‘additive’ model and the second part fitting a model with an interaction term.</p>
+<p>This exercise builds on the linear model with one continuous
+explanatory variable, and the linear model with one categorical
+explanatory variable, by adding these two sources of variation in the
+same model. The first part of the exercise will explore fitting an
+‘additive’ model and the second part fitting a model with an interaction
+term.</p>
 <p> </p>
-<div id="part-1-linear-model-with-additive-explanatory-variables" class="section level3">
+<div id="part-1-linear-model-with-additive-explanatory-variables"
+class="section level3">
 <h3>Part 1: Linear model with additive explanatory variables</h3>
 <p> </p>
-<p>1. As in previous exercises, either create a new R script (perhaps call it linear_model_3) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and don’t forget to comment out your metadata with a <code>#</code> at the beginning of the line.</p>
+<p>1. As in previous exercises, either create a new R script (perhaps
+call it linear_model_3) or continue with your previous R script in your
+RStudio Project. Again, make sure you include any metadata you feel is
+appropriate (title, description of task, date of creation etc) and don’t
+forget to comment out your metadata with a <code>#</code> at the
+beginning of the line.</p>
 <p> </p>
-<p>2. Import the data file ‘loyn.txt’ into R and take a look at the structure of this dataframe using the <code>str()</code> function. We know that the abundance of birds <code>ABUND</code> increases quickly with the area of the patch <code>LOGAREA</code>, and more slowly for the larger patches. We now also know that bird abundance changes in a non-linear way with the grazing intensity <code>FGRAZE</code>. But how do these effects combine together? Would a small patch with low grazing intensity have more birds than a larger patch with high grazing intensity? Could the poor fit of the <code>ABUND ~ LOGAREA</code> model for the large patches be improved if we accounted for grazing intensity in the patches?</p>
-<p> </p>
-<p> </p>
-<p>3. As previously we want to treat <code>AREA</code> as a log-transformed area to limit the influence of the few disproportionately large patches, and <code>GRAZE</code> as a categorical variable with five levels. So the first thing we need to do is create the corresponding variables in the loyn dataframe, called <code>LOGAREA</code> and <code>FGRAZE</code>.</p>
-<p> </p>
-<p> </p>
-<p>4. Explore the relationship between grazing and patch area, using a scatterplot. Hint: you may want to use <code>GRAZE</code> rather than <code>FGRAZE</code> for this. Is there any variability in patch area within each grazing level? Is the sampling design balanced, i.e., is the whole range of patch areas evenly represented at each grazing level?</p>
-<p> </p>
-<p> </p>
-<p>5. You could explore the joint effect of <code>FGRAZE</code> and <code>LOGAREA</code> on <code>ABUND</code>, using panel plots. Hint: See the function <code>coplot</code> in the Data exploration lecture, and/or the help page for <code>coplot</code>. Factor levels increase from the bottom-left panel to the top-right panel. What pattern do you see? What do you expect your model results to look like?</p>
-<p> </p>
-<p> </p>
-<p>6. Fit an appropriate linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variables <code>LOGAREA</code> and <code>FGRAZE</code> acting additively. Hint: combine explanatory variables using a <code>+</code> symbol. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object, like <code>birds.add.1</code>.</p>
-<p> </p>
-<p> </p>
-<p>7. Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypotheses are being tested? Hint: the <code>anova()</code> function performs sequential tests. Do you reject or fail to reject the null hypotheses?</p>
-<p> </p>
-<p> </p>
-<p>8. Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?</p>
+<p>2. Import the data file ‘loyn.txt’ into R and take a look at the
+structure of this dataframe using the <code>str()</code> function. We
+know that the abundance of birds <code>ABUND</code> increases quickly
+with the area of the patch <code>LOGAREA</code>, and more slowly for the
+larger patches. We now also know that bird abundance changes in a
+non-linear way with the grazing intensity <code>FGRAZE</code>. But how
+do these effects combine together? Would a small patch with low grazing
+intensity have more birds than a larger patch with high grazing
+intensity? Could the poor fit of the <code>ABUND ~ LOGAREA</code> model
+for the large patches be improved if we accounted for grazing intensity
+in the patches?</p>
 <p> </p>
 <p> </p>
-<p>9. Now let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</p>
+<p>3. As previously we want to treat <code>AREA</code> as a
+log-transformed area to limit the influence of the few
+disproportionately large patches, and <code>GRAZE</code> as a
+categorical variable with five levels. So the first thing we need to do
+is create the corresponding variables in the loyn dataframe, called
+<code>LOGAREA</code> and <code>FGRAZE</code>.</p>
 <p> </p>
 <p> </p>
-<p>10. Let’s plot the predictions of your initial model to figure out how it really fits the data. Here’s a recipe, using the <code>predict()</code> function. + plot the raw data, using a different colour per <code>FGRAZE</code> level + for each <code>FGRAZE</code> level in turn, + create a sequence of <code>LOGAREA</code> from the minimum value to the maximum within the grazing level (unless you wish to predict outside the range of observed values) + store it in a data frame (e.g. <code>dat4pred</code>) containing the variables <code>FGRAZE</code> and <code>LOGAREA.</code> Remember that <code>FGRAZE</code> is a factor, so it requires quotes. + add a predicted column containing the explanatory variables from the model for the new data frame, using <code>predict()</code> + plot the predictions with the appropriate colours</p>
+<p>4. Explore the relationship between grazing and patch area, using a
+scatterplot. Hint: you may want to use <code>GRAZE</code> rather than
+<code>FGRAZE</code> for this. Is there any variability in patch area
+within each grazing level? Is the sampling design balanced, i.e., is the
+whole range of patch areas evenly represented at each grazing level?</p>
+<p> </p>
+<p> </p>
+<p>5. You could explore the joint effect of <code>FGRAZE</code> and
+<code>LOGAREA</code> on <code>ABUND</code>, using panel plots. Hint: See
+the function <code>coplot</code> in the Data exploration lecture, and/or
+the help page for <code>coplot</code>. Factor levels increase from the
+bottom-left panel to the top-right panel. What pattern do you see? What
+do you expect your model results to look like?</p>
+<p> </p>
+<p> </p>
+<p>6. Fit an appropriate linear model in R to explain the variation in
+the response variable, <code>ABUND</code> with the explanatory variables
+<code>LOGAREA</code> and <code>FGRAZE</code> acting additively. Hint:
+combine explanatory variables using a <code>+</code> symbol. Remember to
+use the <code>data =</code> argument. Assign this linear model to an
+appropriately named object, like <code>birds.add.1</code>.</p>
+<p> </p>
+<p> </p>
+<p>7. Produce the ANOVA table using the <code>anova()</code> function on
+the model object. What null hypotheses are being tested? Hint: the
+<code>anova()</code> function performs sequential tests. Do you reject
+or fail to reject the null hypotheses?</p>
+<p> </p>
+<p> </p>
+<p>8. Use the <code>summary()</code> function on the model object to
+produce the table of parameter estimates. Using this output take each
+line in turn and answer the following questions: (A) what does this
+parameter represent? (B) What is the biological interpretation of the
+corresponding estimate? (C) What is the null hypothesis associated with
+it? (D) Do you reject or fail to reject this hypothesis?</p>
+<p> </p>
+<p> </p>
+<p>9. Now let’s check the assumptions of your linear model by creating
+plots of the residuals from the model. Remember, that you can split your
+plotting device into 2 rows and 2 columns using the <code>par()</code>
+function before you create the plots. Check each of the assumptions
+using these plots and report whether your model meets these
+assumptions.</p>
+<p> </p>
+<p> </p>
+<p>10. Let’s plot the predictions of your initial model to figure out
+how it really fits the data. Here’s a recipe, using the
+<code>predict()</code> function. + plot the raw data, using a different
+colour per <code>FGRAZE</code> level + for each <code>FGRAZE</code>
+level in turn, + create a sequence of <code>LOGAREA</code> from the
+minimum value to the maximum within the grazing level (unless you wish
+to predict outside the range of observed values) + store it in a data
+frame (e.g. <code>dat4pred</code>) containing the variables
+<code>FGRAZE</code> and <code>LOGAREA.</code> Remember that
+<code>FGRAZE</code> is a factor, so it requires quotes. + add a
+predicted column containing the explanatory variables from the model for
+the new data frame, using <code>predict()</code> + plot the predictions
+with the appropriate colours</p>
 <p>See the script below, for one of many ways of doing this.</p>
 <p> </p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">plot</span>(loyn<span class="op">$</span>ABUND <span class="op">~</span><span class="st"> </span>loyn<span class="op">$</span>LOGAREA, <span class="dt">col =</span> loyn<span class="op">$</span>GRAZE, <span class="dt">pch =</span> <span class="dv">16</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Note: # colour 1 means black in R</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># colour 2 means red in R</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># colour 3 means green in R</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># colour 4 means blue in R</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># colour 5 means cyan in R</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># FGRAZE1</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># create a sequence of increasing Biomass within the observed range</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>LOGAREA.seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]),</span>
-<span id="cb1-12"><a href="#cb1-12"></a>                    <span class="dt">to =</span> <span class="kw">max</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]),</span>
-<span id="cb1-13"><a href="#cb1-13"></a>                    <span class="dt">length =</span> <span class="dv">20</span>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># create data frame for prediction</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>dat4pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">FGRAZE=</span> <span class="st">&quot;1&quot;</span>, <span class="dt">LOGAREA =</span> LOGAREA.seq)</span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># predict for new data</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>dat4pred<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(birds.add<span class="fl">.1</span>, <span class="dt">newdata =</span> dat4pred)</span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># add the predictions to the plot of the data</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="kw">lines</span>(predicted <span class="op">~</span><span class="st"> </span>LOGAREA, <span class="dt">data =</span> dat4pred, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># FGRAZE2</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a>LOGAREA.seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]),</span>
-<span id="cb1-23"><a href="#cb1-23"></a>                    <span class="dt">to =</span> <span class="kw">max</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]),</span>
-<span id="cb1-24"><a href="#cb1-24"></a>                    <span class="dt">length =</span> <span class="dv">20</span>)</span>
-<span id="cb1-25"><a href="#cb1-25"></a>dat4pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">FGRAZE =</span> <span class="st">&quot;2&quot;</span>, <span class="dt">LOGAREA =</span> LOGAREA.seq)</span>
-<span id="cb1-26"><a href="#cb1-26"></a>dat4pred<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(birds.add<span class="fl">.1</span>, <span class="dt">newdata=</span> dat4pred)</span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="kw">lines</span>(predicted <span class="op">~</span><span class="st"> </span>LOGAREA, <span class="dt">data =</span> dat4pred, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb1-28"><a href="#cb1-28"></a></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="co"># FGRAZE3</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a>LOGAREA.seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">3</span>]),</span>
-<span id="cb1-31"><a href="#cb1-31"></a>                    <span class="dt">to =</span> <span class="kw">max</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">3</span>]),</span>
-<span id="cb1-32"><a href="#cb1-32"></a>                    <span class="dt">length =</span> <span class="dv">20</span>)</span>
-<span id="cb1-33"><a href="#cb1-33"></a>dat4pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">FGRAZE =</span> <span class="st">&quot;3&quot;</span>, <span class="dt">LOGAREA =</span> LOGAREA.seq)</span>
-<span id="cb1-34"><a href="#cb1-34"></a>dat4pred<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(birds.add<span class="fl">.1</span>, <span class="dt">newdata =</span> dat4pred)</span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="kw">lines</span>(predicted <span class="op">~</span><span class="st"> </span>LOGAREA, <span class="dt">data =</span> dat4pred, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb1-36"><a href="#cb1-36"></a></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="co"># FGRAZE4</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a>LOGAREA.seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]),</span>
-<span id="cb1-39"><a href="#cb1-39"></a>                    <span class="dt">to =</span> <span class="kw">max</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]),</span>
-<span id="cb1-40"><a href="#cb1-40"></a>                    <span class="dt">length =</span> <span class="dv">20</span>)</span>
-<span id="cb1-41"><a href="#cb1-41"></a>dat4pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">FGRAZE =</span> <span class="st">&quot;4&quot;</span>, <span class="dt">LOGAREA =</span> LOGAREA.seq)</span>
-<span id="cb1-42"><a href="#cb1-42"></a>dat4pred<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(birds.add<span class="fl">.1</span>, <span class="dt">newdata=</span> dat4pred)</span>
-<span id="cb1-43"><a href="#cb1-43"></a><span class="kw">lines</span>(predicted <span class="op">~</span><span class="st"> </span>LOGAREA, <span class="dt">data =</span> dat4pred, <span class="dt">col =</span> <span class="dv">4</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb1-44"><a href="#cb1-44"></a></span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="co"># FGRAZE5</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a>LOGAREA.seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]),</span>
-<span id="cb1-47"><a href="#cb1-47"></a>                    <span class="dt">to =</span> <span class="kw">max</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]),</span>
-<span id="cb1-48"><a href="#cb1-48"></a>                    <span class="dt">length =</span> <span class="dv">20</span>)</span>
-<span id="cb1-49"><a href="#cb1-49"></a>dat4pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">FGRAZE =</span> <span class="st">&quot;5&quot;</span>, <span class="dt">LOGAREA =</span> LOGAREA.seq)</span>
-<span id="cb1-50"><a href="#cb1-50"></a>dat4pred<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(birds.add<span class="fl">.1</span>, <span class="dt">newdata =</span> dat4pred)</span>
-<span id="cb1-51"><a href="#cb1-51"></a><span class="kw">lines</span>(predicted <span class="op">~</span><span class="st"> </span>LOGAREA, <span class="dt">data =</span> dat4pred, <span class="dt">col =</span> <span class="dv">5</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb1-52"><a href="#cb1-52"></a></span>
-<span id="cb1-53"><a href="#cb1-53"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, </span>
-<span id="cb1-54"><a href="#cb1-54"></a> <span class="dt">legend=</span> <span class="kw">paste</span>(<span class="st">&quot;Graze = &quot;</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">1</span>), </span>
-<span id="cb1-55"><a href="#cb1-55"></a> <span class="dt">col =</span> <span class="kw">c</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">1</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
-<span id="cb1-56"><a href="#cb1-56"></a> <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), </span>
-<span id="cb1-57"><a href="#cb1-57"></a> <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loyn<span class="sc">$</span>ABUND <span class="sc">~</span> loyn<span class="sc">$</span>LOGAREA, <span class="at">col =</span> loyn<span class="sc">$</span>GRAZE, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: # colour 1 means black in R</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># colour 2 means red in R</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># colour 3 means green in R</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># colour 4 means blue in R</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># colour 5 means cyan in R</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create a sequence of increasing Biomass within the observed range</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">1</span>]),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">1</span>]),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame for prediction</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>dat4pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE=</span> <span class="st">&quot;1&quot;</span>, <span class="at">LOGAREA =</span> LOGAREA.seq)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># predict for new data</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dat4pred<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.add<span class="fl">.1</span>, <span class="at">newdata =</span> dat4pred)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># add the predictions to the plot of the data</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(predicted <span class="sc">~</span> LOGAREA, <span class="at">data =</span> dat4pred, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE2</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">2</span>]),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                    <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">2</span>]),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>dat4pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="st">&quot;2&quot;</span>, <span class="at">LOGAREA =</span> LOGAREA.seq)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>dat4pred<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.add<span class="fl">.1</span>, <span class="at">newdata=</span> dat4pred)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(predicted <span class="sc">~</span> LOGAREA, <span class="at">data =</span> dat4pred, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE3</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">3</span>]),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                    <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">3</span>]),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>dat4pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="st">&quot;3&quot;</span>, <span class="at">LOGAREA =</span> LOGAREA.seq)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>dat4pred<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.add<span class="fl">.1</span>, <span class="at">newdata =</span> dat4pred)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(predicted <span class="sc">~</span> LOGAREA, <span class="at">data =</span> dat4pred, <span class="at">col =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE4</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">4</span>]),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                    <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">4</span>]),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>dat4pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="st">&quot;4&quot;</span>, <span class="at">LOGAREA =</span> LOGAREA.seq)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>dat4pred<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.add<span class="fl">.1</span>, <span class="at">newdata=</span> dat4pred)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(predicted <span class="sc">~</span> LOGAREA, <span class="at">data =</span> dat4pred, <span class="at">col =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE5</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">5</span>]),</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>                    <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> <span class="dv">5</span>]),</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>dat4pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="st">&quot;5&quot;</span>, <span class="at">LOGAREA =</span> LOGAREA.seq)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>dat4pred<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.add<span class="fl">.1</span>, <span class="at">newdata =</span> dat4pred)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(predicted <span class="sc">~</span> LOGAREA, <span class="at">data =</span> dat4pred, <span class="at">col =</span> <span class="dv">5</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a> <span class="at">legend=</span> <span class="fu">paste</span>(<span class="st">&quot;Graze = &quot;</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>), </span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a> <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>), <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a> <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a> <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_files/figure-html/Q10a-1.png" width="672" /></p>
 <p> </p>
 <p>[Optional] Alternative method:</p>
 <p> </p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Okay, that was a long-winded way of doing this.</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># If, like me, you prefer more compact code and less risks of errors,</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># you can use a loop, to save repeating the sequence 5 times:</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">plot</span>(loyn<span class="op">$</span>ABUND <span class="op">~</span><span class="st"> </span>loyn<span class="op">$</span>LOGAREA, <span class="dt">col =</span> loyn<span class="op">$</span>GRAZE, <span class="dt">pch =</span> <span class="dv">16</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="cf">for</span>(g <span class="cf">in</span> <span class="kw">levels</span>(loyn<span class="op">$</span>FGRAZE)){<span class="co"># `g` will take the values &quot;1&quot;, &quot;2&quot;,..., &quot;5&quot; in turn</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    LOGAREA.seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span>g]),</span>
-<span id="cb2-9"><a href="#cb2-9"></a>                                        <span class="dt">to =</span> <span class="kw">max</span>(loyn<span class="op">$</span>LOGAREA[loyn<span class="op">$</span>FGRAZE <span class="op">==</span><span class="st"> </span>g]),</span>
-<span id="cb2-10"><a href="#cb2-10"></a>                                                        <span class="dt">length =</span> <span class="dv">20</span>)</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    dat4pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">FGRAZE=</span> g, <span class="dt">LOGAREA=</span> LOGAREA.seq)</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    dat4pred<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(birds.add<span class="fl">.1</span>, <span class="dt">newdata=</span> dat4pred)</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    <span class="kw">lines</span>(predicted <span class="op">~</span><span class="st"> </span>LOGAREA, <span class="dt">data =</span> dat4pred, <span class="dt">col =</span> <span class="kw">as.numeric</span>(g), <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb2-14"><a href="#cb2-14"></a>}</span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, </span>
-<span id="cb2-16"><a href="#cb2-16"></a> <span class="dt">legend =</span> <span class="kw">paste</span>(<span class="st">&quot;Graze = &quot;</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">1</span>), </span>
-<span id="cb2-17"><a href="#cb2-17"></a> <span class="dt">col =</span> <span class="kw">c</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">1</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
-<span id="cb2-18"><a href="#cb2-18"></a> <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), </span>
-<span id="cb2-19"><a href="#cb2-19"></a> <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Okay, that was a long-winded way of doing this.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If, like me, you prefer more compact code and less risks of errors,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># you can use a loop, to save repeating the sequence 5 times:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loyn<span class="sc">$</span>ABUND <span class="sc">~</span> loyn<span class="sc">$</span>LOGAREA, <span class="at">col =</span> loyn<span class="sc">$</span>GRAZE, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(g <span class="cf">in</span> <span class="fu">levels</span>(loyn<span class="sc">$</span>FGRAZE)){<span class="co"># `g` will take the values &quot;1&quot;, &quot;2&quot;,..., &quot;5&quot; in turn</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> g]),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> g]),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                                                        <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    dat4pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE=</span> g, <span class="at">LOGAREA=</span> LOGAREA.seq)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    dat4pred<span class="sc">$</span>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.add<span class="fl">.1</span>, <span class="at">newdata=</span> dat4pred)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(predicted <span class="sc">~</span> LOGAREA, <span class="at">data =</span> dat4pred, <span class="at">col =</span> <span class="fu">as.numeric</span>(g), <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a> <span class="at">legend =</span> <span class="fu">paste</span>(<span class="st">&quot;Graze = &quot;</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>), </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a> <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>), <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a> <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a> <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_files/figure-html/Q10b-1.png" width="672" /></p>
 <p> </p>
 <p>11. What have we learned from this analysis so far?</p>
 <p> </p>
 <p> </p>
 </div>
-<div id="part-2-linear-model-with-interactive-explanatory-variables" class="section level3">
+<div id="part-2-linear-model-with-interactive-explanatory-variables"
+class="section level3">
 <h3>Part 2: Linear model with interactive explanatory variables</h3>
 <p> </p>
-<p>Let’s now explore this question left unanswered: “is it okay to assume the effect of <code>LOGAREA</code> to be the same for all grazing levels?” This is effectively asking if we should let the slope of <code>LOGAREA</code> vary across <code>FGRAZE</code> levels, which is the definition of an interactive effect.</p>
+<p>Let’s now explore this question left unanswered: “is it okay to
+assume the effect of <code>LOGAREA</code> to be the same for all grazing
+levels?” This is effectively asking if we should let the slope of
+<code>LOGAREA</code> vary across <code>FGRAZE</code> levels, which is
+the definition of an interactive effect.</p>
 <p> </p>
-<p>12. Fit the corresponding linear model in R to explain the variation in the response variable, <code>ABUND</code> with the explanatory variables <code>LOGAREA</code> and <code>FGRAZE</code> and the interaction between these variables. Hint: this time, the interaction is included using the <code>*</code> symbol instead of <code>+</code>. Remember to use the <code>data =</code> argument. Assign this linear model to an appropriately named object, like <code>birds.inter.1</code>.</p>
-<p> </p>
-<p> </p>
-<p>13. Produce the ANOVA table using the <code>anova()</code> function on the model object. What null hypotheses are being tested? Hint: the <code>anova()</code> function performs sequential tests. Which of these hypotheses are relevant to us? Do you reject or fail to reject the null hypotheses?</p>
-<p> </p>
-<p> </p>
-<p>14. Use the <code>summary()</code> function on the model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?</p>
-<p> </p>
-<p> </p>
-<p>15. Now let’s check the assumptions of your linear model by creating plots of the residuals from the model. Remember, that you can split your plotting device into 2 rows and 2 columns using the <code>par()</code> function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.</p>
-<p> </p>
-<p> </p>
-<p>16. Let’s now plot the predictions of the interactive model to figure out how it really fits the data. Hint: the script from question 11 should work all the same, since the predictor variables involved in the equation are the same. Don’t forget to update the name of the model!</p>
-<p> </p>
-<p> </p>
-<p>17. Do you think the model is biologically plausible? Is it supported statistically?</p>
+<p>12. Fit the corresponding linear model in R to explain the variation
+in the response variable, <code>ABUND</code> with the explanatory
+variables <code>LOGAREA</code> and <code>FGRAZE</code> and the
+interaction between these variables. Hint: this time, the interaction is
+included using the <code>*</code> symbol instead of <code>+</code>.
+Remember to use the <code>data =</code> argument. Assign this linear
+model to an appropriately named object, like
+<code>birds.inter.1</code>.</p>
 <p> </p>
 <p> </p>
-<p>End of the Linear model with continuous and categorical explanatory variables exercise</p>
+<p>13. Produce the ANOVA table using the <code>anova()</code> function
+on the model object. What null hypotheses are being tested? Hint: the
+<code>anova()</code> function performs sequential tests. Which of these
+hypotheses are relevant to us? Do you reject or fail to reject the null
+hypotheses?</p>
+<p> </p>
+<p> </p>
+<p>14. Use the <code>summary()</code> function on the model object to
+produce the table of parameter estimates. Using this output take each
+line in turn and answer the following questions: (A) what does this
+parameter represent, mathematically? (B) What is the biological
+interpretation of the corresponding estimate? (C) What is the null
+hypothesis associated with it? (D) Do you reject or fail to reject this
+hypothesis?</p>
+<p> </p>
+<p> </p>
+<p>15. Now let’s check the assumptions of your linear model by creating
+plots of the residuals from the model. Remember, that you can split your
+plotting device into 2 rows and 2 columns using the <code>par()</code>
+function before you create the plots. Check each of the assumptions
+using these plots and report whether your model meets these
+assumptions.</p>
+<p> </p>
+<p> </p>
+<p>16. Let’s now plot the predictions of the interactive model to figure
+out how it really fits the data. Hint: the script from question 11
+should work all the same, since the predictor variables involved in the
+equation are the same. Don’t forget to update the name of the model!</p>
+<p> </p>
+<p> </p>
+<p>17. Do you think the model is biologically plausible? Is it supported
+statistically?</p>
+<p> </p>
+<p> </p>
+<p>End of the Linear model with continuous and categorical explanatory
+variables exercise</p>
 <p><br />
 </p>
 </div>
@@ -720,7 +787,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

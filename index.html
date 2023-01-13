@@ -13,17 +13,23 @@
 
 <title>Course Introduction</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -39,32 +45,8 @@
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 
 
@@ -74,10 +56,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -94,40 +72,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -155,7 +109,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -167,7 +121,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -177,11 +131,28 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.parent().addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -193,13 +164,12 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -207,16 +177,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -260,7 +223,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -284,7 +247,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-book"></span>
      
     R Book
@@ -310,7 +273,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-book"></span>
      
     Exercises
@@ -343,7 +306,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-question-circle"></span>
      
     Info
@@ -373,13 +336,7 @@ $(document).ready(function () {
         Resources
       </a>
     </li>
-    <li>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJw6izeHZqnhujfmz5Dgs0GLDBKplQykCPmKuPHuJWigk8ag/viewform?usp=sf_link">
-        <span class="fa fa-commenting"></span>
-         
-        Feedback
-      </a>
-    </li>
+    <li class="dropdown-header">Feedback</li>
     <li>
       <a href="https://www.quadrat.ac.uk/">
         <span class="fa fa-chrome"></span>
@@ -419,7 +376,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -429,16 +386,58 @@ $(document).ready(function () {
 
 
 <p> </p>
-<p>Hello and welcome to your QUADRAT DTP QUADstats course! This website compliments the QUADstats <a href="https://abdn.blackboard.com/ultra/">MyAberdeen</a> course website and is mainly used to host exercises and associated exercise solutions and data files. You can find all other material for this QUADstats course on the MyAberdeen course site.</p>
+<p>Hello and welcome to your QUADRAT DTP QUADstats course! This website
+compliments the QUADstats <a
+href="https://abdn.blackboard.com/ultra/">MyAberdeen</a> course website
+and is mainly used to host exercises and associated exercise solutions
+and data files. You can find all other material for this QUADstats
+course on the <a
+href="https://abdn.blackboard.com/ultra/">MyAberdeen</a> course
+site.</p>
 <p> </p>
 <div id="how-to-use-this-website" class="section level4">
 <h4>How to use this website</h4>
 <p> </p>
-<p>The first thing you will need to do is check that you have both R and RStudio installed on your computer. Most (if not all) of you should already have these installed from when you attended the previous Introduction to R course. If you haven’t used R and RStudio since (☹️) then its probably a good idea to update both to the latest versions. If for some reason you don’t have R and RStudio installed then take a look at the <strong><a href="setup.html"><i class="fa fa-cog" aria-hidden="true"></i> Setup</a></strong> link in the navbar above for further instructions on how to set up your computer.</p>
-<p>This course will be delivered entirely online this year and will comprise a mixture of pre-recorded video lectures covering statistical theory and a series of live practical exercises and review sessions during which you will be able to ask questions and receive one-to-one help from the instructors. The recorded lectures will be hosted on our Virtual Learning Environment <a href="https://abdn.blackboard.com/ultra/">MyAberdeen</a> and the live practical and review sessions with be delivered via Blackboard Collaborate. Full instructions on how to access Blackboard Collaborate will be provided before the course starts.</p>
-<p>This website mainly hosts the exercises you will complete each day and also the solutions for these exercises. You can access both by clicking on the <strong><i class="fa fa-book" aria-hidden="true"></i> Exercises</strong> link on the navbar above (links will also be provided on the MyAberdeen website). To complete the exercises you will also need to download some data files to your computer which you can find by clicking on the <strong><i class="fa fa-download" aria-hidden="true"></i> Data</strong> icon above and following the instructions.</p>
-<p>If you need to quickly brush up on your R skills or have forgotten how to do something (we’ve all been there!) please take a look at our new(ish) online open access Introduction to R book. There is a direct link to the book on the navbar above <strong><i class="fa fa-book" aria-hidden="true"></i> R Book</strong>. Failing that, just give us a shout in one of the Blackboard collaborate sessions.</p>
-<p>You can find links to additional resources, a suggested timetable, our contact details and a feedback form in <strong><i class="fa fa-question-circle" aria-hidden="true"></i> Info</strong> link above.  </p>
+<p>The first thing you will need to do is check that you have both R and
+RStudio installed on your computer. Most (if not all) of you should
+already have these installed from when you attended the previous
+Introduction to R course. If you haven’t used R and RStudio since (☹️)
+then its probably a good idea to update both to the latest versions. If
+for some reason you don’t have R and RStudio installed then take a look
+at the <strong><a
+href="setup.html"><i class="fa fa-cog" aria-hidden="true"></i>
+Setup</a></strong> link in the navbar above for further instructions on
+how to set up your computer.</p>
+<p>This course will be delivered entirely online and will comprise a
+mixture of pre-recorded video lectures covering statistical theory and a
+series of live practical exercises and review sessions during which you
+will be able to ask questions and receive one-to-one help from the
+instructors. The recorded lectures will be hosted on our Virtual
+Learning Environment <a
+href="https://abdn.blackboard.com/ultra/">MyAberdeen</a> and the live
+practical and review sessions with be delivered via Blackboard
+Collaborate. Full instructions on how to access Blackboard Collaborate
+will be provided before the course starts.</p>
+<p>This website mainly hosts the exercises you will complete each day
+and also the solutions for these exercises. You can access both by
+clicking on the <strong><i class="fa fa-book" aria-hidden="true"></i>
+Exercises</strong> link on the navbar above (links will also be provided
+on the MyAberdeen website). To complete the exercises you will also need
+to download some data files to your computer which you can find by
+clicking on the
+<strong><i class="fa fa-download" aria-hidden="true"></i> Data</strong>
+icon above and following the instructions.</p>
+<p>If you need to quickly brush up on your R skills or have forgotten
+how to do something (we’ve all been there!) please take a look at our
+new(ish) online open access Introduction to R book. There is a direct
+link to the book on the navbar above
+<strong><i class="fa fa-book" aria-hidden="true"></i> R Book</strong>.
+Failing that, just give us a shout in one of the Blackboard collaborate
+sessions.</p>
+<p>You can find links to additional resources, a suggested timetable,
+our contact details and a feedback form in
+<strong><i class="fa fa-question-circle" aria-hidden="true"></i>
+Info</strong> link above.  </p>
 </div>
 
 
@@ -468,7 +467,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

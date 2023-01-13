@@ -48,7 +48,7 @@ navbar:
           href: "resources.html"
         - text: "Feedback"
           icon: fa-commenting
-          href: https://docs.google.com/forms/d/e/1FAIpQLSfJw6izeHZqnhujfmz5Dgs0GLDBKplQykCPmKuPHuJWigk8ag/viewform?usp=sf_link
+          href: 
         - text: "QUADRAT"
           icon: fa-chrome
           href: https://www.quadrat.ac.uk/

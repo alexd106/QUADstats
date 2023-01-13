@@ -35,7 +35,7 @@ str(loyn)
 
 \  
 
-3\. Fit an appropriate linear model in R (remember you may have to transform the `AREA` variable, return to your data exploration if in doubt) using the `lm()` function. Try to remember which is your response variable and which is your explanatory variable. Also remember to use the `data =` argument. Assign this linear model to an appropriately named object (`loyn.lm` if you imagination fails you!).
+3\. Create a scatterplot of bird abundance and forest patch area to remind yourself what this relationship looks like. Remember you may have to transform the `AREA` variable, return to your data exploration if in doubt. Try to remember which is your response variable (y axis) and which is your explanatory variable (x axis). Now fit an appropriate linear model to describe this relationship using the `lm()` function. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`loyn.lm` if you imagination fails you!).
 
 \  
 
@@ -121,13 +121,13 @@ summary(loyn.lm)
 
 \  
 
-8\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals form the model. Remember, you can easily create these plots by using the `plot()` function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Can you remember which plot is used to check the assumption of normality of the residuals? What is you assessment of this assumption? Next, check the homogeneity of variance of residuals assumption. Can you see any patterns in the residuals versus fitted value plots? Is there more or less equal spread of the residuals? Finally, take a look at the leverage and Cooks distance plot to assess whether you have any unusually large or small residuals or any influential residuals. What is your assessment? Write a couple of sentences to summarise your assessment of the modelling assumptions. 
+8\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object (`loyn.lm` or whatever you called it). Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots ([Section 4.4](https://intro2r.com/mult_graphs.html#mult_graphs)). Can you remember which plot is used to check the assumption of normality of the residuals? What is you assessment of this assumption? Next, check the homogeneity of variance of residuals assumption. Can you see any patterns in the residuals versus fitted value plots? Is there more or less equal spread of the residuals? Finally, take a look at the leverage and Cooks distance plot to assess whether you have any unusually large or small residuals or any influential residuals. What is your assessment? Write a couple of sentences to summarise your assessment of the modelling assumptions as a comment in your R code. 
 
 \  
 
 ```{r Q8, eval=TRUE, echo=TRUE, collapse=TRUE}
 # first split the plotting device into 2 rows and 2 columns
-par(mfrow = c(2,2))
+par(mfrow = c(2, 2))
 
 # now create the residuals plots
 plot(loyn.lm)
@@ -149,7 +149,7 @@ plot(loyn.lm)
 # From the Residuals vs Leverage plot (bottom right) you can see that there are no residuals 
 # with a Cooks distance greater than 1. In fact they are all well below 0.5. If you want to 
 # produce a plot of just Cooks distance (perhaps this is clearer)
-par(mfrow = c(1,1))
+par(mfrow = c(1, 1))
 plot(loyn.lm, which = 4)
 
 # Going back to the Residuals vs Leverage plot (bottom right) you can see 
@@ -246,7 +246,7 @@ lines(my.data$LOGAREA, pred.vals.se$fit - (1.96 * pred.vals.se$se.fit), lty = 2,
 
 \  
 
-13\. And and another optional question. This time plot the relationship between bird abundance (`ABUND`) and the original untransformed `AREA` variable. Now back-transform your fitted values (remember you got these with the `predict()` function) to the original scale and add these to the plot ad a line. Hint 1: you don't need to reuse the `predict()` function, you just need to back-transform your `LOGAREA` values. Hint 2: remember if you used a log to the base 10 transformation (`log10()`) then you can back-transform using `10^LOGAREA` and if you used a natural log transformation then use `exp(LOGAREA)` to back-transform. Comment on the differences between the plot on the transformed (log) scale and the plot on the back-transformed scale.
+13\. And another optional question (honestly, it's optional!). This time plot the relationship between bird abundance (`ABUND`) and the original untransformed `AREA` variable. Now back-transform your fitted values (remember you got these with the `predict()` function) to the original scale and add these to the plot as a line. Hint 1: you don't need to reuse the `predict()` function, you just need to back-transform your `LOGAREA` values. Hint 2: remember if you used a log~10~ transformation (`log10()`) then you can back-transform using `10^LOGAREA` and if you used a natural log transformation then use `exp(LOGAREA)` to back-transform. Comment on the differences between the plot on the transformed (log) scale and the plot on the back-transformed scale in your R script.
 
 \  
 

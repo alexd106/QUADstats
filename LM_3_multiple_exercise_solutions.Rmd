@@ -469,7 +469,7 @@ legend("topleft",
 
 # The interaction is non-significant, so isn't supported statistically either.
 
-# Time to revert to the simpler, or a different model? More on this in the next session!
+# Time to revert to the simpler, or a different model? Decisions, decisions!
 
 ```
 

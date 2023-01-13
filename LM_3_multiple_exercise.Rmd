@@ -417,7 +417,7 @@ summary(birds.inter.1)
 
 ```{r Q15, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
 # first split the plotting device into 2 rows and 2 columns
-par(mfrow = c(2,2))
+par(mfrow = c(2, 2))
 
 # now create the residuals plots
 plot(birds.inter.1)
