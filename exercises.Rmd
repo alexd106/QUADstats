@@ -56,15 +56,15 @@ rmarkdown::render("LM_3_multiple_exercise.Rmd", output_format = "pdf_document", 
  
 ### Day 2
 
- - [Linear model with a single continuous explanatory variable exercise](linear_model_1_exercise.html)
+ - [Linear modelling with a single continuous explanatory variable exercise](linear_model_1_exercise.html)
  
- - [Linear model with a single categorical explanatory variable exercise](linear_model_2_exercise.html)
+ - [Linear modelling with a single categorical explanatory variable exercise](linear_model_2_exercise.html)
 
 \  
 
 ### Day 3
  
- - [Linear model with continuous and categorical explanatory variables exercise](LM_3_multiple_exercise.html)
+ - [Linear modelling with continuous and categorical explanatory variables exercise](LM_3_multiple_exercise.html)
  
 \  
 

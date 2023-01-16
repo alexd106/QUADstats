@@ -58,7 +58,7 @@ navbar:
         - text: "----"
         - text: "Source code"
           icon: fa-github fa-lg
-          href: https://github.com/alexd106/BI5009
+          href: https://github.com/alexd106/QUADstats
         - text: "Twitter"
           icon: fa-twitter fa-lg
           href: https://twitter.com/Scedacity

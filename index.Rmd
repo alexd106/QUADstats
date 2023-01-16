@@ -21,7 +21,7 @@ This course will be delivered entirely online and will comprise a mixture of pre
 
 This website mainly hosts the exercises you will complete each day and also the solutions for these exercises. You can access both by clicking on the **<i class="fa fa-book" aria-hidden="true"></i> Exercises** link on the navbar above (links will also be provided on the MyAberdeen website). To complete the exercises you will also need to download some data files to your computer which you can find by clicking on the **<i class="fa fa-download" aria-hidden="true"></i> Data** icon above and following the instructions.  
 
-If you need to quickly brush up on your R skills or have forgotten how to do something (we've all been there!) please take a look at our new(ish) online open access Introduction to R book. There is a direct link to the book on the navbar above **<i class="fa fa-book" aria-hidden="true"></i> R Book**. Failing that, just give us a shout in one of the Blackboard collaborate sessions.
+If you need to quickly brush up on your R skills or have forgotten how to do something (we've all been there!) please take a look at our online open access [Introduction to R book](https://intro2r.com). There is also a direct link to the book on the navbar above **<i class="fa fa-book" aria-hidden="true"></i> R Book**. Failing that, just give us a shout in one of the Blackboard collaborate sessions.
 
 You can find links to additional resources, a suggested timetable, our contact details and a feedback form in **<i class="fa fa-question-circle" aria-hidden="true"></i> Info** link above.
 \  
