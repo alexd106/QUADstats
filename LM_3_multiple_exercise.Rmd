@@ -338,7 +338,7 @@ legend("topleft",
 
 \  
 
-Let's now explore this question left unanswered: "is it okay to assume the effect of `LOGAREA` to be the same for all grazing levels?" This is effectively asking if we should let the slope of `LOGAREA` vary across `FGRAZE` levels, which is the definition of an interactive effect.
+Let's now explore this question left unanswered: "is it okay to assume the effect of `LOGAREA` to be the same for all grazing levels?" This is effectively asking if we should let the slope of `LOGAREA` vary for different `FGRAZE` levels, which is the definition of an interactive effect.
 
 \  
 
@@ -379,7 +379,7 @@ anova(birds.inter.1)
 
 \  
 
-14\. Use the `summary()` function on the  model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
+14\. Use the `summary()` function on the  model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
 
 \  
 

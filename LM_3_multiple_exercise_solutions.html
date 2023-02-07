@@ -692,26 +692,28 @@ it? (D) Do you reject or fail to reject this hypothesis?</p>
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># is significantly different from 0 (i.e. there is a significant relationship</span></span>
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co"># between LOGAREA and ABUND). Remember, in this additive model we are assuming </span></span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># that the slope of the relationship between LOGAREA and ABUND is the same for</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># each level of FGRAZE so we only have one estimate for the slope.</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co"># The remaining estimates are differences (contrasts) in the intercepts  </span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># between each level of FGRAZE and the reference level, FGRAZE1. </span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, the FGRAZE2 estimate is 0.38, so there are 0.38 more birds on</span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># average in graze level 2 compared to graze level 1, when LOGAREA = 0 (so it&#39;s</span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># a difference in the intercepts). This difference is however not significantly </span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co"># different from zero (p = 0.89) and we conclude that there is no difference</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co"># in the mean bird ABUND between FGRAZE2 and FGRAZE1 when LOGAREA = 0.</span></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="co"># The difference between graze level 5 (FGRAZE5) and the reference FGRAZE1 is </span></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="co"># -11.89 (11.89 fewer birds in FGRAZE5 compared to FGRAZE1),</span></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co"># when LOGAREA = 0.</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co"># This difference is significantly different from 0 (p = 0.00017) and therefore</span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean abundance of birds in FGRAZE5 is significantly different than in</span></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE1 when LOGAREA = 0.</span></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co"># The Multiple R-square value is as we calculated from the anova table</span></span></code></pre></div>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># each level of FGRAZE (i.e. they are parallel) so we only have one estimate </span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co"># for the slope.</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The remaining estimates are differences (contrasts) in the intercepts  </span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="co"># between each level of FGRAZE and the reference level, FGRAZE1. </span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, the FGRAZE2 estimate is 0.38, so there are 0.38 more birds on</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># average in graze level 2 compared to graze level 1, when LOGAREA = 0 (so it&#39;s</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co"># a difference in the intercepts). This difference is however not significantly </span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co"># different from zero (p = 0.89) and we conclude that there is no difference</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co"># in the mean bird ABUND between FGRAZE2 and FGRAZE1 when LOGAREA = 0.</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="co"># The difference between FGRAZE5 and the reference FGRAZE1 is </span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co"># -11.89 (11.89 fewer birds in FGRAZE5 compared to FGRAZE1),</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co"># when LOGAREA = 0.</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co"># This difference is significantly different from 0 (p = 0.00017) and therefore</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean abundance of birds in FGRAZE5 is significantly different than in</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE1 when LOGAREA = 0.</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="co"># The Adjusted R-squared value is 0.699 and therefore LOGAREA and FGRAZE </span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="co"># explain 69.9% of the variation in bird abundance.</span></span></code></pre></div>
 <p> </p>
 <p>9. Now let’s check the assumptions of your linear model by creating
 plots of the residuals from the model. Remember, that you can split your
@@ -730,28 +732,29 @@ assumptions.</p>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># To test the normality of residuals assumption we use the Normal Q-Q plot. </span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The central residuals are not too far from the Q-Q line but the extremes</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># are too extreme (the tails of the distribution are too long). Some</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># observations, both high and low, are poorly explained by the model.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># observations, both high and low, are poorly explained by the model. </span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The plot of the residuals against the fitted values suggests these</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># extreme residuals happen for intermediate fitted values.</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Looking at the homogeneity of variance assumption (Residuals vs</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted and Scale-Location plot),</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># the graphs are mostly messy, with no clear pattern emerging. There is</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># a hint of smaller variance with the lowest fitted values, which is not ideal.</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># This could mean that the homogeneity of variance assumption is not met</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e. the variances are not the same). </span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The observations with the highest leverage don&#39;t appear to be overly</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># influential, according to the Cook&#39;s distances in the Residuals vs</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Leverage plot.  </span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ABUND being bounded by zero, it wouldn&#39;t be too surprising that the variance increases with the mean abundance.</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># This is often improved by log-transforming the response</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>loyn<span class="sc">$</span>logABUND<span class="ot">&lt;-</span> <span class="fu">log</span>(loyn<span class="sc">$</span>ABUND <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># here the natural log</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>birds.add<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(logABUND <span class="sc">~</span> LOGAREA <span class="sc">+</span> FGRAZE, <span class="at">data =</span> loyn)</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(birds.add<span class="fl">.3</span>)</span></code></pre></div>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted and Scale-Location plot), the graphs are mostly messy, with no clear </span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># pattern emerging. There is a hint of smaller variance with the lowest fitted </span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># values, which is not ideal. This could mean that the homogeneity of variance </span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># assumption is not met (i.e. the variances are not equal). </span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># The observations with the highest leverage don&#39;t appear to be overly</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># influential, according to the Cook&#39;s distances (all &lt; 1) in the Residuals vs</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Leverage plot.  </span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ABUND being bounded by zero, it wouldn&#39;t be too surprising that the </span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># variance increases with the mean abundance. This is often improved by </span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># log-transforming the response variable. </span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>loyn<span class="sc">$</span>logABUND<span class="ot">&lt;-</span> <span class="fu">log</span>(loyn<span class="sc">$</span>ABUND <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># here the natural log</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>birds.add<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(logABUND <span class="sc">~</span> LOGAREA <span class="sc">+</span> FGRAZE, <span class="at">data =</span> loyn)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(birds.add<span class="fl">.3</span>)</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_solutions_files/figure-html/Q9-2.png" width="672" /></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Not this time! Lots of extreme negative residuals generated.</span></span>
@@ -762,7 +765,7 @@ assumptions.</p>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the effect of LOGAREA to be the same for all grazing levels?</span></span></code></pre></div>
 <p> </p>
 <p>10. Let’s plot the predictions of your initial model to figure out
-how it really fits the data. Here’s a recipe, using the
+how it really fits the data. Here’s a general recipe, using the
 <code>predict()</code> function. + plot the raw data, using a different
 colour per <code>FGRAZE</code> level + for each <code>FGRAZE</code>
 level in turn, + create a sequence of <code>LOGAREA</code> from the
@@ -835,7 +838,7 @@ with the appropriate colours</p>
 <span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a> <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="LM_3_multiple_exercise_solutions_files/figure-html/Q10a-1.png" width="672" /></p>
 <p> </p>
-<p>[Optional] Alternative method:</p>
+<p>[Optional] Alternative method using less code:</p>
 <p> </p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Okay, that was a long-winded way of doing this.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If, like me, you prefer more compact code and less risks of errors,</span></span>
@@ -843,7 +846,7 @@ with the appropriate colours</p>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loyn<span class="sc">$</span>ABUND <span class="sc">~</span> loyn<span class="sc">$</span>LOGAREA, <span class="at">col =</span> loyn<span class="sc">$</span>GRAZE, <span class="at">pch =</span> <span class="dv">16</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(g <span class="cf">in</span> <span class="fu">levels</span>(loyn<span class="sc">$</span>FGRAZE)){<span class="co"># `g` will take the values &quot;1&quot;, &quot;2&quot;,..., &quot;5&quot; in turn</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(g <span class="cf">in</span> <span class="fu">levels</span>(loyn<span class="sc">$</span>FGRAZE)){ <span class="co"># `g` will take the values &quot;1&quot;, &quot;2&quot;,..., &quot;5&quot; in turn</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    LOGAREA.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> g]),</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA[loyn<span class="sc">$</span>FGRAZE <span class="sc">==</span> g]),</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                                                        <span class="at">length =</span> <span class="dv">20</span>)</span>
@@ -865,9 +868,9 @@ with the appropriate colours</p>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># There is a significant positive effect of patch area, too.</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The relative importance of patch area and grazing is not clear, as these</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># are correlated, with smaller patches also having higher grazing intensity</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># on average, and larger patches lower grazing intensity.</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The relative importance of patch area and grazing is not very clear, as these</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># are arguably collinear to some extent, with smaller patches also having </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># higher grazing intensity on average, and larger patches lower grazing intensity.</span></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Some observations are poorly predicted (fitted) using the current set</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># of explanatory variables.</span></span></code></pre></div>
@@ -880,19 +883,23 @@ class="section level3">
 <p>Let’s now explore this question left unanswered: “is it okay to
 assume the effect of <code>LOGAREA</code> to be the same for all grazing
 levels?” This is effectively asking if we should let the slope of
-<code>LOGAREA</code> vary across <code>FGRAZE</code> levels, which is
-the definition of an interactive effect.</p>
+<code>LOGAREA</code> vary for different <code>FGRAZE</code> levels,
+which is the definition of an interactive effect.</p>
 <p> </p>
-<p>12. Fit the corresponding linear model in R to explain the variation
-in the response variable, <code>ABUND</code> with the explanatory
-variables <code>LOGAREA</code> and <code>FGRAZE</code> and the
-interaction between these variables. Hint: this time, the interaction is
-included using the <code>*</code> symbol instead of <code>+</code>.
-Remember to use the <code>data =</code> argument. Assign this linear
-model to an appropriately named object, like
-<code>birds.inter.1</code>.</p>
+<p>12. Fit a linear model in R to explain the variation in the response
+variable, <code>ABUND</code> with the explanatory variables
+<code>LOGAREA</code> and <code>FGRAZE</code> and the interaction between
+these variables. Hint: this time, the interaction is included using the
+<code>*</code> symbol instead of <code>+</code>. Remember to use the
+<code>data =</code> argument. Assign this linear model to an
+appropriately named object, like <code>birds.inter.1</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>birds.inter<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE <span class="sc">*</span> LOGAREA , <span class="at">data =</span> loyn)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>birds.inter<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE <span class="sc">*</span> LOGAREA , <span class="at">data =</span> loyn)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or you can use the following which is equivalent to the model specification</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># above</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># birds.inter.1 &lt;- lm(ABUND ~ FGRAZE + LOGAREA + FGRAZE:LOGAREA, data = loyn)</span></span></code></pre></div>
 <p> </p>
 <p>13. Produce the ANOVA table using the <code>anova()</code> function
 on the model object. What null hypotheses are being tested? Hint: the
@@ -916,26 +923,25 @@ hypotheses?</p>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (the coefficient for LOGAREA is zero)</span></span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># null hypothesis 2: There is no effect of FGRAZE on ABUND</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (no difference between grazing levels *after* the effect of LOGAREA)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (no difference between grazing levels *after* accounting for the effect of LOGAREA)</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># null hypothesis 3: There is no effect of an FGRAZE by ABUND interaction</span></span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># *after* the effects of LOGAREA and FGRAZE combined).</span></span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># A couple of equivalent ways to say this: the effect of LOGAREA doesn&#39;t differ</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># among FGRAZE levels or: the difference in bird abundance between grazing</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># between FGRAZE levels or: the difference in bird abundance between grazing</span></span>
 <span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># levels is the same for all patch areas.</span></span>
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># As long as there is an interaction in the model, the null hypotheses 1 and 2</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># (&quot;main effects&quot;) are not relevant to us</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># (&quot;main effects&quot;) are not relevant to us.</span></span>
 <span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># the p value for the interaction is large, therefore we fail to reject the</span></span>
 <span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># null hypothesis: there is no evidence supporting this interaction.</span></span></code></pre></div>
 <p> </p>
 <p>14. Use the <code>summary()</code> function on the model object to
 produce the table of parameter estimates. Using this output take each
 line in turn and answer the following questions: (A) what does this
-parameter represent, mathematically? (B) What is the biological
-interpretation of the corresponding estimate? (C) What is the null
-hypothesis associated with it? (D) Do you reject or fail to reject this
-hypothesis?</p>
+parameter represent (B) What is the biological interpretation of the
+corresponding estimate? (C) What is the null hypothesis associated with
+it? (D) Do you reject or fail to reject this hypothesis?</p>
 <p> </p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(birds.inter<span class="fl">.1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
@@ -982,7 +988,7 @@ hypothesis?</p>
 <span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="co"># level, FGRAZE = 1. </span></span>
 <span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co"># The Multiple R-square value is 0.76, slightly up from the purely additive</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="co"># The Adjusted R-squared value is 0.72, slightly higher compared to the purely additive</span></span>
 <span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="co"># model (but not much, given that we have added a whole 4 parameters to the</span></span>
 <span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co"># model, i.e. nearly doubled its complexity)</span></span></code></pre></div>
 <p> </p>

@@ -1,23 +1,49 @@
-## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
+## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------
 loyn <- read.table("data/loyn.txt", header = TRUE, stringsAsFactors = TRUE)
 str(loyn)
 
 
-## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
+## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------
 loyn$LOGAREA <- log10(loyn$AREA)
 # create factor GRAZE as it was originally coded as an integer
 loyn$FGRAZE <- factor(loyn$GRAZE)
 
 
+## ----Q4, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE-----------------------------------
+## plot(loyn$LOGAREA ~ loyn$GRAZE, xlab = "Grazing level", ylab = "Patch area")
+## 
+## # There is a good spread of patch areas within each grazing level overall,
+## # although there is a trend for more grazing the smaller the patch is.
+## # the lowest level of grazing intensity happens to be predominantly in
+## # larger patches (including the two monster patches)
+## 
+## # How would we expect adding grazing level to the LOGAREA model to affect
+## # the predictions of the model? Think particularly of the largest two patches
+## # which were previously overestimated by the model (negative residuals -
+## # see the linear model 1 exercise)?
+## # Since the lowest grazing levels appear to be associated with the highest
+## # bird abundances, we could expect a model combining area and grazing level
+## # to predict an even higher abundance for these patches
+## # this would not improve the situation for these patches, at least.
+## # But let's find out if that's the case!
 
 
+## ----Q5, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE-----------------------------------
+## coplot(ABUND ~ LOGAREA | FGRAZE, data = loyn)
+## 
+## # There is a lot of variation in there, but:
+## # The mean abundance seems to decrease as grazing levels increase.
+## # Most noticeable in the highest grazing level.
+## # Within a grazing level, abundance seems to increase with the log-patch area.
+## # It is unclear from this if the slope of the log-area effect is
+## # different between grazing levels
 
 
-## ----Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
+## ----Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------
 birds.add.1 <- lm(ABUND ~ LOGAREA + FGRAZE, data = loyn)
 
 
-## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
+## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------
 anova(birds.add.1)
 
 # null hypothesis 1: There is no effect of LOGAREA on ABUND
@@ -28,7 +54,7 @@ anova(birds.add.1)
 # the p values are all very small therefore reject both null hypotheses.
 
 
-## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
+## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------------
 summary(birds.add.1)
 
 # Here the intercept (baseline) is *NOT* the mean abundance of birds for
@@ -46,7 +72,8 @@ summary(birds.add.1)
 # is significantly different from 0 (i.e. there is a significant relationship
 # between LOGAREA and ABUND). Remember, in this additive model we are assuming 
 # that the slope of the relationship between LOGAREA and ABUND is the same for
-# each level of FGRAZE so we only have one estimate for the slope.
+# each level of FGRAZE (i.e. they are parallel) so we only have one estimate 
+# for the slope.
 
 # The remaining estimates are differences (contrasts) in the intercepts  
 # between each level of FGRAZE and the reference level, FGRAZE1. 
@@ -57,7 +84,7 @@ summary(birds.add.1)
 # different from zero (p = 0.89) and we conclude that there is no difference
 # in the mean bird ABUND between FGRAZE2 and FGRAZE1 when LOGAREA = 0.
 
-# The difference between graze level 5 (FGRAZE5) and the reference FGRAZE1 is 
+# The difference between FGRAZE5 and the reference FGRAZE1 is 
 # -11.89 (11.89 fewer birds in FGRAZE5 compared to FGRAZE1),
 # when LOGAREA = 0.
 
@@ -65,13 +92,54 @@ summary(birds.add.1)
 # the mean abundance of birds in FGRAZE5 is significantly different than in
 # FGRAZE1 when LOGAREA = 0.
 
-# The Multiple R-square value is as we calculated from the anova table
+# The Adjusted R-squared value is 0.699 and therefore LOGAREA and FGRAZE 
+# explain 69.9% of the variation in bird abundance.
 
 
+## ----Q9, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE-----------------------------------
+## # first split the plotting device into 2 rows and 2 columns
+## par(mfrow = c(2,2))
+## 
+## # now create the residuals plots
+## plot(birds.add.1)
+## 
+## # To test the normality of residuals assumption we use the Normal Q-Q plot.
+## # The central residuals are not too far from the Q-Q line but the extremes
+## # are too extreme (the tails of the distribution are too long). Some
+## # observations, both high and low, are poorly explained by the model.
+## 
+## # The plot of the residuals against the fitted values suggests these
+## # extreme residuals happen for intermediate fitted values.
+## 
+## # Looking at the homogeneity of variance assumption (Residuals vs
+## # Fitted and Scale-Location plot), the graphs are mostly messy, with no clear
+## # pattern emerging. There is a hint of smaller variance with the lowest fitted
+## # values, which is not ideal. This could mean that the homogeneity of variance
+## # assumption is not met (i.e. the variances are not equal).
+## 
+## # The observations with the highest leverage don't appear to be overly
+## # influential, according to the Cook's distances (all < 1) in the Residuals vs
+## # Leverage plot.
+## 
+## # ABUND being bounded by zero, it wouldn't be too surprising that the
+## # variance increases with the mean abundance. This is often improved by
+## # log-transforming the response variable.
+## 
+## loyn$logABUND<- log(loyn$ABUND + 1) # here the natural log
+## birds.add.3 <- lm(logABUND ~ LOGAREA + FGRAZE, data = loyn)
+## par(mfrow = c(2, 2))
+## plot(birds.add.3)
+## 
+## # Not this time! Lots of extreme negative residuals generated.
+## 
+## # Back to `birds.add.1` the other issue was the extreme residuals.
+## # This could be due to missing important explanatory variables from the model, either
+## # new explanatory variables altogether, or interactions: is it okay to assume
+## # the effect of LOGAREA to be the same for all grazing levels?
+## 
 
 
-
-## ----Q10a, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------
+## ----Q10a, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------------------------
 par(mfrow= c(1, 1))
 plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 # Note: # colour 1 means black in R
@@ -131,14 +199,14 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
-## ----Q10b, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------
+## ----Q10b, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------------------------
 # Okay, that was a long-winded way of doing this.
 # If, like me, you prefer more compact code and less risks of errors,
 # you can use a loop, to save repeating the sequence 5 times:
 par(mfrow = c(1, 1))
 plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 
-for(g in levels(loyn$FGRAZE)){# `g` will take the values "1", "2",..., "5" in turn
+for(g in levels(loyn$FGRAZE)){ # `g` will take the values "1", "2",..., "5" in turn
 	LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == g]),
 										to = max(loyn$LOGAREA[loyn$FGRAZE == g]),
 														length = 20)
@@ -153,34 +221,51 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
+## ----Q11, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------
+## # There is a significant effect of grazing levels, especially the highest
+## # level with a negative effect on bird abundance
+## 
+## # There is a significant positive effect of patch area, too.
+## 
+## # The relative importance of patch area and grazing is not very clear, as these
+## # are arguably collinear to some extent, with smaller patches also having
+## # higher grazing intensity on average, and larger patches lower grazing intensity.
+## 
+## # Some observations are poorly predicted (fitted) using the current set
+## # of explanatory variables.
 
 
-## ----Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------
+## ----Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
 birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA , data = loyn)
 
+# or you can use the following which is equivalent to the model specification
+# above
 
-## ----Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------
+# birds.inter.1 <- lm(ABUND ~ FGRAZE + LOGAREA + FGRAZE:LOGAREA, data = loyn)
+
+
+## ----Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
 anova(birds.inter.1)
 
 # null hypothesis 1: There is no effect of LOGAREA on ABUND
 # (the coefficient for LOGAREA is zero)
 
 # null hypothesis 2: There is no effect of FGRAZE on ABUND
-# (no difference between grazing levels *after* the effect of LOGAREA)
+# (no difference between grazing levels *after* accounting for the effect of LOGAREA)
 
 # null hypothesis 3: There is no effect of an FGRAZE by ABUND interaction
 # *after* the effects of LOGAREA and FGRAZE combined).
 # A couple of equivalent ways to say this: the effect of LOGAREA doesn't differ
-# among FGRAZE levels or: the difference in bird abundance between grazing
+# between FGRAZE levels or: the difference in bird abundance between grazing
 # levels is the same for all patch areas.
 
 # As long as there is an interaction in the model, the null hypotheses 1 and 2
-# ("main effects") are not relevant to us
+# ("main effects") are not relevant to us.
 # the p value for the interaction is large, therefore we fail to reject the
 # null hypothesis: there is no evidence supporting this interaction.
 
 
-## ----Q14, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------
+## ----Q14, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
 summary(birds.inter.1)
 
 # Here the intercept (baseline) is the predicted `ABUND` for LOGAREA = 0,
@@ -200,8 +285,53 @@ summary(birds.inter.1)
 # level, FGRAZE = 1. 
 
 
-# The Multiple R-square value is 0.76, slightly up from the purely additive
+# The Adjusted R-squared value is 0.72, slightly higher compared to the purely additive
 # model (but not much, given that we have added a whole 4 parameters to the
 # model, i.e. nearly doubled its complexity)
 
+
+
+## ----Q15, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------------------
+## # first split the plotting device into 2 rows and 2 columns
+## par(mfrow = c(2,2))
+## 
+## # now create the residuals plots
+## plot(birds.inter.1)
+## 
+## # Not a great deal of an improvement! Just marginally better in every respect,
+## # thanks to increasing the fit slightly (by throwing lots of new model
+## # parameters at the data).
+
+
+## ----Q16, eval=SOLUTIONS, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE---------------------------------
+## # NOTE: I'm using the loop version of the plot, here.
+## # If you don't like it, refer to the long-hand code version at Question 11
+## 
+## par(mfrow = c(1, 1))
+## plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
+## 
+## for(g in levels(loyn$FGRAZE)){# `g` will take the values "1", "2",..., "5" in turn
+## 	LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == g]),
+## 										to = max(loyn$LOGAREA[loyn$FGRAZE == g]),
+## 														length = 20)
+## 	dat4pred <- data.frame(FGRAZE = g, LOGAREA = LOGAREA.seq)
+## 	dat4pred$predicted <- predict(birds.inter.1, newdata = dat4pred)
+## 	lines(predicted ~ LOGAREA, data = dat4pred, col = as.numeric(g), lwd = 2)
+## }
+## legend("topleft",
+##  legend = paste("Graze = ", 5:1),
+##  col = c(5:1), bty = "n",
+##  lty = c(1, 1, 1),
+##  lwd = c(1, 1, 1))
+
+
+## ----Q17, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE-----------------------------------------------------
+## # The slopes of the LOGAREA effect across grazing levels are all over the
+## # place, without any coherent pattern (for instance, they could have been
+## # increasing or decreasing gradually from low to high grazing intensity)
+## 
+## # The interaction is non-significant, so isn't supported statistically either.
+## 
+## # Time to revert to the simpler, or a different model? Decisions, decisions!
+## 
 

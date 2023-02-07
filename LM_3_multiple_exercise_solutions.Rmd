@@ -148,7 +148,8 @@ summary(birds.add.1)
 # is significantly different from 0 (i.e. there is a significant relationship
 # between LOGAREA and ABUND). Remember, in this additive model we are assuming 
 # that the slope of the relationship between LOGAREA and ABUND is the same for
-# each level of FGRAZE so we only have one estimate for the slope.
+# each level of FGRAZE (i.e. they are parallel) so we only have one estimate 
+# for the slope.
 
 # The remaining estimates are differences (contrasts) in the intercepts  
 # between each level of FGRAZE and the reference level, FGRAZE1. 
@@ -159,7 +160,7 @@ summary(birds.add.1)
 # different from zero (p = 0.89) and we conclude that there is no difference
 # in the mean bird ABUND between FGRAZE2 and FGRAZE1 when LOGAREA = 0.
 
-# The difference between graze level 5 (FGRAZE5) and the reference FGRAZE1 is 
+# The difference between FGRAZE5 and the reference FGRAZE1 is 
 # -11.89 (11.89 fewer birds in FGRAZE5 compared to FGRAZE1),
 # when LOGAREA = 0.
 
@@ -167,8 +168,8 @@ summary(birds.add.1)
 # the mean abundance of birds in FGRAZE5 is significantly different than in
 # FGRAZE1 when LOGAREA = 0.
 
-# The Multiple R-square value is as we calculated from the anova table
-
+# The Adjusted R-squared value is 0.699 and therefore LOGAREA and FGRAZE 
+# explain 69.9% of the variation in bird abundance.
 ```
 
 \  
@@ -187,24 +188,25 @@ plot(birds.add.1)
 # To test the normality of residuals assumption we use the Normal Q-Q plot. 
 # The central residuals are not too far from the Q-Q line but the extremes
 # are too extreme (the tails of the distribution are too long). Some
-# observations, both high and low, are poorly explained by the model.
+# observations, both high and low, are poorly explained by the model. 
 
 # The plot of the residuals against the fitted values suggests these
 # extreme residuals happen for intermediate fitted values.
 
 # Looking at the homogeneity of variance assumption (Residuals vs
-# Fitted and Scale-Location plot),
-# the graphs are mostly messy, with no clear pattern emerging. There is
-# a hint of smaller variance with the lowest fitted values, which is not ideal.
-# This could mean that the homogeneity of variance assumption is not met
-# (i.e. the variances are not the same). 
+# Fitted and Scale-Location plot), the graphs are mostly messy, with no clear 
+# pattern emerging. There is a hint of smaller variance with the lowest fitted 
+# values, which is not ideal. This could mean that the homogeneity of variance 
+# assumption is not met (i.e. the variances are not equal). 
 
 # The observations with the highest leverage don't appear to be overly
-# influential, according to the Cook's distances in the Residuals vs
+# influential, according to the Cook's distances (all < 1) in the Residuals vs
 # Leverage plot.  
 
-# ABUND being bounded by zero, it wouldn't be too surprising that the variance increases with the mean abundance.
-# This is often improved by log-transforming the response
+# ABUND being bounded by zero, it wouldn't be too surprising that the 
+# variance increases with the mean abundance. This is often improved by 
+# log-transforming the response variable. 
+
 loyn$logABUND<- log(loyn$ABUND + 1) # here the natural log
 birds.add.3 <- lm(logABUND ~ LOGAREA + FGRAZE, data = loyn)
 par(mfrow = c(2, 2))
@@ -221,7 +223,7 @@ plot(birds.add.3)
 
 \  
 
-10\. Let's plot the predictions of your initial model to figure out how it really fits the data. Here's a recipe, using the `predict()` function.
+10\. Let's plot the predictions of your initial model to figure out how it really fits the data. Here's a general recipe, using the `predict()` function.
   + plot the raw data, using a different colour per `FGRAZE` level
   + for each `FGRAZE` level in turn,
   + create a sequence of `LOGAREA` from the minimum value to the maximum within the grazing level (unless you wish to predict outside the range of observed values)
@@ -295,7 +297,7 @@ legend("topleft",
 
 \  
 
-[Optional] Alternative method:
+[Optional] Alternative method using less code:
 
 \  
 
@@ -306,7 +308,7 @@ legend("topleft",
 par(mfrow = c(1, 1))
 plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 
-for(g in levels(loyn$FGRAZE)){# `g` will take the values "1", "2",..., "5" in turn
+for(g in levels(loyn$FGRAZE)){ # `g` will take the values "1", "2",..., "5" in turn
 	LOGAREA.seq <- seq(from = min(loyn$LOGAREA[loyn$FGRAZE == g]),
 										to = max(loyn$LOGAREA[loyn$FGRAZE == g]),
 														length = 20)
@@ -333,9 +335,9 @@ legend("topleft",
 
 # There is a significant positive effect of patch area, too.
 
-# The relative importance of patch area and grazing is not clear, as these
-# are correlated, with smaller patches also having higher grazing intensity
-# on average, and larger patches lower grazing intensity.
+# The relative importance of patch area and grazing is not very clear, as these
+# are arguably collinear to some extent, with smaller patches also having 
+# higher grazing intensity on average, and larger patches lower grazing intensity.
 
 # Some observations are poorly predicted (fitted) using the current set
 # of explanatory variables.
@@ -347,16 +349,21 @@ legend("topleft",
 
 \  
 
-Let's now explore this question left unanswered: "is it okay to assume the effect of `LOGAREA` to be the same for all grazing levels?" This is effectively asking if we should let the slope of `LOGAREA` vary across `FGRAZE` levels, which is the definition of an interactive effect.
+Let's now explore this question left unanswered: "is it okay to assume the effect of `LOGAREA` to be the same for all grazing levels?" This is effectively asking if we should let the slope of `LOGAREA` vary for different `FGRAZE` levels, which is the definition of an interactive effect.
 
 \  
 
-12\. Fit the corresponding linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variables `LOGAREA` and `FGRAZE` and the interaction between these variables. Hint: this time, the interaction is included using the `*` symbol instead of `+`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object, like `birds.inter.1`.
+12\. Fit a linear model in R to explain the variation in the response variable, `ABUND` with the explanatory variables `LOGAREA` and `FGRAZE` and the interaction between these variables. Hint: this time, the interaction is included using the `*` symbol instead of `+`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object, like `birds.inter.1`.
 
 \  
 
 ```{r Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
 birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA , data = loyn)
+
+# or you can use the following which is equivalent to the model specification
+# above
+
+# birds.inter.1 <- lm(ABUND ~ FGRAZE + LOGAREA + FGRAZE:LOGAREA, data = loyn)
 ```
 
 \  
@@ -372,23 +379,23 @@ anova(birds.inter.1)
 # (the coefficient for LOGAREA is zero)
 
 # null hypothesis 2: There is no effect of FGRAZE on ABUND
-# (no difference between grazing levels *after* the effect of LOGAREA)
+# (no difference between grazing levels *after* accounting for the effect of LOGAREA)
 
 # null hypothesis 3: There is no effect of an FGRAZE by ABUND interaction
 # *after* the effects of LOGAREA and FGRAZE combined).
 # A couple of equivalent ways to say this: the effect of LOGAREA doesn't differ
-# among FGRAZE levels or: the difference in bird abundance between grazing
+# between FGRAZE levels or: the difference in bird abundance between grazing
 # levels is the same for all patch areas.
 
 # As long as there is an interaction in the model, the null hypotheses 1 and 2
-# ("main effects") are not relevant to us
+# ("main effects") are not relevant to us.
 # the p value for the interaction is large, therefore we fail to reject the
 # null hypothesis: there is no evidence supporting this interaction.
 ```
 
 \  
 
-14\. Use the `summary()` function on the  model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent, mathematically? (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
+14\. Use the `summary()` function on the  model object to produce the table of parameter estimates. Using this output take each line in turn and answer the following questions: (A) what does this parameter represent (B) What is the biological interpretation of the corresponding estimate? (C) What is the null hypothesis associated with it? (D) Do you reject or fail to reject this hypothesis?
 
 \  
 
@@ -412,7 +419,7 @@ summary(birds.inter.1)
 # level, FGRAZE = 1. 
 
 
-# The Multiple R-square value is 0.76, slightly up from the purely additive
+# The Adjusted R-squared value is 0.72, slightly higher compared to the purely additive
 # model (but not much, given that we have added a whole 4 parameters to the
 # model, i.e. nearly doubled its complexity)
 
