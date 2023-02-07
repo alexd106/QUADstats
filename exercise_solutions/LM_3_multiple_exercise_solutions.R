@@ -1,9 +1,9 @@
-## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
+## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
 loyn <- read.table("data/loyn.txt", header = TRUE, stringsAsFactors = TRUE)
 str(loyn)
 
 
-## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
+## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
 loyn$LOGAREA <- log10(loyn$AREA)
 # create factor GRAZE as it was originally coded as an integer
 loyn$FGRAZE <- factor(loyn$GRAZE)
@@ -13,11 +13,11 @@ loyn$FGRAZE <- factor(loyn$GRAZE)
 
 
 
-## ----Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
+## ----Q6, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
 birds.add.1 <- lm(ABUND ~ LOGAREA + FGRAZE, data = loyn)
 
 
-## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
+## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
 anova(birds.add.1)
 
 # null hypothesis 1: There is no effect of LOGAREA on ABUND
@@ -28,12 +28,12 @@ anova(birds.add.1)
 # the p values are all very small therefore reject both null hypotheses.
 
 
-## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------------------------
+## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE----------------------
 summary(birds.add.1)
 
 # Here the intercept (baseline) is *NOT* the mean abundance of birds for
-# FGRAZE level 1. It is the predicted `ABUND` for LOGAREA = 0 & FGRAZE level 1.
-# the null hypothesis for the intercept is that the intercept = 0.
+# FGRAZE level 1. It is the estimated ABUND when LOGAREA = 0 & FGRAZE = level 1.
+# The null hypothesis for the intercept is that the intercept = 0.
 # As the p value (p < 2e-16) is very small we reject this null hypothesis
 # and conclude that the intercept is significantly different from 0.
 # Not a biologically relevant hypothesis test, in this context
@@ -41,20 +41,29 @@ summary(birds.add.1)
 # by the transformation we chose)
 
 # For LOGAREA, the null hypothesis is that the slope of the relationship
-# between LOGAREA and ABUND = 0 (no relationship)
+# between LOGAREA and ABUND = 0 (no relationship). As the p value (4.90e-07)
+# is very small we reject this null hypothesis and conclude that the slope 
+# is significantly different from 0 (i.e. there is a significant relationship
+# between LOGAREA and ABUND). Remember, in this additive model we are assuming 
+# that the slope of the relationship between LOGAREA and ABUND is the same for
+# each level of FGRAZE so we only have one estimate for the slope.
 
-# The remaining estimates are differences (contrasts) between each level
-# and the reference level, FGRAZE1. 
-# For example the FGRAZE2 estimate is 0.38, so there are 0.38 more birds on
-# average in graze level 2 compared to graze level 1, *for a given patch area*.
-# This difference is however not significantly different from zero (p = 0.89). 
+# The remaining estimates are differences (contrasts) in the intercepts  
+# between each level of FGRAZE and the reference level, FGRAZE1. 
+
+# For example, the FGRAZE2 estimate is 0.38, so there are 0.38 more birds on
+# average in graze level 2 compared to graze level 1, when LOGAREA = 0 (so it's
+# a difference in the intercepts). This difference is however not significantly 
+# different from zero (p = 0.89) and we conclude that there is no difference
+# in the mean bird ABUND between FGRAZE2 and FGRAZE1 when LOGAREA = 0.
 
 # The difference between graze level 5 (FGRAZE5) and the reference FGRAZE1 is 
-# -11.89 (11.89 fewer birds in graze 5 compared to graze 1),
-# for *an identical patch area*.
+# -11.89 (11.89 fewer birds in FGRAZE5 compared to FGRAZE1),
+# when LOGAREA = 0.
+
 # This difference is significantly different from 0 (p = 0.00017) and therefore
-# the mean abundance of birds in graze level 5 is significantly lower than in
-# graze level 1, for the same patch area.
+# the mean abundance of birds in FGRAZE5 is significantly different than in
+# FGRAZE1 when LOGAREA = 0.
 
 # The Multiple R-square value is as we calculated from the anova table
 
@@ -62,7 +71,7 @@ summary(birds.add.1)
 
 
 
-## ----Q10a, eval=TRUE, echo=TRUE, collapse=FALSE------------------------------------------------------------
+## ----Q10a, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------
 par(mfrow= c(1, 1))
 plot(loyn$ABUND ~ loyn$LOGAREA, col = loyn$GRAZE, pch = 16)
 # Note: # colour 1 means black in R
@@ -122,7 +131,7 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
-## ----Q10b, eval=TRUE, echo=TRUE, collapse=FALSE------------------------------------------------------------
+## ----Q10b, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------
 # Okay, that was a long-winded way of doing this.
 # If, like me, you prefer more compact code and less risks of errors,
 # you can use a loop, to save repeating the sequence 5 times:
@@ -146,11 +155,11 @@ legend("topleft",
 
 
 
-## ----Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q12, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------
 birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA , data = loyn)
 
 
-## ----Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q13, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------
 anova(birds.inter.1)
 
 # null hypothesis 1: There is no effect of LOGAREA on ABUND
@@ -171,7 +180,7 @@ anova(birds.inter.1)
 # null hypothesis: there is no evidence supporting this interaction.
 
 
-## ----Q14, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q14, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE---------------------
 summary(birds.inter.1)
 
 # Here the intercept (baseline) is the predicted `ABUND` for LOGAREA = 0,

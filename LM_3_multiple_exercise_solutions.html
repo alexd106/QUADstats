@@ -451,7 +451,7 @@ $(document).ready(function () {
       </a>
     </li>
     <li>
-      <a href="https://forms.gle/QvciFxk21vNfahrx9">
+      <a href="https://forms.gle/Hpa731UbceQ9pzJu6">
         <span class="fa fa-commenting"></span>
          
         Feedback
@@ -678,8 +678,8 @@ it? (D) Do you reject or fail to reject this hypothesis?</p>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 26.63 on 5 and 50 DF,  p-value: 5.148e-13</span></span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Here the intercept (baseline) is *NOT* the mean abundance of birds for</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE level 1. It is the predicted `ABUND` for LOGAREA = 0 &amp; FGRAZE level 1.</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># the null hypothesis for the intercept is that the intercept = 0.</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE level 1. It is the estimated ABUND when LOGAREA = 0 &amp; FGRAZE = level 1.</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># The null hypothesis for the intercept is that the intercept = 0.</span></span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># As the p value (p &lt; 2e-16) is very small we reject this null hypothesis</span></span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># and conclude that the intercept is significantly different from 0.</span></span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Not a biologically relevant hypothesis test, in this context</span></span>
@@ -687,22 +687,31 @@ it? (D) Do you reject or fail to reject this hypothesis?</p>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># by the transformation we chose)</span></span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co"># For LOGAREA, the null hypothesis is that the slope of the relationship</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># between LOGAREA and ABUND = 0 (no relationship)</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># The remaining estimates are differences (contrasts) between each level</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co"># and the reference level, FGRAZE1. </span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># For example the FGRAZE2 estimate is 0.38, so there are 0.38 more birds on</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># average in graze level 2 compared to graze level 1, *for a given patch area*.</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co"># This difference is however not significantly different from zero (p = 0.89). </span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The difference between graze level 5 (FGRAZE5) and the reference FGRAZE1 is </span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="co"># -11.89 (11.89 fewer birds in graze 5 compared to graze 1),</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># for *an identical patch area*.</span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># This difference is significantly different from 0 (p = 0.00017) and therefore</span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean abundance of birds in graze level 5 is significantly lower than in</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co"># graze level 1, for the same patch area.</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co"># The Multiple R-square value is as we calculated from the anova table</span></span></code></pre></div>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># between LOGAREA and ABUND = 0 (no relationship). As the p value (4.90e-07)</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co"># is very small we reject this null hypothesis and conclude that the slope </span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># is significantly different from 0 (i.e. there is a significant relationship</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co"># between LOGAREA and ABUND). Remember, in this additive model we are assuming </span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># that the slope of the relationship between LOGAREA and ABUND is the same for</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># each level of FGRAZE so we only have one estimate for the slope.</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co"># The remaining estimates are differences (contrasts) in the intercepts  </span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># between each level of FGRAZE and the reference level, FGRAZE1. </span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, the FGRAZE2 estimate is 0.38, so there are 0.38 more birds on</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># average in graze level 2 compared to graze level 1, when LOGAREA = 0 (so it&#39;s</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># a difference in the intercepts). This difference is however not significantly </span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co"># different from zero (p = 0.89) and we conclude that there is no difference</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co"># in the mean bird ABUND between FGRAZE2 and FGRAZE1 when LOGAREA = 0.</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="co"># The difference between graze level 5 (FGRAZE5) and the reference FGRAZE1 is </span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="co"># -11.89 (11.89 fewer birds in FGRAZE5 compared to FGRAZE1),</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co"># when LOGAREA = 0.</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co"># This difference is significantly different from 0 (p = 0.00017) and therefore</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean abundance of birds in FGRAZE5 is significantly different than in</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co"># FGRAZE1 when LOGAREA = 0.</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co"># The Multiple R-square value is as we calculated from the anova table</span></span></code></pre></div>
 <p> </p>
 <p>9. Now let’s check the assumptions of your linear model by creating
 plots of the residuals from the model. Remember, that you can split your
