@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALS
 
 \  
 
-5\. Now display the table of parameter estimates using the `summary()` function on your model object. Again, make sure you understand the different components of this output and be sure to ask if in doubt. What is the estimate of the intercept and slope? Write down the word equation of this linear model including your parameter estimates (hint: think y = a + bx).
+5\. Now display the table of parameter estimates using the `summary()` function on your model object. Again, make sure you understand the different components of this output and be sure to ask if in doubt. What are the estimates of the intercept and slope? Write down the word equation of this linear model including your parameter estimates (hint: think y = a + bx).
 
 \  
 
@@ -43,7 +43,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALS
 
 \  
 
-8\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object (`loyn.lm` or whatever you called it). Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots ([Section 4.4](https://intro2r.com/mult_graphs.html#mult_graphs)). Can you remember which plot is used to check the assumption of normality of the residuals? What is you assessment of this assumption? Next, check the homogeneity of variance of residuals assumption. Can you see any patterns in the residuals versus fitted value plots? Is there more or less equal spread of the residuals? Finally, take a look at the leverage and Cooks distance plot to assess whether you have any unusually large or small residuals or any influential residuals. What is your assessment? Write a couple of sentences to summarise your assessment of the modelling assumptions as a comment in your R code. 
+8\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object (`loyn.lm` or whatever you called it). Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots ([Section 4.4](https://intro2r.com/mult_graphs.html#mult_graphs)). Can you remember which plot is used to check the assumption of normality of the residuals? What is you assessment of this assumption? Next, check the homogeneity of variance of residuals assumption. Can you see any patterns in the residuals versus fitted value plots? Is there more or less equal spread of the residuals? Finally, take a look at the leverage and Cooks distance plot to assess whether you have any residuals with high leverage or any influential residuals. What is your assessment? Write a couple of sentences to summarise your assessment of the modelling assumptions as a comment in your R code. 
 
 \  
 
@@ -51,7 +51,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALS
 
 \  
 
-10\. Calculate the fitted values from your model using the `predict()` function and store these predicted values in an object called `pred.vals`. Remember, you will first need to create a dataframe object containing the values of log transformed `AREA` you want to make predictions from. Refer back to the model interpretation video if you need a quick reminder of how to do this. Ask an instructor to take you through it if you're in any doubt (they'd be happy to take you through it).
+10\. Calculate the fitted values from your model using the `predict()` function and store these predicted values in an object called `pred.vals`. Remember, you will first need to create a dataframe object containing the values of log transformed `AREA` you want to make predictions from. Refer back to the model interpretation video if you need a quick reminder of how to do this or ask an instructor to take you through it if you're in any doubt (they'd be happy to take you through it).
 
 \  
 
@@ -59,7 +59,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALS
 
 \  
 
-12\. OK, this is an optional question so feel free to skip if you've had enough! (you can find the R code for this question in the exercise solutions if you want to refer to it at a later date). Let's recreate the plot you made in Question 11, but this time we'll add the 95% confidence intervals in addition to the fitted values. Remember, you will need to use the `predict()` function again but this time include the`se.fit = TRUE` argument (store these new values in a new object called `pred.vals.se`). When you use the `se.fit = TRUE` argument with the `predict()` function the returned object will have a slightly different structure compared to when you used it before. Use the `str()` function on the `pred.vals.se` to take a look at the structure. See if you can figure out how to access the fitted values and the standard errors. Once you've got your head around this you can now use the `lines()` function three times to add the fitted values (as before) and also the upper and lower 95% confidence intervals. Don't forget, if you want the 95% confidence intervals then you will need to multiple your standard error values by the critical value of 1.96. Take a look at the video on confidence intervals if you are unclear why you need to do this.  
+12\. OK, this is an optional question so feel free to skip if you've had enough! (you can find the R code for this question in the exercise solutions if you want to refer to it at a later date). Let's recreate the plot you made in Question 11, but this time we'll add the 95% confidence intervals in addition to the fitted values. Remember, you will need to use the `predict()` function again but this time include the`se.fit = TRUE` argument (store these new values in a new object called `pred.vals.se`). When you use the `se.fit = TRUE` argument with the `predict()` function the returned object will have a slightly different structure compared to when you used it before. Use the `str()` function on the `pred.vals.se` to take a look at the structure. See if you can figure out how to access the fitted values and the standard errors. Once you've got your head around this you can now use the `lines()` function three times to add the fitted values (as before) and also the upper and lower 95% confidence intervals. Don't forget, if you want the 95% confidence intervals then you will need to multiply your standard error values by the critical value of 1.96. If you need a reminder then take a look at the video on confidence intervals on the course MyAberdeen site (in the 'Introductory statistics lectures' folder which you can find in the 'Course Information' learning module).  
 
 \  
 

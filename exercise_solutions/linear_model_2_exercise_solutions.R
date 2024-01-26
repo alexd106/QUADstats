@@ -40,7 +40,7 @@ anova(birds.lm)
 
 # for a report you might write something like:
 # there was a significant difference in the mean abundance of birds between the five levels
-# of grazing intensity (F_4,51 = 15.27, p < 0.0001)
+# of grazing intensity (F_4,62 = 14.98, p < 0.0001)
 
 
 ## ----Q7, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------
@@ -53,23 +53,23 @@ summary(birds.lm)
 # is not a particularly informative hypothesis to test.
 
 # the remaining estimates are differences (contrasts) between each level and the 
-# baseline. For example the FGRAZE2 estimate is - 6.67 and therefore there are 6.6 fewer 
-# birds on average in graze level 2 compared to graze level 1. This difference is however 
-# not significantly different from zero (p = 0.0537). 
+# baseline. For example the FGRAZE2 estimate is - 9.2 and therefore there are 9.2 fewer 
+# birds on average in graze level 2 compared to graze level 1. This difference is  
+# significantly different from zero (p = 0.003). 
 
 # The difference between graze level 3 (FGRAZE3) and graze level 1 (intercept) is 
-# -7.34 (7.34 fewer birds in graze 3 compared to graze 1). This difference is significantly 
-# different from 0 (p = 0.013) and therefore the mean abundance of birds in graze level 1 is
+# -8.45 (8.45 fewer birds in graze 3 compared to graze 1). This difference is significantly 
+# different from 0 (p = 0.003) and therefore the mean abundance of birds in graze level 1 is
 # significantly different from graze level 1.
 
 # The difference between graze level 4 (FGRAZE4) and graze level 1 (intercept) is 
-# -8.05 (8.05 fewer birds in graze 4 compared to graze 1). This difference is significantly 
-# different from 0 (p = 0.026) and therefore the mean abundance of birds in graze level 1 is
+# -9.66 (9.66 fewer birds in graze 4 compared to graze 1). This difference is significantly 
+# different from 0 (p = 0.001) and therefore the mean abundance of birds in graze level 1 is
 # significantly different from graze level 4.
 
 # The difference between graze level 5 (FGRAZE5) and graze level 1 (intercept) is 
 # -22.33 (22.33 fewer birds in graze 5 compared to graze 1). This difference is significantly 
-# different from 0 (p = 6.85e-10) and therefore the mean abundance of birds in graze level 1 is
+# different from 0 (p = 1.64e-10) and therefore the mean abundance of birds in graze level 1 is
 # significantly different from graze level 5.
 
 
@@ -98,13 +98,13 @@ summary(birds.lm4)
 
 
 ## ----Q9, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------
-# The multiple R-squared value is 0.545 and therefore 54.5% of
+# The multiple R-squared value is 0.491 and therefore 49.1% of
 # the variation in ABUND is explained by FGRAZE
 
 
 ## ----Q10, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------
 # first split the plotting device into 2 rows and 2 columns
-par(mfrow = c(2, 2))
+par(mfrow = c(2,2))
 
 # now create the residuals plots
 plot(birds.lm)
@@ -131,13 +131,13 @@ plot(birds.lm)
 
 loyn$ABUND.SQRT <- sqrt(loyn$ABUND)
 birds.lm.sqrt <- lm(ABUND.SQRT ~ FGRAZE, data = loyn)
-par(mfrow = c(2, 2))
+par(mfrow = c(2,2))
 plot(birds.lm.sqrt)
 
 # Sadly this doesn't seemed to have improved things!
 
 # Or finally, you can relax the assumption of equal variance and estimate a separate variance for each group using 
-# generalised least squares. This is not something we will do on this short course.
+# generalised least squares. This is not something we will do on this course but will cover in a more advanced statistics course!
 
 
 ## ----Q11a, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ plotmeans(ABUND ~ FGRAZE, xlab = "grazing level",
 
 library(effects)
 loyn.effects <- allEffects(birds.lm)
-plot(loyn.effects,"FGRAZE")
+plot(loyn.effects,"FGRAZE", lty = 0)
 
 
 ## ----Q11c, eval=TRUE, echo=TRUE, collapse=FALSE-------------------------------------------------------------------------------------
@@ -171,7 +171,6 @@ pred.vals <- predict(birds.lm, newdata = my.data, se.fit = TRUE)
 plot(1:5, seq(0, 50, length=5), type = "n", xlab = "Graze intensity", ylab = "Bird Abundance")
 points(1:5, pred.vals$fit)
 segments(1:5, pred.vals$fit, 1:5, pred.vals$fit - 1.96 * pred.vals$se.fit)
-segments(1:5, pred.vals$fit, 1:5, pred.vals$fit + 1.96 * pred.vals$se.fit)
 segments(1:5, pred.vals$fit, 1:5, pred.vals$fit + 1.96 * pred.vals$se.fit)
 
 

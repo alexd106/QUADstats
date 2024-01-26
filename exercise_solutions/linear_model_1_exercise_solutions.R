@@ -1,9 +1,9 @@
 ## ----Q2, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------
-loyn <- read.table("./data/loyn.txt", header = TRUE, 
+loyn <- read.table("data/loyn.txt", header = TRUE, 
                    stringsAsFactors = TRUE)
 str(loyn)
 
-# 56 observations and 8 variables (from str())
+# 67 observations and 8 variables (from str())
 
 
 ## ----Q3, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------
@@ -12,6 +12,11 @@ str(loyn)
 # to remind yourself
 
 loyn$LOGAREA <- log10(loyn$AREA)
+
+# make a scatterplot of bird abundance and log10 Area
+
+plot(loyn$LOGAREA, loyn$ABUND, xlab = "log10 forest area", 
+     ylab = "bird abundance", ylim = c(0, 55))
 
 # now fit the linear model
 
@@ -26,7 +31,7 @@ anova(loyn.lm)
 # between LOGAREA and ABUND = 0
 # i.e. there is no relationship
 
-# The p value is very small (7.178e-11) therefore we 
+# The p value is very small (3.81e-14) therefore we 
 # reject this null hypothesis (i.e. the slope is different
 # from 0)
 
@@ -49,7 +54,7 @@ summary(loyn.lm)
 # is different from zero.
 
 # the null hypothesis for the slope is that the slope = 0
-# the p value is very small (7.18e-11)
+# the p value is very small (3.81e-14)
 # therefore we reject this null hypothesis and conclude that the slope
 # is different from zero (i.e. there is a significant relationship between
 # LOGAREA and ABUND).
@@ -58,13 +63,13 @@ summary(loyn.lm)
 ## ----Q7, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------
 summary(loyn.lm)
 
-# The multiple R-squared value is 0.548 and therefore 54.8% of
+# The multiple R-squared value is 0.588 and therefore 58.8% of
 # the variation in ABUND is explained by LOGAREA
 
 
 ## ----Q8, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------
 # first split the plotting device into 2 rows and 2 columns
-par(mfrow = c(2, 2))
+par(mfrow = c(2,2))
 
 # now create the residuals plots
 plot(loyn.lm)
@@ -86,13 +91,13 @@ plot(loyn.lm)
 # From the Residuals vs Leverage plot (bottom right) you can see that there are no residuals 
 # with a Cooks distance greater than 1. In fact they are all well below 0.5. If you want to 
 # produce a plot of just Cooks distance (perhaps this is clearer)
-par(mfrow = c(1, 1))
+par(mfrow = c(1,1))
 plot(loyn.lm, which = 4)
 
 # Going back to the Residuals vs Leverage plot (bottom right) you can see 
-# three residuals that re somewhat unusual in terms of their leverage as 
+# three residuals that are somewhat unusual in terms of their leverage as 
 # they stick out a bit to the right compared to the rest of the residuals. 
-# Two of these residuals are our two large forest patch AREAs again. However,
+# Two of these residuals are our two large forest patch areas again. However,
 # leverage still seems to be on the low side, so at least on the scale of the
 # log transformation things look ok.
 
@@ -101,8 +106,8 @@ plot(loyn.lm, which = 4)
 # to predict bird abundance if AREA == 100
 
 # if you log base 10 transformed the AREA variable
-10.4 + (9.78 * log10(100))
-
+bird_abundance100 = 10.4 + (9.78 * log10(100))
+bird_abundance100
 # if you used the natural log (i.e. log()) then you would use log()
 # not log10()
 
@@ -122,9 +127,25 @@ pred.vals <- predict(loyn.lm, newdata = my.data)
 ## ----Q11, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------
 # plot the lines on the plot. The x values are the new LOGAREA values from the my.data
 # dataframe, the predicted values are from pred.vals 
-plot(loyn$LOGAREA, loyn$ABUND, xlab = "Log10 Patch Area", ylab = "Bird Abundance")
+plot(loyn$LOGAREA, loyn$ABUND, xlab = "Log10 Patch Area", 
+     ylab = "Bird Abundance", ylim = c(0, 55))
 
 lines(my.data$LOGAREA, pred.vals, lty = 1,col = 2)
+
+# for those of you who are into plotting using the ggplot2 package,
+# this is one of those occasions where things are a little simpler!
+# Don't forget, you will need to install the ggplot2 package if
+# you've never used it before
+
+# install.packages('ggplot2')
+
+library(ggplot2)
+ggplot(mapping = aes(x = LOGAREA, y = ABUND), data = loyn) +
+    geom_point() +
+    xlab("Log10 Patch Area") +
+    ylab("Bird Abundance") +
+    geom_smooth(method = "lm", se = FALSE, colour = "red") +
+    theme_classic()
 
 
 ## ----Q12, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------
@@ -144,7 +165,8 @@ str(pred.vals.se)
 # now create the plot
 plot(x = loyn$LOGAREA, y = loyn$ABUND,
      xlab = "Log10 Patch Area",
-     ylab = "Bird abundance")
+     ylab = "Bird abundance", ylim = c(0, 55))
+    
 
 # add the fitted values as before but now we need to use 
 # pred.vals.se$fit
@@ -155,6 +177,15 @@ lines(my.data$LOGAREA, pred.vals.se$fit + (1.96 * pred.vals.se$se.fit), lty = 2,
 
 # add the lower 95% confidence interval
 lines(my.data$LOGAREA, pred.vals.se$fit - (1.96 * pred.vals.se$se.fit), lty = 2, col = 2)
+
+# And the ggplot way of doing things
+
+ggplot(mapping = aes(x = LOGAREA, y = ABUND), data = loyn) +
+    geom_point() +
+    xlab("Log10 Patch Area") +
+    ylab("Bird Abundance") +
+    geom_smooth(method = "lm", se = TRUE, colour = "red") +
+    theme_classic()
 
 
 ## ----Q13, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------

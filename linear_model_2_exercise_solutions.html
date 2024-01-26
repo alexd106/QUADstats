@@ -516,9 +516,9 @@ $(document).ready(function () {
 <p> </p>
 <div
 id="exercise-linear-model-with-single-categorical-explanatory-variable"
-class="section level1">
-<h1>Exercise: Linear model with single categorical explanatory
-variable</h1>
+class="section level2">
+<h2>Exercise: Linear model with single categorical explanatory
+variable</h2>
 <p> </p>
 <p>1. As in previous exercises, either create a new R script (perhaps
 call it linear_model_2) or continue with your previous R script in your
@@ -567,10 +567,10 @@ the <code>factor()</code> function (you can also use the
 <p> </p>
 <p>4. Explore any potential differences in bird abundance between each
 level of <code>FGRAZE</code> graphically using an appropriate plot
-(hint: boxplot might be useful here). How would you interpret this plot?
-What might you expect to see in your analysis? Write your predictions in
-your R script as a comment. What is the mean number of birds for each
-level of <code>FGRAZE</code>?</p>
+(hint: a boxplot might be useful here). How would you interpret this
+plot? What might you expect to see in your analysis? Write your
+predictions in your R script as a comment. What is the mean number of
+birds for each level of <code>FGRAZE</code>?</p>
 <p> </p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">boxplot</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">xlab =</span> <span class="st">&quot;Grazing level&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Bird abundance&quot;</span>, <span class="at">data =</span> loyn)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q4-1.png" width="672" /></p>
@@ -598,7 +598,7 @@ Assign this linear model to an appropriately named object
 <p>6. Produce the ANOVA table using the <code>anova()</code> function on
 the model object. What null hypothesis is being tested? Do you reject or
 fail to reject the null hypothesis? What summary statistics would you
-report?</p>
+report? Summarise in your R script as a comment.</p>
 <p> </p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">anova</span>(birds.lm)</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
@@ -617,7 +617,7 @@ report?</p>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a></span>
 <span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co"># for a report you might write something like:</span></span>
 <span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co"># there was a significant difference in the mean abundance of birds between the five levels</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># of grazing intensity (F_4,51 = 15.27, p &lt; 0.0001)</span></span></code></pre></div>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co"># of grazing intensity (F_4,62 = 14.98, p &lt; 0.0001)</span></span></code></pre></div>
 <p> </p>
 <p>7. Use the <code>summary()</code> function on the model object to
 produce the table of parameter estimates (remember these are called
@@ -662,23 +662,23 @@ as a comment in your R script.</p>
 <span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co"># is not a particularly informative hypothesis to test.</span></span>
 <span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a></span>
 <span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="co"># the remaining estimates are differences (contrasts) between each level and the </span></span>
-<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="co"># baseline. For example the FGRAZE2 estimate is - 6.67 and therefore there are 6.6 fewer </span></span>
-<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co"># birds on average in graze level 2 compared to graze level 1. This difference is however </span></span>
-<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="co"># not significantly different from zero (p = 0.0537). </span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="co"># baseline. For example the FGRAZE2 estimate is - 9.2 and therefore there are 9.2 fewer </span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co"># birds on average in graze level 2 compared to graze level 1. This difference is  </span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="co"># significantly different from zero (p = 0.003). </span></span>
 <span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a></span>
 <span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="co"># The difference between graze level 3 (FGRAZE3) and graze level 1 (intercept) is </span></span>
-<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a><span class="co"># -7.34 (7.34 fewer birds in graze 3 compared to graze 1). This difference is significantly </span></span>
-<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="co"># different from 0 (p = 0.013) and therefore the mean abundance of birds in graze level 1 is</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a><span class="co"># -8.45 (8.45 fewer birds in graze 3 compared to graze 1). This difference is significantly </span></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="co"># different from 0 (p = 0.003) and therefore the mean abundance of birds in graze level 1 is</span></span>
 <span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="co"># significantly different from graze level 1.</span></span>
 <span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a></span>
 <span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="co"># The difference between graze level 4 (FGRAZE4) and graze level 1 (intercept) is </span></span>
-<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="co"># -8.05 (8.05 fewer birds in graze 4 compared to graze 1). This difference is significantly </span></span>
-<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="co"># different from 0 (p = 0.026) and therefore the mean abundance of birds in graze level 1 is</span></span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="co"># -9.66 (9.66 fewer birds in graze 4 compared to graze 1). This difference is significantly </span></span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="co"># different from 0 (p = 0.001) and therefore the mean abundance of birds in graze level 1 is</span></span>
 <span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a><span class="co"># significantly different from graze level 4.</span></span>
 <span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a></span>
 <span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a><span class="co"># The difference between graze level 5 (FGRAZE5) and graze level 1 (intercept) is </span></span>
 <span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a><span class="co"># -22.33 (22.33 fewer birds in graze 5 compared to graze 1). This difference is significantly </span></span>
-<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a><span class="co"># different from 0 (p = 6.85e-10) and therefore the mean abundance of birds in graze level 1 is</span></span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a><span class="co"># different from 0 (p = 1.64e-10) and therefore the mean abundance of birds in graze level 1 is</span></span>
 <span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a><span class="co"># significantly different from graze level 5.</span></span></code></pre></div>
 <p> </p>
 <p>8. Now that you have interpreted all the contrasts with
@@ -778,7 +778,7 @@ produce the new table of parameter estimates using the
 the variation in bird abundance does the explanatory variable
 <code>FGRAZE</code> explain?</p>
 <p> </p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># The multiple R-squared value is 0.545 and therefore 54.5% of</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># The multiple R-squared value is 0.491 and therefore 49.1% of</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># the variation in ABUND is explained by FGRAZE</span></span></code></pre></div>
 <p> </p>
 <p>10. Now onto a really important part of the model fitting process.
@@ -789,10 +789,10 @@ Also remember that if you want to see all plots at once then you should
 split your plotting device into 2 rows and 2 columns using the
 <code>par()</code> function before you create the plots. Check each of
 the assumptions using these plots and report whether your model meets
-these assumptions.</p>
+these assumptions in your R script.</p>
 <p> </p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># first split the plotting device into 2 rows and 2 columns</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># now create the residuals plots</span></span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="fu">plot</span>(birds.lm)</span></code></pre></div>
@@ -820,14 +820,14 @@ these assumptions.</p>
 <span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a></span>
 <span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>loyn<span class="sc">$</span>ABUND.SQRT <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(loyn<span class="sc">$</span>ABUND)</span>
 <span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>birds.lm.sqrt <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND.SQRT <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
-<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="fu">plot</span>(birds.lm.sqrt)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q10-2.png" width="672" /></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># Sadly this doesn&#39;t seemed to have improved things!</span></span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co"># Or finally, you can relax the assumption of equal variance and estimate a separate variance for each group using </span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co"># generalised least squares. This is not something we will do on this short course.</span></span></code></pre></div>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co"># generalised least squares. This is not something we will do on this course but will cover in a more advanced statistics course!</span></span></code></pre></div>
 <p> </p>
 <p>11. This is an optional question and really just for information.
 I’ll give you the code in the solutions so don’t overly stress about
@@ -855,7 +855,7 @@ code if you’re thoroughly confused!</p>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>loyn.effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(birds.lm)</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">plot</span>(loyn.effects,<span class="st">&quot;FGRAZE&quot;</span>)</span></code></pre></div>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">plot</span>(loyn.effects,<span class="st">&quot;FGRAZE&quot;</span>, <span class="at">lty =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11b-1.png" width="672" /></p>
 <p> </p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># and finally using old faithful the predict function and base R graphics</span></span>
@@ -869,8 +869,7 @@ code if you’re thoroughly confused!</p>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">length=</span><span class="dv">5</span>), <span class="at">type =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Graze intensity&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Bird Abundance&quot;</span>)</span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit)</span>
 <span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit)</span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit)</span>
-<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit)</span></code></pre></div>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11c-1.png" width="672" /></p>
 <p> </p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># using old faithful the predict function and base R graphics </span></span>
