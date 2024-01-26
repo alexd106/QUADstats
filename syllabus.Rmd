@@ -24,7 +24,7 @@ The live sessions will be held on Blackboard Collaborate at the time indicated i
 
 |09:30 - 10:15 | 10:15 - 11:30 | 11:30 - 12:30 | 12:30 - 13:30 |13:30 - 15:30 | 15:30 - 17:00 |
 |:------------:|:-------------:|:-------------:|:-------------:|:------------:|:-------------:|
-| Course introduction (ALL - live)  | Graphical data exploration (GDE) theory lecture (recorded MB) | GDE live practical (MB) | LUNCH |GDE live practical, Live review session (MB)| Linear models theory lectures (recorded AD), Linear models paper exercise |
+| Course introduction (ALL - live)  | Graphical data exploration (GDE) theory lecture (recorded AD) | GDE live practical (AD) | LUNCH |GDE live practical, Live review session (AD)| Linear models theory lectures (recorded AD), Linear models paper exercise |
 
 \  
 
