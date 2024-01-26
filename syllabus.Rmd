@@ -18,7 +18,7 @@ The live sessions will be held on Blackboard Collaborate at the time indicated i
 
 \  
 
-### Monday 6^th^ February 2023
+### Monday 5^th^ February
 
 \  
 
@@ -30,7 +30,7 @@ The live sessions will be held on Blackboard Collaborate at the time indicated i
 
 \  
 
-### Tuesday 7^th^ February 2023
+### Tuesday 6^th^ February
 
 \  
 
@@ -42,16 +42,13 @@ The live sessions will be held on Blackboard Collaborate at the time indicated i
 
 \  
 
-### Wednesday 8^th^ February 2023
+### Wednesday 7^th^ February
 
 \  
 
 |09:30 - 11:30               | 11:30 - 12:30     | 12:30 - 13:30 |13:30 - 16:30    | 16:30 - 17:00      |
 |:--------------------------:|:-----------------:|:-------------:|:---------------:|:------------------:|
-|Linear model live practical (AD) – single categorical explanatory variable | Linear model theory (recorded ME) – categorical & continuous explanatory variables | LUNCH | Linear model live practical (AD) – categorical & continuous explanatory variables, Live review session (AD) | Catchup/course close (ALL - LIVE)|
+|Linear model live practical (AD) – single categorical explanatory variable | Linear model theory (recorded AD) – categorical & continuous explanatory variables | LUNCH | Linear model live practical (AD) – categorical & continuous explanatory variables, Live review session (AD) | Catchup/course close (ALL - LIVE)|
 
 \  
-
-MB – Maarten Blaauw, ME – Mark Emmerson, AD – Alex Douglas
-
-\  
+ 
