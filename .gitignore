@@ -9,12 +9,11 @@
 # *_files/
 # OSX Stuff
 .gitconfig.local
-.DS_Store*
+.DS_Store
 ._*
 .Trashes
 # R markdown stuff
 *.log
-.DS_Store
 attendee_email
 todo
 intro_email
