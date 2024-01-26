@@ -133,7 +133,7 @@ summary(birds.inter.1)
 # LOGAREA and FGRAZE as single explanatory variables.
 
 
-## ----Q9a, eval=TRUE, echo=TRUE, collapse=FALSE--------------------------------------------------------------------------------------
+## ----Q9a, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE--------------------------------------------------------------
 par(mfrow= c(1, 1))
 plot(ABUND ~ LOGAREA, data = loyn, col = GRAZE, pch = 16)
 # Note: # colour 1 means black in R
@@ -208,7 +208,7 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
-## ----Q9b, eval=TRUE, echo=TRUE, collapse=FALSE--------------------------------------------------------------------------------------
+## ----Q9b, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE--------------------------------------------------------------
 # Okay, that was a long-winded way of doing this.
 # If, like me, you prefer more compact code and less risks of errors,
 # you can use a loop, to save repeating the sequence 5 times:
@@ -230,7 +230,7 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
-## ----Q9c, eval=TRUE, echo=TRUE, collapse=FALSE--------------------------------------------------------------------------------------
+## ----Q9c, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE--------------------------------------------------------------
 # install.packages('ggplot2', dep = TRUE)
 library(ggplot2)
 
