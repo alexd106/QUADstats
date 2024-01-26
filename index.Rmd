@@ -7,7 +7,7 @@ output:
 
 \  
 
-Hello and welcome to your QUADRAT DTP QUADstats course! This website compliments the QUADstats [MyAberdeen](https://abdn.blackboard.com/ultra/) course website and is mainly used to host exercises and associated exercise solutions and data files. You can find all other material for this QUADstats course on the [MyAberdeen](https://abdn.blackboard.com/ultra/) course site.   
+Hello and welcome to your QUADRAT DTP stats course! This website compliments the QUADstats [MyAberdeen](https://abdn.blackboard.com/ultra/) course website and is mainly used to host exercises and associated exercise solutions and data files. You can find all other material for this QUADstats course on the [MyAberdeen](https://abdn.blackboard.com/ultra/) course site.   
 
 \  
 
