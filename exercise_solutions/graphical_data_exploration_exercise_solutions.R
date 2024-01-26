@@ -3,7 +3,7 @@ loyn <- read.table("./data/loyn.txt", header = TRUE,
                    stringsAsFactors = TRUE)
 str(loyn)
 
-# 56 observations and 8 variables (from str())
+# 67 observations and 8 variables (from str())
 
 summary(loyn)
 
@@ -26,12 +26,6 @@ tapply(loyn$ABUND, loyn$FGRAZE, mean, na.rm = TRUE)
 
 # variance in the abundance of birds for each level of FGRAZE
 tapply(loyn$ABUND, loyn$FGRAZE, var, na.rm = TRUE)
-
-# minimum abundance of birds for each level of FGRAZE
-tapply(loyn$ABUND, loyn$FGRAZE, min, na.rm = TRUE)
-
-# maximum abundance of birds for each level of FGRAZE
-tapply(loyn$ABUND, loyn$FGRAZE, max, na.rm = TRUE)
 
 # OR use the summary function
 tapply(loyn$ABUND, loyn$FGRAZE, summary, na.rm = TRUE)
@@ -90,14 +84,14 @@ str(loyn)
 ## ----Q9a, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------
 # Vanilla pairs plot
 
-pairs(loyn[,c("LOGAREA","LOGDIST","DIST",
-               "YR.ISOL","ALT","GRAZE")])
+pairs(loyn[,c("LOGAREA", "LOGDIST", "LDIST",
+               "YR.ISOL", "ALT", "GRAZE")])
 
 # or first create a new dataframe and then use this 
 # data frame with the pairs function
 
-explan_vars <- loyn[,c("LOGAREA","LOGDIST","DIST",
-               "YR.ISOL","ALT","GRAZE")]
+explan_vars <- loyn[,c("LOGAREA", "LOGDIST", "LDIST",
+               "YR.ISOL", "ALT", "GRAZE")]
 pairs(explan_vars)
 
 
@@ -105,8 +99,8 @@ pairs(explan_vars)
 # And with correlations in the upper panel
 
 # first need to define the panel.cor function
-panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
-{
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
+    usr <- par("usr"); on.exit(par(usr))
     par(usr = c(0, 1, 0, 1))
     r <- abs(cor(x, y))
     txt <- format(c(r, 0.123456789), digits = digits)[1]
@@ -116,13 +110,13 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
 }
 
 # then use the panel.cor function when we use pairs
-pairs(loyn[,c("LOGAREA","LOGDIST","DIST",
+pairs(loyn[,c("LOGAREA","LOGDIST", "LDIST",
                "YR.ISOL","ALT","GRAZE")],
       upper.panel = panel.cor)
 
 
 ## ----Q10a, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------------------------
-pairs(loyn[,c("ABUND","LOGAREA","LOGDIST","DIST",
+pairs(loyn[,c("ABUND","LOGAREA","LOGDIST", "LDIST",
     	"YR.ISOL","ALT","GRAZE")],
       	lower.panel = panel.cor)
 

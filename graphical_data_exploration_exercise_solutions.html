@@ -518,20 +518,19 @@ $(document).ready(function () {
 class="section level2">
 <h2>Exercise: Graphical data exploration using R</h2>
 <p> </p>
-<p>1. Start RStudio on your computer. Check that you have a recent
-version of R (at least 4.0.0). If you haven’t already done so, create a
-new RStudio Project (select File –&gt; New Project on the main menu).
-Create the Project in a new directory by selecting ‘New Directory’ and
-then select ‘New Project’. Give the Project a suitable name (quadstats
-maybe) in the ‘Directory name:’ box and choose where you would like to
-create this Project directory by clicking on the ‘Browse’ button.
-Finally create the project by clicking on the ‘Create Project’ button.
-This will be your main RStudio Project file and directory which you will
-use throughout this course. See <a
+<p>1. Start RStudio on your computer. If you haven’t already done so,
+create a new RStudio Project (select File –&gt; New Project on the main
+menu). Create the Project in a new directory by selecting ‘New
+Directory’ and then select ‘New Project’. Give the Project a suitable
+name (‘pgr_stats’ maybe) in the ‘Directory name:’ box and choose where
+you would like to create this Project directory by clicking on the
+‘Browse’ button. Finally create the project by clicking on the ‘Create
+Project’ button. This will be your main RStudio Project file and
+directory which you will use throughout this course. See <a
 href="https://intro2r.com/rsprojs.html#rsprojs">Section 1.6</a> of the
 Introduction to R book for more information about RStudio Projects and
 <a
-href="https://alexd106.github.io/QUADstatR/howto.html#rstudio_proj-vid">here</a>
+href="https://alexd106.github.io/PGR-LM/howto.html#rstudio_proj-vid">here</a>
 for a short video.</p>
 <p>Now create a new R script inside this Project by selecting File –&gt;
 New File –&gt; R Script from the main menu (or use the shortcut button).
@@ -561,19 +560,22 @@ directory.</p>
 <p> </p>
 <p>3. These data are from a study originally conducted by Loyn
 (1987)<sup>1</sup> and subsequently re-analysed by Quinn and Keough
-(2002)<sup>2</sup> and Zuur et al (2009)<sup>3</sup>. The aim of the
-study was to relate bird abundance in 56 forest patches to a number of
-different environmental variables and management practices. A summary of
-the variables is: <strong>ABUND</strong>: Density of birds, Continuous
-response (aka dependent) variable; <strong>AREA</strong>: Size of forest
-patch, Continuous explanatory (aka independent) variable;
-<strong>DIST</strong>: Distance to nearest patch, Continuous
-explanatory; <strong>LDIST</strong>: Distance to nearest larger patch,
-Continuous explanatory; <strong>ALT</strong>: Mean altitude of patch,
-Continuous explanatory; <strong>YR.ISOL</strong>: Year of isolation of
-clearance, Continuous explanatory; <strong>GRAZE</strong>: Index of
-livestock grazing intensity, 5 level Categorical explanatory 1= low
-graze, 5 = high graze.</p>
+(2002)<sup>2</sup> and Zuur et al (2009)<sup>3</sup>. Note, I have had
+to do some slight ‘tweaking’ of these data to improve usability for this
+course. The aim of the study was to relate bird density in 67 forest
+patches to a number of different environmental variables and management
+practices. A summary of the variables is: <strong>ABUND</strong>:
+Density of birds, Continuous response; <strong>AREA</strong>: Size of
+forest patch, Continuous explanatory; <strong>DIST</strong>: Distance to
+nearest patch, Continuous explanatory; <strong>LDIST</strong>: Distance
+to nearest larger patch, Continuous explanatory; <strong>ALT</strong>:
+Mean altitude of patch, Continuous explanatory;
+<strong>YR.ISOL</strong>: Year of isolation of clearance, Continuous
+explanatory; <strong>GRAZE</strong>: Index of livestock grazing
+intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze.
+Add a description of your variables to the metadata you created
+previously. Clearly highlight which variable is the response variable
+and which variables are potential explanatory variables.</p>
 <p> </p>
 <p>4. Import your <em>‘loyn.txt’</em> file into R using the
 <code>read.table()</code> function and assign it to an object called
@@ -592,7 +594,10 @@ dataframe contain? Are there any missing values (coded as
 coded? (as a number or a string?). If you think this will cause a
 problem (hint: it will!), create a new variable called
 <code>FGRAZE</code> <strong>in</strong> the dataframe with
-<code>GRAZE</code> recoded as a factor.</p>
+<code>GRAZE</code> recoded as a factor. See <a
+href="https://intro2r.com/data-types.html#data-types">here</a> to see
+how to convert/coerce a numeric variable into a factor (TLDR: use the
+<code>as.factor()</code> or <code>factor()</code> function).</p>
 <p> </p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./data/loyn.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
@@ -607,7 +612,7 @@ problem (hint: it will!), create a new variable called
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="do">##  $ GRAZE  : int  2 2 5 5 2 3 5 3 5 5 ...</span></span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="do">##  $ ALT    : int  160 180 60 140 185 160 140 130 90 60 ...</span></span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># 56 observations and 8 variables (from str())</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># 67 observations and 8 variables (from str())</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">summary</span>(loyn)</span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">##       SITE          ABUND            AREA             DIST            LDIST           YR.ISOL         GRAZE           ALT       </span></span>
@@ -642,8 +647,8 @@ this.</p>
 <p> </p>
 <p>6. Using the <code>tapply()</code> function what is the mean bird
 abundance (<code>ABUND</code>) for each level of <code>FGRAZE</code>?
-Can you determine the variance, the minimum and maximum for each
-<code>FGRAZE</code> level? Again see <a
+Can you also determine the variance for each <code>FGRAZE</code> level?
+Again see <a
 href="https://intro2r.com/summarising-data-frames.html">section 3.5</a>
 of the Introduction to R book to remind yourself how to do this.</p>
 <p> </p>
@@ -657,46 +662,36 @@ of the Introduction to R book to remind yourself how to do this.</p>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="do">##        1        2        3        4        5 </span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## 32.63859 73.13364 89.42243 50.62923 23.10744</span></span>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># minimum abundance of birds for each level of FGRAZE</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="fu">tapply</span>(loyn<span class="sc">$</span>ABUND, loyn<span class="sc">$</span>FGRAZE, min, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="do">##    1    2    3    4    5 </span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="do">## 14.6  5.3  2.9  3.3  1.5</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># maximum abundance of birds for each level of FGRAZE</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="fu">tapply</span>(loyn<span class="sc">$</span>ABUND, loyn<span class="sc">$</span>FGRAZE, max, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="do">##    1    2    3    4    5 </span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="do">## 39.6 34.4 37.7 27.8 13.8</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co"># OR use the summary function</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="fu">tapply</span>(loyn<span class="sc">$</span>ABUND, loyn<span class="sc">$</span>FGRAZE, summary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="do">## $`1`</span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="do">##   14.60   27.30   29.50   28.62   30.90   39.60 </span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="do">## $`2`</span></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="do">##    5.30   14.00   19.40   19.42   25.20   34.40 </span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="do">## $`3`</span></span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="do">##    2.90   14.10   19.50   20.16   27.60   37.70 </span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="do">## $`4`</span></span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="do">##    3.30   15.00   19.90   18.96   25.00   27.80 </span></span>
-<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="do">## $`5`</span></span>
-<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="do">##   1.500   2.200   3.800   6.292  11.500  13.800</span></span></code></pre></div>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># OR use the summary function</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="fu">tapply</span>(loyn<span class="sc">$</span>ABUND, loyn<span class="sc">$</span>FGRAZE, summary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="do">## $`1`</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="do">##   14.60   27.30   29.50   28.62   30.90   39.60 </span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="do">## $`2`</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="do">##    5.30   14.00   19.40   19.42   25.20   34.40 </span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="do">## $`3`</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="do">##    2.90   14.10   19.50   20.16   27.60   37.70 </span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="do">## $`4`</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="do">##    3.30   15.00   19.90   18.96   25.00   27.80 </span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="do">## $`5`</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="do">##   1.500   2.200   3.800   6.292  11.500  13.800</span></span></code></pre></div>
 <p> </p>
 <p>7. Now onto some plotting action. Plot a Cleveland dotchart (<a
 href="https://intro2r.com/simple-base-r-plots.html#dotcharts">Section
 4.2.4</a>) of each variable separately to assess whether there are any
 outliers (unusually large or small values) in the response variable
-(<code>ABUND</code>) or any of the explanatory variables (see Q3).
-Produce a Cleveland dotchart of each variable separately to assess this.
-If you feel in the mood, output these plots to an external PDF file in
-the output directory you created in Exercise 1.</p>
+(<code>ABUND</code>) or any of the continuous explanatory variables (see
+Q3). If you feel in the mood, output these plots to an external PDF file
+in an <code>output</code> directory within your RStudio project (don’t
+forget to create the directory first).</p>
 <p> </p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># first split the plotting device into 2 rows</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># and 3 columns</span></span>
@@ -732,17 +727,15 @@ the output directory you created in Exercise 1.</p>
 <span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Value of the variable&quot;</span>,</span>
 <span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Order of the data from text file&quot;</span>)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q7b-1.png" width="672" /></p>
-<p>8. If you do spot any variables with unusual observations you will
-need to have a think about what you want to do with them (NOTE: do
-<strong>not</strong> just remove them without justification!). If you’re
-unsure, be sure to speak to an instructor to discuss your options during
-our synchronous practical sessions. One option is to apply a data
-transformation to see if this reduces the magnitude of any outlier. The
-best thing to do here is to play around with different transformations
-(i.e. <code>log10()</code>, <code>sqrt()</code>) to see which one does
-what you want it to do. Best practice is to create new variables in your
-dataframe to store these transformed variables. After you have applied
-these data transformations make sure you re-plot your dotcharts with any
+<p>8. If you do spot any unusual observations have a think about what
+you want to do with them (NOTE: do <strong>not</strong> just remove them
+without justification!). If you’re unsure, please speak to an instructor
+to discuss your options during the practical session. Perhaps you should
+apply a data transformation to see if this reduces the magnitude of any
+outlier. The best thing to do here is to play around with different
+transformations (i.e. <code>log</code>, <code>sqrt</code>) to see which
+one does what you want it to do. After you have applied these data
+transformations make sure you re-plot your dotcharts with any
 transformed variable to double check what the transformation is doing.
 Hint: a log<sub>10</sub> transformation might help reduce the magnitude
 of the outliers for some of the variables.</p>
@@ -771,13 +764,14 @@ of the outliers for some of the variables.</p>
 <span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="do">##  $ LOGDIST: num  1.59 2.15 2.37 2.02 2.28 ...</span></span></code></pre></div>
 <p> </p>
 <p>9. Next, check if there is any potential collinearity between any of
-the <strong>explanatory variables</strong>. Remember, collinearity is a
-<em>strong</em> relationship between your explanatory variables. Plot
+the <strong>explanatory variables</strong>. Remember, collinearity is
+<em>strong</em> relationships between your explanatory variables. Plot
 these variables using the <code>pairs()</code> function (<a
 href="https://intro2r.com/simple-base-r-plots.html#pairs-plots">Section
 4.2.5</a>). You will need to extract your explanatory variables from the
 <code>loyn</code> dataframe (using <code>[]</code>) either before you
-use the <code>pairs()</code> function or whilst using it. Optionally,
+use the <code>pairs()</code> function or whilst using it (don’t forget
+to plot the transformed versions of any variables from Q8). Optionally,
 include the correlation coefficient between variables in the upper panel
 of the pairs plot (see <a
 href="https://intro2r.com/simple-base-r-plots.html#pairs-plots">section
@@ -786,22 +780,22 @@ whether collinearity is an issue.</p>
 <p> </p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Vanilla pairs plot</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)])</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>, <span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>, <span class="st">&quot;ALT&quot;</span>, <span class="st">&quot;GRAZE&quot;</span>)])</span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># or first create a new dataframe and then use this </span></span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># data frame with the pairs function</span></span>
 <span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>explan_vars <span class="ot">&lt;-</span> loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)]</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>explan_vars <span class="ot">&lt;-</span> loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>, <span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>, <span class="st">&quot;ALT&quot;</span>, <span class="st">&quot;GRAZE&quot;</span>)]</span>
 <span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="fu">pairs</span>(explan_vars)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q9a-1.png" width="672" /></p>
 <p> </p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># And with correlations in the upper panel</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># first need to define the panel.cor function</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">prefix =</span> <span class="st">&quot;&quot;</span>, cex.cor, ...)</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>{</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">prefix =</span> <span class="st">&quot;&quot;</span>, cex.cor, ...){</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">cor</span>(x, y))</span>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    txt <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">c</span>(r, <span class="fl">0.123456789</span>), <span class="at">digits =</span> digits)[<span class="dv">1</span>]</span>
@@ -811,7 +805,7 @@ whether collinearity is an issue.</p>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>}</span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># then use the panel.cor function when we use pairs</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
 <span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
 <span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>      <span class="at">upper.panel =</span> panel.cor)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q9b-1.png" width="672" /></p>
@@ -827,10 +821,11 @@ of the original variables. Also, don’t forget, you can split your
 plotting device up to allow you to plot multiple graphs (<a
 href="https://intro2r.com/mult_graphs.html#mult_graphs">Section 4.4</a>)
 or again use a function like <code>pairs()</code> to create a
-multi-panel plot. Output these plots to the output directory as PDFs.
-Add some comments in your R code to summarise your findings.</p>
+multi-panel plot. Output these plots to the <code>output</code>
+directory as PDFs. Add some comments in your R code to summarise your
+findings.</p>
 <p> </p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;ABUND&quot;</span>,<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>,<span class="st">&quot;DIST&quot;</span>,</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;ABUND&quot;</span>,<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>        <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>        <span class="at">lower.panel =</span> panel.cor)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q10a-1.png" width="672" /></p>
@@ -844,14 +839,19 @@ size of the forest (<code>AREA</code>) affected the abundance of birds
 (<code>ABUND</code>). One hypothesis was that the size of the forest
 affected the number of birds, but this was dependent of the intensity of
 the grazing regime (in other words, there is an interaction between
-<code>AREA</code> and <code>GRAZE</code>). Use an appropriate plotting
-function to explore these data for such an interaction (perhaps a
-<code>coplot()</code> or <code>xyplot()</code> in <a
+<code>AREA</code> and <code>GRAZE</code> - don’t worry if you haven’t
+heard of an interaction term, we will go through this later on in the
+course). Use an appropriate plotting function to explore these data for
+such an interaction (perhaps a <code>coplot()</code> or
+<code>xyplot()</code> in <a
 href="https://intro2r.com/simple-base-r-plots.html#coplots">Section
 4.2.6</a> might be helpful?). Again, don’t forget, if you have applied a
 data transformation to your <code>AREA</code> variable you need to use
-the transformed variable in this plot not the original <code>AREA</code>
-variable. Output this plot as a PDF to your output directory and add
+the transformed variable in this plot <strong>not</strong> the original
+<code>AREA</code> variable. Likewise, as we’ve converted the
+<code>GRAZE</code> variable into a factor type variable we should use
+our new factor <code>FGRAZE</code> (or whatever you have called it).
+Save this plot as a PDF to your <code>output</code> directory and add
 some comments to your R code to describe any patterns you observe.</p>
 <p> </p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Interaction between LOGAREA and FGRAZE? </span></span>
@@ -871,8 +871,8 @@ some comments to your R code to describe any patterns you observe.</p>
 <p> </p>
 <p><sup>1</sup> Loyn, R. (1987). Effects of patch area and habitat on
 bird abundances, species numbers and tree health in fragmented Victoria
-forests.. Nature conservation: the role of remnants of native
-vegetation. 65-77.</p>
+forests. Nature conservation: the role of remnants of native vegetation.
+65-77.</p>
 <p><sup>2</sup> Quinn, G. P., and Michael J. Keough. 2002. Experimental
 design and data analysis for biologists. Cambridge, UK: Cambridge
 University Press.</p>
