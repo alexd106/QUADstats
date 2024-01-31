@@ -12,7 +12,7 @@ suppressPackageStartupMessages(library(dplyr))
 ```
 
 ```{r zipdir, include=FALSE}
-if (!file.exists("data/all_data.zip")) system("rm data/all_data.zip ; zip -r data/all_data.zip data -x '*.html' -x '*.DS_Store'")
+# if (!file.exists("data/all_data.zip")) system("rm data/all_data.zip ; zip -r data/all_data.zip data -x '*.html' -x '*.DS_Store'")
 ```
 
 \  

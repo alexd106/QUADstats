@@ -445,9 +445,11 @@ Mean altitude of patch, Continuous explanatory;
 <strong>YR.ISOL</strong>: Year of isolation of clearance, Continuous
 explanatory; <strong>GRAZE</strong>: Index of livestock grazing
 intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze.
-Add a description of your variables to the metadata you created
-previously. Clearly highlight which variable is the response variable
-and which variables are potential explanatory variables.</p>
+Copy this information to your R script (make sure you comment it out
+with a <code>#</code> - can you remember the keyboard <a
+href="https://intro2r.com/proj_doc.html#proj_doc">shortcut</a>?) and
+clearly highlight which variable is the response variable and which
+variables are potential explanatory variables.</p>
 <p> </p>
 <p>4. Import your <em>‘loyn.txt’</em> file into R using the
 <code>read.table()</code> function and assign it to an object called
@@ -458,13 +460,11 @@ to display the structure of the dataset and the <code>summary()</code>
 function to summarise the dataset. Copy and paste the output of
 <code>str()</code> and <code>Summary()</code> to your R code as a
 record. Don’t forget to comment this code with a <code>#</code> at the
-beginning of each line (can you remember the keyboard <a
-href="https://intro2r.com/proj_doc.html#proj_doc">shortcut</a>?). How
-many observations are in this dataset? How many variables does the
-dataframe contain? Are there any missing values (coded as
-<code>NA</code>) in any variable? How is the variable <code>GRAZE</code>
-coded? (as a number or a string?). If you think this will cause a
-problem (hint: it will!), create a new variable called
+beginning of each line. How many observations are in this dataset? How
+many variables does the dataframe contain? Are there any missing values
+(coded as <code>NA</code>) in any variable? How is the variable
+<code>GRAZE</code> coded? (as a number or a string?). If you think this
+will cause a problem (hint: it will!), create a new variable called
 <code>FGRAZE</code> <strong>in</strong> the dataframe with
 <code>GRAZE</code> recoded as a factor. See <a
 href="https://intro2r.com/data-types.html#data-types">here</a> to see
@@ -540,7 +540,7 @@ findings.</p>
 management practices such as grazing intensity (<code>GRAZE</code>) and
 size of the forest (<code>AREA</code>) affected the abundance of birds
 (<code>ABUND</code>). One hypothesis was that the size of the forest
-affected the number of birds, but this was dependent of the intensity of
+affected the number of birds, but this was dependent on the intensity of
 the grazing regime (in other words, there is an interaction between
 <code>AREA</code> and <code>GRAZE</code> - don’t worry if you haven’t
 heard of an interaction term, we will go through this later on in the
