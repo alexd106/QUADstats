@@ -42,7 +42,7 @@ dir <- "data/"
 list.files(dir) %>%
   sort %>% 
   # grep("\\.html$ | *.zip", ., value = TRUE, invert = TRUE) %>% 
-  grep("\\.html$ | loyn.xlsx", ., value = TRUE, invert = TRUE) %>% 
+  grep("\\.html$ | loyn.txt", ., value = TRUE, invert = TRUE) %>% 
   paste0("    + [", ., "](", paste0(dir, .), ")") %>% 
   cat(sep = "\n")
 ```
