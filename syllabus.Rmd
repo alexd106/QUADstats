@@ -34,7 +34,7 @@ The live sessions will be held on Blackboard Collaborate at the time indicated i
 
 \  
 
-|09:30 - 10:30               | 10:30 - 12:30     | 12:30 - 13:30 |13:30 - 14:30    | 14:30 - 15:30      |15:30 - 17:00|
+|09:30 - 10:45               | 10:45 - 12:30     | 12:30 - 13:30 |13:30 - 14:30    | 14:30 - 15:30      |15:30 - 17:00|
 |:--------------------------:|:-----------------:|:-------------:|:---------------:|:------------------:|:-------------:|
 |Linear model theory (recorded AD)|Linear models live practical (AD) – single continuous explanatory variable|LUNCH|Linear models live practical (AD) – single continuous explanatory variable, Live review session|Linear models theory (recorded AD) – single categorical explanatory variable|Linear models live practical (AD) – single categorical explanatory variable|
 
