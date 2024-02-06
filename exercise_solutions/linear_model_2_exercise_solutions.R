@@ -1,10 +1,10 @@
-## ----Q2, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q2, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 loyn <- read.table("./data/loyn.txt", header = TRUE, 
                    stringsAsFactors = TRUE)
 str(loyn)
 
 
-## ----Q3, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q3, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 # create factor GRAZE as it was originally coded as an integer
 loyn$FGRAZE <- factor(loyn$GRAZE)
 
@@ -12,7 +12,7 @@ loyn$FGRAZE <- factor(loyn$GRAZE)
 class(loyn$FGRAZE)
 
 
-## ----Q4, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q4, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 boxplot(ABUND ~ FGRAZE, xlab = "Grazing level", ylab = "Bird abundance", data = loyn)
 
 # mean bird abundance for each level of FGRAZE
@@ -26,11 +26,11 @@ tapply(loyn$ABUND, loyn$FGRAZE, mean, na.rm = TRUE)
 # levels 2,3 and 4. 
 
 
-## ----Q5, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q5, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 birds.lm <- lm(ABUND ~ FGRAZE, data = loyn)
 
 
-## ----Q6, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q6, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 anova(birds.lm)
 
 # null hypothesis : There is no difference in the mean bird abundance between the 
@@ -43,7 +43,7 @@ anova(birds.lm)
 # of grazing intensity (F_4,62 = 14.98, p < 0.0001)
 
 
-## ----Q7, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q7, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 summary(birds.lm)
 
 # Here the intercept (baseline) is the mean abundance of birds for FGRAZE level 1.
@@ -73,7 +73,7 @@ summary(birds.lm)
 # significantly different from graze level 5.
 
 
-## ----Q8, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q8, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 # Set FGRAZE level 2 to be the intercept
 
 loyn$FGRAZE <- relevel(loyn$FGRAZE, ref = "2")
@@ -97,12 +97,12 @@ summary(birds.lm4)
 # The intercept is now FGRAZE level 4, we can now compare between levels '4 and 5'
 
 
-## ----Q9, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------
+## ----Q9, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
 # The multiple R-squared value is 0.491 and therefore 49.1% of
 # the variation in ABUND is explained by FGRAZE
 
 
-## ----Q10, eval=TRUE, echo=TRUE, collapse=TRUE-------------------------------------------------------------
+## ----Q10, eval=TRUE, echo=TRUE, collapse=TRUE-------------------------------------------------------------------
 # first split the plotting device into 2 rows and 2 columns
 par(mfrow = c(2,2))
 
@@ -140,7 +140,7 @@ plot(birds.lm.sqrt)
 # generalised least squares. This is not something we will do on this course but will cover in a more advanced statistics course!
 
 
-## ----Q11a, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------
+## ----Q11a, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------------
 # Using the gplots package, you may need to install this package first
 # install.packages('gplots')
 
@@ -150,7 +150,7 @@ plotmeans(ABUND ~ FGRAZE, xlab = "grazing level",
   ylab = "bird abundance", data = loyn, connect = FALSE)
 
 
-## ----Q11b, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------
+## ----Q11b, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------------
 # Using the effects package, you may need to install this package first
 # install.packages('effects')
 
@@ -159,7 +159,7 @@ loyn.effects <- allEffects(birds.lm)
 plot(loyn.effects,"FGRAZE", lty = 0)
 
 
-## ----Q11c, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------
+## ----Q11c, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------------
 # and finally using old faithful the predict function and base R graphics
 # with the segments function
 
@@ -174,7 +174,7 @@ segments(1:5, pred.vals$fit, 1:5, pred.vals$fit - 1.96 * pred.vals$se.fit)
 segments(1:5, pred.vals$fit, 1:5, pred.vals$fit + 1.96 * pred.vals$se.fit)
 
 
-## ----Q11d, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------
+## ----Q11d, eval=TRUE, echo=TRUE, collapse=FALSE-----------------------------------------------------------------
 # using old faithful the predict function and base R graphics 
 # with the arrows function 
 

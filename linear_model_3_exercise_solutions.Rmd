@@ -80,13 +80,13 @@ coplot(ABUND ~ LOGAREA | FGRAZE, data = loyn)
 ```{r Q5, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE}
 birds.inter.1 <- lm(ABUND ~ FGRAZE + LOGAREA + FGRAZE:LOGAREA, data = loyn)
 
-# Or use the 'shortcut' - its is equivalent to the model above
+# Or use the 'shortcut' - it's equivalent to the model above
 # birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA, data = loyn)
 ```
 
 \  
 
-6\. As conscientious modellers, let's first check the assumptions of our linear model by creating plots of the residuals. Remember, that you can split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
+6\. As conscientious researchers, let's first check the assumptions of our linear model by creating plots of the residuals. Remember, that you can split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions.
 
 \  
 

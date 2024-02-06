@@ -617,10 +617,10 @@ Can you remember how to specify the model using the ‘shortcut’ version
 <p> </p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>birds.inter<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE <span class="sc">+</span> LOGAREA <span class="sc">+</span> FGRAZE<span class="sc">:</span>LOGAREA, <span class="at">data =</span> loyn)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Or use the &#39;shortcut&#39; - its is equivalent to the model above</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Or use the &#39;shortcut&#39; - it&#39;s equivalent to the model above</span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># birds.inter.1 &lt;- lm(ABUND ~ FGRAZE * LOGAREA, data = loyn)</span></span></code></pre></div>
 <p> </p>
-<p>6. As conscientious modellers, let’s first check the assumptions of
+<p>6. As conscientious researchers, let’s first check the assumptions of
 our linear model by creating plots of the residuals. Remember, that you
 can split your plotting device into 2 rows and 2 columns using the
 <code>par()</code> function before you create the plots. Check each of

@@ -1,9 +1,9 @@
-## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q2, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
 loyn <- read.table("./data/loyn.txt", header = TRUE)
 str(loyn)
 
 
-## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q3, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
 loyn$LOGAREA <- log10(loyn$AREA)
 # create factor GRAZE as it was originally coded as an integer
 loyn$FGRAZE <- factor(loyn$GRAZE)
@@ -11,16 +11,16 @@ loyn$FGRAZE <- factor(loyn$GRAZE)
 
 
 
-## ----Q5, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q5, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
 birds.inter.1 <- lm(ABUND ~ FGRAZE + LOGAREA + FGRAZE:LOGAREA, data = loyn)
 
-# Or use the 'shortcut' - its is equivalent to the model above
+# Or use the 'shortcut' - it's equivalent to the model above
 # birds.inter.1 <- lm(ABUND ~ FGRAZE * LOGAREA, data = loyn)
 
 
 
 
-## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q7, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
 anova(birds.inter.1)
 
 # The null hypothesis is that there is no significant interaction between 
@@ -38,7 +38,7 @@ anova(birds.inter.1)
 # dependent on the value of the other variable.
 
 
-## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------
+## ----Q8, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=TRUE--------------------------------------------
 summary(birds.inter.1)
 
 # (Intercept)
@@ -96,7 +96,7 @@ summary(birds.inter.1)
 # LOGAREA and FGRAZE as single explanatory variables.
 
 
-## ----Q9a, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE------------------------------------
+## ----Q9a, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE------------------------------------------
 par(mfrow= c(1, 1))
 plot(ABUND ~ LOGAREA, data = loyn, col = GRAZE, pch = 16)
 # Note: # colour 1 means black in R
@@ -171,7 +171,7 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
-## ----Q9b, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE------------------------------------
+## ----Q9b, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE------------------------------------------
 # Okay, that was a long-winded way of doing this.
 # If, like me, you prefer more compact code and less risks of errors,
 # you can use a loop, to save repeating the sequence 5 times:
@@ -193,7 +193,7 @@ legend("topleft",
  lwd = c(1, 1, 1))
 
 
-## ----Q9c, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE------------------------------------
+## ----Q9c, eval=TRUE, echo=SOLUTIONS, results=SOLUTIONS, collapse=FALSE------------------------------------------
 # install.packages('ggplot2', dep = TRUE)
 library(ggplot2)
 
