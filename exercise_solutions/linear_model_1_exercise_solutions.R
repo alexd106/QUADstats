@@ -1,4 +1,4 @@
-## ----Q2, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q2, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 loyn <- read.table("data/loyn.txt", header = TRUE, 
                    stringsAsFactors = TRUE)
 str(loyn)
@@ -6,7 +6,7 @@ str(loyn)
 # 67 observations and 8 variables (from str())
 
 
-## ----Q3, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q3, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 # let's first log10 transform the AREA variable due to the couple 
 # of unusually large forest area values (check you data exploration)
 # to remind yourself
@@ -23,7 +23,7 @@ plot(loyn$LOGAREA, loyn$ABUND, xlab = "log10 forest area",
 loyn.lm <- lm(ABUND ~ LOGAREA, data = loyn)
 
 
-## ----Q4, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q4, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 # ANOVA table
 anova(loyn.lm)
 
@@ -36,7 +36,7 @@ anova(loyn.lm)
 # from 0)
 
 
-## ----Q5, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q5, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 summary(loyn.lm)
 
 # the estimate of the intercept = 10.4
@@ -46,7 +46,7 @@ summary(loyn.lm)
 # ABUND = 10.40 + 9.78 * LOGAREA
 
 
-## ----Q6, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q6, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 
 # the null hypothesis for the intercept is that the intercept = 0
 # the p value is very small (certainly less than the (not so magic) 0.05)
@@ -60,14 +60,14 @@ summary(loyn.lm)
 # LOGAREA and ABUND).
 
 
-## ----Q7, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q7, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 summary(loyn.lm)
 
 # The multiple R-squared value is 0.588 and therefore 58.8% of
 # the variation in ABUND is explained by LOGAREA
 
 
-## ----Q8, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q8, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 # first split the plotting device into 2 rows and 2 columns
 par(mfrow = c(2,2))
 
@@ -102,7 +102,7 @@ plot(loyn.lm, which = 4)
 # log transformation things look ok.
 
 
-## ----Q9, eval=TRUE, echo=TRUE, collapse=TRUE--------------------------------------------------------------------
+## ----Q9, eval=TRUE, echo=TRUE, collapse=TRUE----------------------------------------------------------------------------------------------------
 # to predict bird abundance if AREA == 100
 
 # if you log base 10 transformed the AREA variable
@@ -112,7 +112,7 @@ bird_abundance100
 # not log10()
 
 
-## ----Q10, eval=TRUE, echo=TRUE, collapse=TRUE-------------------------------------------------------------------
+## ----Q10, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------------------
 # need to create a dataframe object with a column of LOGAREA values to predict from.
 # note you need to call the column the same as used in the model
 my.data <- data.frame(LOGAREA = seq(from = min(loyn$LOGAREA),
@@ -124,7 +124,7 @@ my.data <- data.frame(LOGAREA = seq(from = min(loyn$LOGAREA),
 pred.vals <- predict(loyn.lm, newdata = my.data)
 
 
-## ----Q11, eval=TRUE, echo=TRUE, collapse=TRUE-------------------------------------------------------------------
+## ----Q11, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------------------
 # plot the lines on the plot. The x values are the new LOGAREA values from the my.data
 # dataframe, the predicted values are from pred.vals 
 plot(loyn$LOGAREA, loyn$ABUND, xlab = "Log10 Patch Area", 
@@ -148,7 +148,7 @@ ggplot(mapping = aes(x = LOGAREA, y = ABUND), data = loyn) +
     theme_classic()
 
 
-## ----Q12, eval=TRUE, echo=TRUE, collapse=TRUE-------------------------------------------------------------------
+## ----Q12, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------------------
 pred.vals.se <- predict(loyn.lm, newdata = my.data, se.fit = TRUE) # note the use of the se.fit argument
 
 # check out the structure of pred.vals.se
@@ -188,7 +188,7 @@ ggplot(mapping = aes(x = LOGAREA, y = ABUND), data = loyn) +
     theme_classic()
 
 
-## ----Q13, eval=TRUE, echo=TRUE, collapse=TRUE-------------------------------------------------------------------
+## ----Q13, eval=TRUE, echo=TRUE, collapse=TRUE---------------------------------------------------------------------------------------------------
 # back transformed LOGAREA and 95% confidence intervals
 
 # re-plot but this time use the original untransformed AREA variable

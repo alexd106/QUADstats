@@ -13,7 +13,7 @@
 
 <title>Exercise Solutions</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -55,7 +55,7 @@
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -615,25 +615,18 @@ how to convert/coerce a numeric variable into a factor (TLDR: use the
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># 67 observations and 8 variables (from str())</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">summary</span>(loyn)</span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">##       SITE          ABUND            AREA             DIST            LDIST           YR.ISOL         GRAZE     </span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="do">##  Min.   : 1.0   Min.   : 1.50   Min.   :   0.1   Min.   :  26.0   Min.   :  26.0   Min.   :1890   Min.   :1.00  </span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">##  1st Qu.:17.5   1st Qu.:12.10   1st Qu.:   2.0   1st Qu.: 112.0   1st Qu.: 157.5   1st Qu.:1946   1st Qu.:2.00  </span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="do">##  Median :34.0   Median :19.40   Median :   7.0   Median : 208.0   Median : 345.0   Median :1963   Median :3.00  </span></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="do">##  Mean   :34.0   Mean   :18.76   Mean   :  58.7   Mean   : 241.8   Mean   : 678.0   Mean   :1952   Mean   :3.03  </span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="do">##  3rd Qu.:50.5   3rd Qu.:27.45   3rd Qu.:  20.5   3rd Qu.: 334.5   3rd Qu.: 826.0   3rd Qu.:1966   3rd Qu.:4.00  </span></span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="do">##  Max.   :67.0   Max.   :39.60   Max.   :1771.0   Max.   :1427.0   Max.   :4426.0   Max.   :1976   Max.   :5.00  </span></span>
-<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="do">##       ALT       </span></span>
-<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="do">##  Min.   : 60.0  </span></span>
-<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="do">##  1st Qu.:120.0  </span></span>
-<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="do">##  Median :150.0  </span></span>
-<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="do">##  Mean   :150.4  </span></span>
-<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="do">##  3rd Qu.:187.5  </span></span>
-<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="do">##  Max.   :260.0</span></span>
-<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co"># GRAZE is coded as numeric (i.e. 1,2,3,5)</span></span>
-<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co"># create a new factor variable variable FGRAZE which is a factor of GRAZE</span></span>
-<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>loyn<span class="sc">$</span>FGRAZE <span class="ot">&lt;-</span> <span class="fu">factor</span>(loyn<span class="sc">$</span>GRAZE)</span></code></pre></div>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">##       SITE          ABUND            AREA             DIST            LDIST           YR.ISOL         GRAZE           ALT       </span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="do">##  Min.   : 1.0   Min.   : 1.50   Min.   :   0.1   Min.   :  26.0   Min.   :  26.0   Min.   :1890   Min.   :1.00   Min.   : 60.0  </span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">##  1st Qu.:17.5   1st Qu.:12.10   1st Qu.:   2.0   1st Qu.: 112.0   1st Qu.: 157.5   1st Qu.:1946   1st Qu.:2.00   1st Qu.:120.0  </span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="do">##  Median :34.0   Median :19.40   Median :   7.0   Median : 208.0   Median : 345.0   Median :1963   Median :3.00   Median :150.0  </span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="do">##  Mean   :34.0   Mean   :18.76   Mean   :  58.7   Mean   : 241.8   Mean   : 678.0   Mean   :1952   Mean   :3.03   Mean   :150.4  </span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="do">##  3rd Qu.:50.5   3rd Qu.:27.45   3rd Qu.:  20.5   3rd Qu.: 334.5   3rd Qu.: 826.0   3rd Qu.:1966   3rd Qu.:4.00   3rd Qu.:187.5  </span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="do">##  Max.   :67.0   Max.   :39.60   Max.   :1771.0   Max.   :1427.0   Max.   :4426.0   Max.   :1976   Max.   :5.00   Max.   :260.0</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co"># GRAZE is coded as numeric (i.e. 1,2,3,5)</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co"># create a new factor variable variable FGRAZE which is a factor of GRAZE</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>loyn<span class="sc">$</span>FGRAZE <span class="ot">&lt;-</span> <span class="fu">factor</span>(loyn<span class="sc">$</span>GRAZE)</span></code></pre></div>
 <p> </p>
 <p>5. Use the function <code>table()</code> (or <code>xtabs()</code>) to
 determine how many observations are in each <code>FGRAZE</code> level.
@@ -788,33 +781,33 @@ whether collinearity is an issue.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Vanilla pairs plot</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>, <span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>, <span class="st">&quot;ALT&quot;</span>, <span class="st">&quot;GRAZE&quot;</span>)])</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># or first create a new dataframe and then use this </span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># data frame with the pairs function</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>explan_vars <span class="ot">&lt;-</span> loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>, <span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>, <span class="st">&quot;ALT&quot;</span>, <span class="st">&quot;GRAZE&quot;</span>)]</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="fu">pairs</span>(explan_vars)</span></code></pre></div>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>, <span class="st">&quot;ALT&quot;</span>, <span class="st">&quot;GRAZE&quot;</span>)])</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q9a-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co"># or first create a new dataframe and then use this </span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># data frame with the pairs function</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>explan_vars <span class="ot">&lt;-</span> loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>, <span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>, <span class="st">&quot;ALT&quot;</span>, <span class="st">&quot;GRAZE&quot;</span>)]</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">pairs</span>(explan_vars)</span></code></pre></div>
 <p> </p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># And with correlations in the upper panel</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># first need to define the panel.cor function</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">prefix =</span> <span class="st">&quot;&quot;</span>, cex.cor, ...){</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">cor</span>(x, y))</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    txt <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">c</span>(r, <span class="fl">0.123456789</span>), <span class="at">digits =</span> digits)[<span class="dv">1</span>]</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    txt <span class="ot">&lt;-</span> <span class="fu">paste0</span>(prefix, txt)</span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">missing</span>(cex.cor)) cex.cor <span class="ot">&lt;-</span> <span class="fl">0.8</span><span class="sc">/</span><span class="fu">strwidth</span>(txt)</span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>    <span class="fu">text</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, txt, <span class="at">cex =</span> cex.cor <span class="sc">*</span> r)</span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>}</span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># then use the panel.cor function when we use pairs</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>      <span class="at">upper.panel =</span> panel.cor)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># And with correlations in the upper panel</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># first need to define the panel.cor function</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">prefix =</span> <span class="st">&quot;&quot;</span>, cex.cor, ...){</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">cor</span>(x, y))</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>    txt <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">c</span>(r, <span class="fl">0.123456789</span>), <span class="at">digits =</span> digits)[<span class="dv">1</span>]</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>    txt <span class="ot">&lt;-</span> <span class="fu">paste0</span>(prefix, txt)</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">missing</span>(cex.cor)) cex.cor <span class="ot">&lt;-</span> <span class="fl">0.8</span><span class="sc">/</span><span class="fu">strwidth</span>(txt)</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>    <span class="fu">text</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, txt, <span class="at">cex =</span> cex.cor <span class="sc">*</span> r)</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>}</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co"># then use the panel.cor function when we use pairs</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>               <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>      <span class="at">upper.panel =</span> panel.cor)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q9b-1.png" width="672" /></p>
 <p> </p>
 <p>10. Now that we’ve checked for collinearity let’s assess whether
@@ -832,12 +825,12 @@ multi-panel plot. Output these plots to the <code>output</code>
 directory as PDFs. Add some comments in your R code to summarise your
 findings.</p>
 <p> </p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;ABUND&quot;</span>,<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>        <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>        <span class="at">lower.panel =</span> panel.cor)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">pairs</span>(loyn[,<span class="fu">c</span>(<span class="st">&quot;ABUND&quot;</span>,<span class="st">&quot;LOGAREA&quot;</span>,<span class="st">&quot;LOGDIST&quot;</span>, <span class="st">&quot;LDIST&quot;</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>        <span class="st">&quot;YR.ISOL&quot;</span>,<span class="st">&quot;ALT&quot;</span>,<span class="st">&quot;GRAZE&quot;</span>)],</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>        <span class="at">lower.panel =</span> panel.cor)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q10a-1.png" width="672" /></p>
 <p> </p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">plot</span>(loyn<span class="sc">$</span>LOGAREA, loyn<span class="sc">$</span>ABUND, <span class="at">xlab =</span> <span class="st">&quot;log area&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;bird abundance&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">plot</span>(loyn<span class="sc">$</span>LOGAREA, loyn<span class="sc">$</span>ABUND, <span class="at">xlab =</span> <span class="st">&quot;log area&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;bird abundance&quot;</span>)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q10b-1.png" width="672" /></p>
 <p> </p>
 <p>11. One of the main aims of this study was to determine whether
@@ -861,19 +854,19 @@ our new factor <code>FGRAZE</code> (or whatever you have called it).
 Save this plot as a PDF to your <code>output</code> directory and add
 some comments to your R code to describe any patterns you observe.</p>
 <p> </p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Interaction between LOGAREA and FGRAZE? </span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># Do the slopes look similar or different? </span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">coplot</span>(ABUND <span class="sc">~</span> LOGAREA <span class="sc">|</span> FGRAZE, <span class="at">data =</span> loyn)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Interaction between LOGAREA and FGRAZE? </span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># Do the slopes look similar or different? </span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">coplot</span>(ABUND <span class="sc">~</span> LOGAREA <span class="sc">|</span> FGRAZE, <span class="at">data =</span> loyn)</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q11a-1.png" width="672" /></p>
 <p> </p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Fancier version of the above plot </span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># with a line of best fit included just for fun</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">coplot</span>(ABUND <span class="sc">~</span> LOGAREA <span class="sc">|</span> FGRAZE,</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>      <span class="at">data =</span> loyn,</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>        <span class="at">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>         tmp <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">na.action =</span> na.omit)</span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>         <span class="fu">abline</span>(tmp)</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>         <span class="fu">points</span>(x, y) })</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Fancier version of the above plot </span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co"># with a line of best fit included just for fun</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">coplot</span>(ABUND <span class="sc">~</span> LOGAREA <span class="sc">|</span> FGRAZE,</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>      <span class="at">data =</span> loyn,</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>        <span class="at">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>         tmp <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">na.action =</span> na.omit)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>         <span class="fu">abline</span>(tmp)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>         <span class="fu">points</span>(x, y) })</span></code></pre></div>
 <p><img src="graphical_data_exploration_exercise_solutions_files/figure-html/Q11b-1.png" width="672" /></p>
 <p> </p>
 <p><sup>1</sup> Loyn, R. (1987). Effects of patch area and habitat on
