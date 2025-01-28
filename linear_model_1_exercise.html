@@ -30,6 +30,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -206,6 +207,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -384,6 +388,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Exercises</h1>
@@ -398,42 +410,43 @@ class="section level2">
 <h2>Exercise: Linear model with single continuous explanatory
 variable</h2>
 <p> </p>
-<p>1. Either create a new R script (perhaps call it linear_model_1) or
+<p>1. Either create a new R script (perhaps call it ‘linear_model_1’) or
 continue with your previous data exploration R script in your RStudio
 Project. Again, make sure you include any metadata you feel is
 appropriate (title, description of task, date of creation etc) and don’t
 forget to comment out your metadata with a <code>#</code> at the
 beginning of the line.</p>
 <p> </p>
-<p>2. Import the data file ‘loyn.txt’ into R and take a look at the
-summary of the graphical data exploration you performed during the
-previous exercise. The aim of this exercise is to get familiar with
-fitting a simple linear model with a continuous response variable, bird
-abundance (<code>ABUND</code>) and a single continuous explanatory
-variable forest area (<code>AREA</code>) in R. Ignore the other
-explanatory variables for now.</p>
+<p>2. Import the data file ‘loyn.txt’ you used in the previous exercise
+into R and remind yourself of the data exploration of these data you
+have already performed (graphical data exploration exercise). The aim of
+this exercise is to get familiar with fitting a simple linear model with
+a continuous response variable, bird abundance (<code>ABUND</code>) and
+a single continuous explanatory variable forest area (<code>AREA</code>)
+in R. Ignore the other explanatory variables for now.</p>
 <p> </p>
 <p>3. Create a scatterplot of bird abundance and forest patch area to
-remind yourself what this relationship looks like. Remember you may have
-to transform the <code>AREA</code> variable, return to your data
-exploration if in doubt. Try to remember which is your response variable
-(y axis) and which is your explanatory variable (x axis). Now fit an
-appropriate linear model to describe this relationship using the
-<code>lm()</code> function. Remember to use the <code>data =</code>
-argument. Assign this linear model to an appropriately named object
-(<code>loyn.lm</code> if you imagination fails you!).</p>
+remind yourself what this relationship looks like. You may have to
+transform the <code>AREA</code> variable to address potential issues
+that you identified in your previous data exploration. Try to remember
+which is your response variable (y axis) and which is your explanatory
+variable (x axis). Now fit an appropriate linear model to describe this
+relationship using the <code>lm()</code> function. Remember to use the
+<code>data =</code> argument. Assign this linear model to an
+appropriately named object (<code>loyn_lm</code> if you imagination
+fails you!).</p>
 <p> </p>
-<p>4. Obtain the ANOVA table by using the <code>anova()</code> function
+<p>4. Display the ANOVA table by using the <code>anova()</code> function
 on your model object. What is the null hypothesis you are testing here?
 Do you reject or fail to reject this null hypothesis? Explore the ANOVA
 table and make sure you understand the different components. Refer back
 to the lectures if you need to remind yourself or ask an instructor to
 take you through it.</p>
 <p> </p>
-<p>5. Now display the table of parameter estimates using the
-<code>summary()</code> function on your model object. Again, make sure
-you understand the different components of this output and be sure to
-ask if in doubt. What are the estimates of the intercept and slope?
+<p>5. Now display the table of parameter (coefficient) estimates using
+the <code>summary()</code> function on your model object. Again, make
+sure you understand the different components of this output and be sure
+to ask if in doubt. What are the estimates of the intercept and slope?
 Write down the word equation of this linear model including your
 parameter estimates (hint: think y = a + bx).</p>
 <p> </p>
@@ -449,27 +462,29 @@ transformed <code>AREA</code> variable?</p>
 Let’s check the assumptions of your linear model by creating plots of
 the residuals from the model. Remember, you can easily create these
 plots by using the <code>plot()</code> function on your model object
-(<code>loyn.lm</code> or whatever you called it). Also remember that if
+(<code>loyn_lm</code> or whatever you called it). Also remember that if
 you want to see all plots at once then you should split your plotting
-device into 2 rows and 2 columns using the <code>par()</code> function
+device into 2 rows and 2 columns using <code>par(mfrow = c(2,2))</code>
 before you create the plots (<a
 href="https://intro2r.com/mult_graphs.html#mult_graphs">Section
-4.4</a>). Can you remember which plot is used to check the assumption of
+4.4</a>).</p>
+<p>Can you remember which plot is used to check the assumption of
 normality of the residuals? What is you assessment of this assumption?
 Next, check the homogeneity of variance of residuals assumption. Can you
-see any patterns in the residuals versus fitted value plots? Is there
-more or less equal spread of the residuals? Finally, take a look at the
-leverage and Cooks distance plot to assess whether you have any
-residuals with high leverage or any influential residuals. What is your
-assessment? Write a couple of sentences to summarise your assessment of
-the modelling assumptions as a comment in your R code.</p>
+see any patterns in the ‘residuals versus fitted’ or the
+‘Scale-Location’ plots? Is there more or less equal spread of the
+residuals? Finally, take a look at the leverage and Cooks distance plot
+to assess whether you have any residuals with high leverage or any
+influential residuals. What is your assessment? Write a couple of
+sentences to summarise your assessment of the modelling assumptions as a
+comment in your R code.</p>
 <p> </p>
 <p>9. Using your word equation from Question 5, how many birds do you
-predict if <code>AREA</code> is 100 from your model?</p>
+predict if <code>AREA</code> is 100?</p>
 <p> </p>
 <p>10. Calculate the fitted values from your model using the
 <code>predict()</code> function and store these predicted values in an
-object called <code>pred.vals</code>. Remember, you will first need to
+object called <code>pred_vals</code>. Remember, you will first need to
 create a dataframe object containing the values of log transformed
 <code>AREA</code> you want to make predictions from. Refer back to the
 model interpretation video if you need a quick reminder of how to do
@@ -491,7 +506,7 @@ the plot you made in Question 11, but this time we’ll add the 95%
 confidence intervals in addition to the fitted values. Remember, you
 will need to use the <code>predict()</code> function again but this time
 include the<code>se.fit = TRUE</code> argument (store these new values
-in a new object called <code>pred.vals.se</code>). When you use the
+in a new object called <code>pred_vals_se</code>). When you use the
 <code>se.fit = TRUE</code> argument with the <code>predict()</code>
 function the returned object will have a slightly different structure
 compared to when you used it before. Use the <code>str()</code> function
@@ -514,12 +529,13 @@ back-transform your fitted values (remember you got these with the
 <code>predict()</code> function) to the original scale and add these to
 the plot as a line. Hint 1: you don’t need to reuse the
 <code>predict()</code> function, you just need to back-transform your
-<code>LOGAREA</code> values. Hint 2: remember if you used a
+<code>my.data$LOGAREA</code> values. Hint 2: remember if you used a
 log<sub>10</sub> transformation (<code>log10()</code>) then you can
-back-transform using <code>10^LOGAREA</code> and if you used a natural
-log transformation then use <code>exp(LOGAREA)</code> to back-transform.
-Comment on the differences between the plot on the transformed (log)
-scale and the plot on the back-transformed scale in your R script.</p>
+back-transform using <code>10^my.data$LOGAREA</code> and if you used a
+natural log transformation then use <code>exp(my.data$LOGAREA)</code> to
+back-transform. Comment on the differences between the plot on the
+transformed (log) scale and the plot on the back-transformed scale in
+your R script.</p>
 <p> </p>
 <p>End of the linear model with single continuous explanatory variable
 exercise</p>
@@ -558,6 +574,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

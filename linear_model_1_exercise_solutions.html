@@ -11,7 +11,7 @@
 
 
 
-<title>Exercise Solutions</title>
+<title>Exercises</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -508,7 +508,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Exercise Solutions</h1>
+<h1 class="title toc-ignore">Exercises</h1>
 
 </div>
 
@@ -520,21 +520,20 @@ class="section level2">
 <h2>Exercise: Linear model with single continuous explanatory
 variable</h2>
 <p> </p>
-<p>1. Either create a new R script (perhaps call it linear_model_1) or
+<p>1. Either create a new R script (perhaps call it ‘linear_model_1’) or
 continue with your previous data exploration R script in your RStudio
 Project. Again, make sure you include any metadata you feel is
 appropriate (title, description of task, date of creation etc) and don’t
 forget to comment out your metadata with a <code>#</code> at the
 beginning of the line.</p>
 <p> </p>
-<p>2. Import the data file ‘loyn.txt’ into R and take a look at the
-summary of the graphical data exploration you performed during the
-previous exercise. The aim of this exercise is to get familiar with
-fitting a simple linear model with a continuous response variable, bird
-abundance (<code>ABUND</code>) and a single continuous explanatory
-variable forest area (<code>AREA</code>) in R. Ignore the other
-explanatory variables for now.</p>
-<p> </p>
+<p>2. Import the data file ‘loyn.txt’ you used in the previous exercise
+into R and remind yourself of the data exploration of these data you
+have already performed (graphical data exploration exercise). The aim of
+this exercise is to get familiar with fitting a simple linear model with
+a continuous response variable, bird abundance (<code>ABUND</code>) and
+a single continuous explanatory variable forest area (<code>AREA</code>)
+in R. Ignore the other explanatory variables for now.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/loyn.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">str</span>(loyn)</span>
@@ -551,15 +550,15 @@ explanatory variables for now.</p>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># 67 observations and 8 variables (from str())</span></span></code></pre></div>
 <p> </p>
 <p>3. Create a scatterplot of bird abundance and forest patch area to
-remind yourself what this relationship looks like. Remember you may have
-to transform the <code>AREA</code> variable, return to your data
-exploration if in doubt. Try to remember which is your response variable
-(y axis) and which is your explanatory variable (x axis). Now fit an
-appropriate linear model to describe this relationship using the
-<code>lm()</code> function. Remember to use the <code>data =</code>
-argument. Assign this linear model to an appropriately named object
-(<code>loyn.lm</code> if you imagination fails you!).</p>
-<p> </p>
+remind yourself what this relationship looks like. You may have to
+transform the <code>AREA</code> variable to address potential issues
+that you identified in your previous data exploration. Try to remember
+which is your response variable (y axis) and which is your explanatory
+variable (x axis). Now fit an appropriate linear model to describe this
+relationship using the <code>lm()</code> function. Remember to use the
+<code>data =</code> argument. Assign this linear model to an
+appropriately named object (<code>loyn_lm</code> if you imagination
+fails you!).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># let&#39;s first log10 transform the AREA variable due to the couple </span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co"># of unusually large forest area values (check you data exploration)</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># to remind yourself</span></span>
@@ -573,18 +572,16 @@ argument. Assign this linear model to an appropriately named object
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q3-1.png" width="672" /></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># now fit the linear model</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>loyn.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> LOGAREA, <span class="at">data =</span> loyn)</span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>loyn_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> LOGAREA, <span class="at">data =</span> loyn)</span></code></pre></div>
 <p> </p>
-<p>4. Obtain the ANOVA table by using the <code>anova()</code> function
+<p>4. Display the ANOVA table by using the <code>anova()</code> function
 on your model object. What is the null hypothesis you are testing here?
 Do you reject or fail to reject this null hypothesis? Explore the ANOVA
 table and make sure you understand the different components. Refer back
 to the lectures if you need to remind yourself or ask an instructor to
 take you through it.</p>
-<p> </p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># ANOVA table</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">anova</span>(loyn.lm)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">anova</span>(loyn_lm)</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="do">## Response: ABUND</span></span>
@@ -602,14 +599,13 @@ take you through it.</p>
 <span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co"># reject this null hypothesis (i.e. the slope is different</span></span>
 <span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co"># from 0)</span></span></code></pre></div>
 <p> </p>
-<p>5. Now display the table of parameter estimates using the
-<code>summary()</code> function on your model object. Again, make sure
-you understand the different components of this output and be sure to
-ask if in doubt. What are the estimates of the intercept and slope?
+<p>5. Now display the table of parameter (coefficient) estimates using
+the <code>summary()</code> function on your model object. Again, make
+sure you understand the different components of this output and be sure
+to ask if in doubt. What are the estimates of the intercept and slope?
 Write down the word equation of this linear model including your
 parameter estimates (hint: think y = a + bx).</p>
-<p> </p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(loyn.lm)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(loyn_lm)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">## lm(formula = ABUND ~ LOGAREA, data = loyn)</span></span>
@@ -638,7 +634,6 @@ parameter estimates (hint: think y = a + bx).</p>
 <p>6. What is the null hypothesis associated with the intercept? What is
 the null hypothesis associated with the slope? Do you reject or fail to
 reject these hypotheses?</p>
-<p> </p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># the null hypothesis for the intercept is that the intercept = 0</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># the p value is very small (certainly less than the (not so magic) 0.05)</span></span>
@@ -654,8 +649,7 @@ reject these hypotheses?</p>
 <p>7. Looking again at the output from the <code>summary()</code>
 function how much variation in bird abundance is explained by your log
 transformed <code>AREA</code> variable?</p>
-<p> </p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">summary</span>(loyn.lm)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">summary</span>(loyn_lm)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## lm(formula = ABUND ~ LOGAREA, data = loyn)</span></span>
@@ -682,26 +676,27 @@ transformed <code>AREA</code> variable?</p>
 Let’s check the assumptions of your linear model by creating plots of
 the residuals from the model. Remember, you can easily create these
 plots by using the <code>plot()</code> function on your model object
-(<code>loyn.lm</code> or whatever you called it). Also remember that if
+(<code>loyn_lm</code> or whatever you called it). Also remember that if
 you want to see all plots at once then you should split your plotting
-device into 2 rows and 2 columns using the <code>par()</code> function
+device into 2 rows and 2 columns using <code>par(mfrow = c(2,2))</code>
 before you create the plots (<a
 href="https://intro2r.com/mult_graphs.html#mult_graphs">Section
-4.4</a>). Can you remember which plot is used to check the assumption of
+4.4</a>).</p>
+<p>Can you remember which plot is used to check the assumption of
 normality of the residuals? What is you assessment of this assumption?
 Next, check the homogeneity of variance of residuals assumption. Can you
-see any patterns in the residuals versus fitted value plots? Is there
-more or less equal spread of the residuals? Finally, take a look at the
-leverage and Cooks distance plot to assess whether you have any
-residuals with high leverage or any influential residuals. What is your
-assessment? Write a couple of sentences to summarise your assessment of
-the modelling assumptions as a comment in your R code.</p>
-<p> </p>
+see any patterns in the ‘residuals versus fitted’ or the
+‘Scale-Location’ plots? Is there more or less equal spread of the
+residuals? Finally, take a look at the leverage and Cooks distance plot
+to assess whether you have any residuals with high leverage or any
+influential residuals. What is your assessment? Write a couple of
+sentences to summarise your assessment of the modelling assumptions as a
+comment in your R code.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># first split the plotting device into 2 rows and 2 columns</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># now create the residuals plots</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">plot</span>(loyn.lm)</span></code></pre></div>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">plot</span>(loyn_lm)</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q8-1.png" width="672" /></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># The normal Q-Q plot is used to assess normality of the residuals (top right).</span></span>
@@ -721,47 +716,46 @@ the modelling assumptions as a comment in your R code.</p>
 <span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co"># From the Residuals vs Leverage plot (bottom right) you can see that there are no residuals </span></span>
 <span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co"># with a Cooks distance greater than 1. In fact they are all well below 0.5. If you want to </span></span>
 <span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co"># produce a plot of just Cooks distance (perhaps this is clearer)</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="fu">plot</span>(loyn.lm, <span class="at">which =</span> <span class="dv">4</span>)</span></code></pre></div>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="fu">plot</span>(loyn_lm, <span class="at">which =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q8-2.png" width="672" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co"># Going back to the Residuals vs Leverage plot (bottom right) you can see </span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># three residuals that are somewhat unusual in terms of their leverage as </span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># they stick out a bit to the right compared to the rest of the residuals. </span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># Two of these residuals are our two large forest patch areas again. However,</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co"># leverage still seems to be on the low side, so at least on the scale of the</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co"># log transformation things look ok.</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Going back to the Residuals vs Leverage plot (bottom right) you can see </span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co"># three residuals that are somewhat unusual in terms of their leverage as </span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># they stick out a bit to the right compared to the rest of the residuals. </span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># Two of these residuals are our two large forest patch areas again. However,</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># leverage still seems to be on the low side, so at least on the scale of the</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co"># log transformation things look ok.</span></span></code></pre></div>
 <p> </p>
 <p>9. Using your word equation from Question 5, how many birds do you
-predict if <code>AREA</code> is 100 from your model?</p>
-<p> </p>
+predict if <code>AREA</code> is 100?</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># to predict bird abundance if AREA == 100</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># if you log base 10 transformed the AREA variable</span></span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>bird_abundance100 <span class="ot">=</span> <span class="fl">10.4</span> <span class="sc">+</span> (<span class="fl">9.78</span> <span class="sc">*</span> <span class="fu">log10</span>(<span class="dv">100</span>))</span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>bird_abundance100</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">## [1] 29.96</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co"># if you used the natural log (i.e. log()) then you would use log()</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co"># not log10()</span></span></code></pre></div>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co"># if you used the natural log (i.e. log()) then you would use log()</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># not log10()</span></span></code></pre></div>
 <p> </p>
 <p>10. Calculate the fitted values from your model using the
 <code>predict()</code> function and store these predicted values in an
-object called <code>pred.vals</code>. Remember, you will first need to
+object called <code>pred_vals</code>. Remember, you will first need to
 create a dataframe object containing the values of log transformed
 <code>AREA</code> you want to make predictions from. Refer back to the
 model interpretation video if you need a quick reminder of how to do
 this or ask an instructor to take you through it if you’re in any doubt
 (they’d be happy to take you through it).</p>
-<p> </p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># need to create a dataframe object with a column of LOGAREA values to predict from.</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># We need to create a dataframe object with a column of LOGAREA values to predict from.</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># note you need to call the column the same as used in the model</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>my.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">LOGAREA =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA),</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">LOGAREA =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>LOGAREA),</span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                                  <span class="at">to =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>LOGAREA),</span>
 <span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                                  <span class="at">length =</span> <span class="dv">50</span>))</span>
 <span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co"># use predict function to calculate predicted values of abundance based on the </span></span>
 <span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co"># new LOGAREA values in the data frame my.data (use the newdata argument)</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>pred.vals <span class="ot">&lt;-</span> <span class="fu">predict</span>(loyn.lm, <span class="at">newdata =</span> my.data)</span></code></pre></div>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>pred_vals <span class="ot">&lt;-</span> <span class="fu">predict</span>(loyn_lm, <span class="at">newdata =</span> my_data)</span></code></pre></div>
 <p> </p>
 <p>11. Now, use the <code>plot()</code> function to plot the
 relationship between bird abundance (<code>ABUND</code>) and your log
@@ -770,29 +764,27 @@ interpretation of the plot. Once you’ve created the plot then add the
 fitted values calculated in Question 10 as a line on the plot (you will
 need to use the <code>lines()</code> function to do this but only after
 you have created the plot).</p>
-<p> </p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># plot the lines on the plot. The x values are the new LOGAREA values from the my.data</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co"># dataframe, the predicted values are from pred.vals </span></span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">plot</span>(loyn<span class="sc">$</span>LOGAREA, loyn<span class="sc">$</span>ABUND, <span class="at">xlab =</span> <span class="st">&quot;Log10 Patch Area&quot;</span>, </span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Bird Abundance&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">55</span>))</span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="fu">lines</span>(my.data<span class="sc">$</span>LOGAREA, pred.vals, <span class="at">lty =</span> <span class="dv">1</span>,<span class="at">col =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="fu">lines</span>(my_data<span class="sc">$</span>LOGAREA, pred_vals, <span class="at">lty =</span> <span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co"># for those of you who are into plotting using the ggplot2 package,</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co"># this is one of those occasions where things are a little simpler!</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># Don&#39;t forget, you will need to install the ggplot2 package if</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co"># you&#39;ve never used it before</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co"># install.packages(&#39;ggplot2&#39;)</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> LOGAREA, <span class="at">y =</span> ABUND), <span class="at">data =</span> loyn) <span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Log10 Patch Area&quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Bird Abundance&quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># for those of you who are into plotting using the ggplot2 package,</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co"># this is one of those occasions where things are a little simpler!</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co"># Don&#39;t forget, you will need to install the ggplot2 package if</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># you&#39;ve never used it before</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># install.packages(&#39;ggplot2&#39;)</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> LOGAREA, <span class="at">y =</span> ABUND), <span class="at">data =</span> loyn) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Log10 Patch Area&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Bird Abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">&quot;firebrick&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q11-2.png" width="672" /></p>
 <p> </p>
 <p>12. OK, this is an optional question so feel free to skip if you’ve
@@ -802,7 +794,7 @@ the plot you made in Question 11, but this time we’ll add the 95%
 confidence intervals in addition to the fitted values. Remember, you
 will need to use the <code>predict()</code> function again but this time
 include the<code>se.fit = TRUE</code> argument (store these new values
-in a new object called <code>pred.vals.se</code>). When you use the
+in a new object called <code>pred_vals_se</code>). When you use the
 <code>se.fit = TRUE</code> argument with the <code>predict()</code>
 function the returned object will have a slightly different structure
 compared to when you used it before. Use the <code>str()</code> function
@@ -817,10 +809,9 @@ you need a reminder then take a look at the video on confidence
 intervals on the course MyAberdeen site (in the ‘Introductory statistics
 lectures’ folder which you can find in the ‘Course Information’ learning
 module).</p>
-<p> </p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>pred.vals.se <span class="ot">&lt;-</span> <span class="fu">predict</span>(loyn.lm, <span class="at">newdata =</span> my.data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>) <span class="co"># note the use of the se.fit argument</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>pred_vals_se <span class="ot">&lt;-</span> <span class="fu">predict</span>(loyn_lm, <span class="at">newdata =</span> my_data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>) <span class="co"># note the use of the se.fit argument</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># check out the structure of pred.vals.se</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># check out the structure of pred_vals_se</span></span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># you can see we now have 4 vectors in this object</span></span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co"># $fit = fitted values</span></span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co"># $se.fit = standard error of fitted values</span></span>
@@ -829,7 +820,7 @@ module).</p>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a></span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co"># so we will need to access our fitted values and standard errors using </span></span>
 <span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="co"># pred.val.se$fit and pred.vals.se$se.fit respectively</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="fu">str</span>(pred.vals.se)</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="fu">str</span>(pred_vals_se)</span>
 <span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="do">## List of 4</span></span>
 <span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="do">##  $ fit           : Named num [1:50] 0.623 1.471 2.32 3.168 4.016 ...</span></span>
 <span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:50] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
@@ -846,13 +837,13 @@ module).</p>
 <span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a></span>
 <span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a><span class="co"># add the fitted values as before but now we need to use </span></span>
 <span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="co"># pred.vals.se$fit</span></span>
-<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a><span class="fu">lines</span>(my.data<span class="sc">$</span>LOGAREA, pred.vals.se<span class="sc">$</span>fit, <span class="at">lty =</span> <span class="dv">1</span>,<span class="at">col =</span> <span class="dv">1</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a><span class="fu">lines</span>(my_data<span class="sc">$</span>LOGAREA, pred_vals_se<span class="sc">$</span>fit, <span class="at">lty =</span> <span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span>
 <span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a></span>
 <span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a><span class="co"># add the upper 95% confidence interval</span></span>
-<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a><span class="fu">lines</span>(my.data<span class="sc">$</span>LOGAREA, pred.vals.se<span class="sc">$</span>fit <span class="sc">+</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred.vals.se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a><span class="fu">lines</span>(my_data<span class="sc">$</span>LOGAREA, pred_vals_se<span class="sc">$</span>fit <span class="sc">+</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred_vals_se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span>
 <span id="cb15-33"><a href="#cb15-33" tabindex="-1"></a></span>
 <span id="cb15-34"><a href="#cb15-34" tabindex="-1"></a><span class="co"># add the lower 95% confidence interval</span></span>
-<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a><span class="fu">lines</span>(my.data<span class="sc">$</span>LOGAREA, pred.vals.se<span class="sc">$</span>fit <span class="sc">-</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred.vals.se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a><span class="fu">lines</span>(my_data<span class="sc">$</span>LOGAREA, pred_vals_se<span class="sc">$</span>fit <span class="sc">-</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred_vals_se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q12-1.png" width="672" /></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a></span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co"># And the ggplot way of doing things</span></span>
@@ -861,7 +852,7 @@ module).</p>
 <span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Log10 Patch Area&quot;</span>) <span class="sc">+</span></span>
 <span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Bird Abundance&quot;</span>) <span class="sc">+</span></span>
-<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">colour =</span> <span class="st">&quot;firebrick&quot;</span>) <span class="sc">+</span></span>
 <span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q12-2.png" width="672" /></p>
 <p> </p>
@@ -879,7 +870,6 @@ natural log transformation then use <code>exp(my.data$LOGAREA)</code> to
 back-transform. Comment on the differences between the plot on the
 transformed (log) scale and the plot on the back-transformed scale in
 your R script.</p>
-<p> </p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># back transformed LOGAREA and 95% confidence intervals</span></span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="co"># re-plot but this time use the original untransformed AREA variable</span></span>
@@ -891,9 +881,9 @@ your R script.</p>
 <span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="co"># remember we only log10 transformed the LOGAREA variable so this is the only</span></span>
 <span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co"># variable that we need to back-transform</span></span>
 <span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">10</span><span class="sc">^</span>(my.data<span class="sc">$</span>LOGAREA), pred.vals.se<span class="sc">$</span>fit, <span class="at">lty =</span> <span class="dv">1</span>,<span class="at">col =</span> <span class="dv">1</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">10</span><span class="sc">^</span>(my.data<span class="sc">$</span>LOGAREA), pred.vals.se<span class="sc">$</span>fit <span class="sc">+</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred.vals.se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">10</span><span class="sc">^</span>(my.data<span class="sc">$</span>LOGAREA), pred.vals.se<span class="sc">$</span>fit <span class="sc">-</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred.vals.se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">10</span><span class="sc">^</span>(my_data<span class="sc">$</span>LOGAREA), pred_vals_se<span class="sc">$</span>fit, <span class="at">lty =</span> <span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">10</span><span class="sc">^</span>(my_data<span class="sc">$</span>LOGAREA), pred_vals_se<span class="sc">$</span>fit <span class="sc">+</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred_vals_se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">10</span><span class="sc">^</span>(my_data<span class="sc">$</span>LOGAREA), pred_vals_se<span class="sc">$</span>fit <span class="sc">-</span> (<span class="fl">1.96</span> <span class="sc">*</span> pred_vals_se<span class="sc">$</span>se.fit), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
 <p><img src="linear_model_1_exercise_solutions_files/figure-html/Q13-1.png" width="672" /></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a></span>
 <span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co"># the model doesn&#39;t look too great now! Technically, if we transform variables in our model</span></span>

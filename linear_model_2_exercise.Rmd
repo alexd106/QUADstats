@@ -1,12 +1,15 @@
 ---
-title: "Exercises"
+title: 'Exercises'
 output: 
   html_document:
-   toc: false
+    toc: false
+    code_folding: hide
 ---
 
-```{r setup, echo=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALSE, cache = FALSE)
+
+```{r setup, echo=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, eval = FALSE, cache = FALSE)
+SOLUTIONS <- FALSE
 ```
 
 \  
@@ -15,47 +18,278 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALS
 
 \  
 
-1\. As in previous exercises, either create a new R script (perhaps call it linear_model_2) or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
+1\. As in previous exercises, either create a new R script (perhaps call it 'linear_model_2') or continue with your previous R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
 
 \  
 
-2\. Import the data file 'loyn.txt' into R and take a look at the structure of this dataframe using the `str()` function. In this exercise you will investigate whether the abundance of birds (`ABUND`) is different in areas with different grazing intensities (`GRAZE`). Remember, the `GRAZE` variable is an index of livestock grazing intensity. Level 1 = low grazing intensity and level 5 = high grazing intensity. 
+2\. Once again import the data file 'loyn.txt' into R and take a look at the structure of this dataframe using the `str()` function. In this exercise you will investigate whether the abundance of birds (`ABUND`) is different in areas with different grazing intensities (`GRAZE`). Remember, the `GRAZE` variable is an index of livestock grazing intensity. Level 1 = low grazing intensity and level 5 = high grazing intensity. 
+
+```{r Q2, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+loyn <- read.table("data/loyn.txt", header = TRUE, 
+                   stringsAsFactors = TRUE)
+str(loyn)
+```
 
 \  
 
-3\. As we discussed in the graphical data exploration exercise the `GRAZE` variable was originally coded as a numeric (i.e. 1, 2, 3, 4, 5). In this exercise we actually want to treat `GRAZE` as a categorical variable with five levels (aka a factor). So the first thing we need to do is create a new variable in the loyn dataframe called `FGRAZE` in which we store the `GRAZE` variable coerced to be a categorical variable with the `factor()` function (you can also use the `as.factor()` function if you prefer).
+3\. As we discussed in the graphical data exploration exercise the `GRAZE` variable was originally coded as a numeric (i.e. 1, 2, 3, 4, 5). In this exercise we actually want to treat `GRAZE` as a categorical variable with five levels (aka a factor). So the first thing we need to do is create a new variable in the `loyn` dataframe called `FGRAZE` in which we store the `GRAZE` variable coerced to be a categorical variable with the `factor()` function (you can also use the `as.factor()` function if you prefer).
+
+```{r Q3, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# create factor GRAZE as it was originally coded as an integer
+loyn$FGRAZE <- factor(loyn$GRAZE)
+
+# check this
+class(loyn$FGRAZE)
+```
 
 \  
 
 4\. Explore any potential differences in bird abundance between each level of `FGRAZE` graphically using an appropriate plot (hint: a boxplot might be useful here). How would you interpret this plot? What might you expect to see in your analysis? Write your predictions in your R script as a comment. What is the mean number of birds for each level of `FGRAZE`? 
 
+```{r Q4, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+boxplot(ABUND ~ FGRAZE, xlab = "Grazing level", ylab = "Bird abundance", data = loyn)
+
+# mean bird abundance for each level of FGRAZE
+tapply(loyn$ABUND, loyn$FGRAZE, mean, na.rm = TRUE)
+
+# it looks from this plot and the table of means that the bird abundance is lowest for FGRAZE level 5 and 
+# highest for level 1. The bird abundance for levels 2, 3 and 4 all look similar.
+# so in terms of differences in ABUND between groups we might expect FGRAZE level 5 to be different from
+# the other grazing intensity group and possibly FGRAZE level 1 to be different from graze level 2,3 and 4
+# but this is not particularly clear. We might also expect there to be no differences between grazing 
+# levels 2,3 and 4. 
+```
+
 \  
 
-5\. Fit an appropriate linear model in R to explain the variation in the response variable, `ABUND`, with the explanatory variable `FGRAZE`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`birds.lm` if your imagination fails you!).
+5\. Fit an appropriate linear model in R to explain the variation in the response variable, `ABUND`, with the explanatory variable `FGRAZE`. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`birds_lm` if your imagination fails you!).
+
+```{r Q5, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+birds_lm <- lm(ABUND ~ FGRAZE, data = loyn)
+```
 
 \  
 
 6\. Produce the ANOVA table using the `anova()` function on the model object. What null hypothesis is being tested? Do you reject or fail to reject the null hypothesis? What summary statistics would you report? Summarise in your R script as a comment.
 
+```{r Q6, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+anova(birds_lm)
+
+# null hypothesis : There is no difference in the mean bird abundance between the 
+# five levels of grazing.
+# the p value is very small therefore reject this null hypothesis. In other words
+# there is a difference in the mean bird abundance between grazing intensity levels.
+
+# for a report you might write something like:
+# there was a significant difference in the mean abundance of birds between the five levels
+# of grazing intensity (F_4,62 = 14.98, p < 0.0001)
+```
+
 \  
 
-7\. Use the `summary()` function on the model object to produce the table of parameter estimates (remember these are called coefficients in R). Using this output what is the estimate of the intercept and what does this represent? What is the null hypothesis associated with the intercept? do you reject or fail to reject this hypothesis? Next we move onto the the `FGRAZE2` parameter, how do you interpret this parameter? (remember they are contrasts). Again, what is the null hypothesis associated with the `FGRAZE2` parameter? do you reject or fail to reject this hypothesis? Repeat this interpretation for the `FGRAZE3`, `FGRAZE4` and `FGRAZE5` parameters. Summarise this as a comment in your R script.
+7\. Use the `summary()` function on the model object to produce the table of parameter estimates (remember these are called coefficients in R). Using this output what is the estimate of the intercept and what does this represent? What is the null hypothesis associated with the intercept? do you reject or fail to reject this hypothesis? 
+
+Next we move onto the the `FGRAZE2` parameter, how do you interpret this parameter? (remember they are contrasts). Again, what is the null hypothesis associated with the `FGRAZE2` parameter? do you reject or fail to reject this hypothesis? 
+
+Repeat this interpretation for the `FGRAZE3`, `FGRAZE4` and `FGRAZE5` parameters. Summarise this as a comment in your R script.
+
+```{r Q7, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+summary(birds_lm)
+
+# Here the intercept (baseline) is the mean abundance of birds for FGRAZE level 1.
+# the null hypothesis for the intercept is that the intercept = 0.
+# As the p value (p < 2e-16) is very small we reject this null hypothesis and conclude that the
+# intercept is significantly different from 0. However, from a biological perspective this
+# is not a particularly informative hypothesis to test.
+
+# the remaining estimates are differences (contrasts) between each level and the 
+# baseline. For example the FGRAZE2 estimate is - 9.2 and therefore there are 9.2 fewer 
+# birds on average in graze level 2 compared to graze level 1. This difference is  
+# significantly different from zero (p = 0.003). 
+
+# The difference between graze level 3 (FGRAZE3) and graze level 1 (intercept) is 
+# -8.45 (8.45 fewer birds in graze 3 compared to graze 1). This difference is significantly 
+# different from 0 (p = 0.003) and therefore the mean abundance of birds in graze level 1 is
+# significantly different from graze level 1.
+
+# The difference between graze level 4 (FGRAZE4) and graze level 1 (intercept) is 
+# -9.66 (9.66 fewer birds in graze 4 compared to graze 1). This difference is significantly 
+# different from 0 (p = 0.001) and therefore the mean abundance of birds in graze level 1 is
+# significantly different from graze level 4.
+
+# The difference between graze level 5 (FGRAZE5) and graze level 1 (intercept) is 
+# -22.33 (22.33 fewer birds in graze 5 compared to graze 1). This difference is significantly 
+# different from 0 (p = 1.64e-10) and therefore the mean abundance of birds in graze level 1 is
+# significantly different from graze level 5.
+```
 
 \  
 
-8\. Now that you have interpreted all the contrasts with `FGRAZE` level 1, reset the intercept to `FGRAZE` level 2 using the `relevel()` function, refit the model, produce the new table of parameter estimates using the `summary()` function again and interpret.  Repeat this for `FGRAZE` levels 3, 4 and 5. Can you summarise which levels of `FGRAZE` are different from each other?
+8\. Now that you have interpreted all the contrasts with `FGRAZE` level 1 as the intercept, set the intercept to `FGRAZE` level 2 using the `relevel()` function, refit the model, produce the new table of parameter estimates using the `summary()` function again and interpret. 
+
+Repeat this for `FGRAZE` levels 3, 4 and 5. Can you summarise which levels of `FGRAZE` are different from each other?
+
+```{r Q8, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# Set FGRAZE level 2 to be the intercept
+
+loyn$FGRAZE <- relevel(loyn$FGRAZE, ref = "2")
+birds_lm2 <- lm(ABUND ~ FGRAZE, data = loyn)
+summary(birds_lm2)
+
+# The intercept is now FGRAZE level 2, we can now compare between levels '2 and 3', '2 and 4', and '2 and 5'
+# Also note that the rest of the model output (R^2, F, DF etc) is the same as the previous model (i.e. its 
+# the same model we have just changed the intercept and therefore the contrasts).
+
+loyn$FGRAZE <- relevel(loyn$FGRAZE, ref = "3")
+birds_lm3 <- lm(ABUND ~ FGRAZE, data = loyn)
+summary(birds_lm3)
+
+# The intercept is now FGRAZE level 3, we can now compare between levels '3 and 4', 'and 3 and 5'
+
+loyn$FGRAZE <- relevel(loyn$FGRAZE, ref = "4")
+birds_lm4 <- lm(ABUND ~ FGRAZE, data = loyn)
+summary(birds_lm4)
+
+# The intercept is now FGRAZE level 4, we can now compare between levels '4 and 5'
+```
 
 \  
 
 9\. Staying with the summary table of parameter estimates, how much of the variation in bird abundance does the explanatory variable `FGRAZE` explain? 
 
+```{r Q9, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# The multiple R-squared value is 0.491 and therefore 49.1% of
+# the variation in ABUND is explained by FGRAZE
+```
+
 \  
 
 10\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object. Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots. Check each of the assumptions using these plots and report whether your model meets these assumptions in your R script.
 
+```{r Q10, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# first split the plotting device into 2 rows and 2 columns
+par(mfrow = c(2,2))
+
+# now create the residuals plots
+plot(birds_lm)
+
+# To test the normality of residuals assumption we use the Normal Q-Q plot. Although the majority of the residuals 
+# lie along the 1:1 line there are five residuals which are all below the line resulting in reasonably substantial 
+# negative residuals. This suggest that the model does not fit these observation very well.
+
+# Looking at the homogeneity of variance assumption (Residuals vs Fitted and Scale-Location plot) you can see the 
+# five columns of residuals corresponding to the fitted values for the five grazing levels. Again, things don't look 
+# great. The spread for the lower fitted values (left side of the plot) is much narrower when compared to the other groups.
+# This suggests that the homogeneity of variance assumption is not met (i.e. the variances are not the same). The same cluster
+# of negative residuals we spotted in the Normal Q-Q plot also appears in the Residuals vs Fitted plot suggesting that it is
+# these residuals that are responsible.
+
+# The only real good news is that there doesn't appear to be any influential or unusual residuals as indicated in the 
+# Residuals vs Leverage plot.  
+
+# So what to do? You could go back and check the original field notebook data to see if a
+# transcribing mistake has been made (seems unlikely and you dont have this luxury anyway). 
+# You could also try applying a transformation (log or square root) on the ABUND variable, refit the model and 
+# see if this improves things. 
+# for example 
+
+loyn$ABUND.SQRT <- sqrt(loyn$ABUND)
+birds_lm_sqrt <- lm(ABUND.SQRT ~ FGRAZE, data = loyn)
+par(mfrow = c(2,2))
+plot(birds_lm_sqrt)
+
+# Sadly this doesn't seemed to have improved things!
+
+# Or finally, you can relax the assumption of equal variance and estimate a separate variance for each group using 
+# generalised least squares. This is not something we will do on this course but will cover in a more advanced statistics course!
+```
+
 \  
 
-11\. This is an optional question and really just for information. I'll give you the code in the solutions so don't overly stress about this! Use Google (yep, this is OK!) to figure out how to plot your fitted values and 95% confidence intervals. Try Googling the `gplots` package or the `effects` package. Alternatively, have a go at using our old trusty `predict()` function to calculate the fitted values and standard error (this time you will need to use either the `segments()` or `arrows()` function to add these to the plot instead of the `lines()` function we used before). Check out the solutions code if you're thoroughly confused!
+11\. This is an optional question and really just for information. I'll give you the code in the solutions so don't overly stress about this! Use Google (yep, this is OK!) to figure out how to plot your fitted values and 95% confidence intervals. Try Googling the `gplots` package or the `effects` package. 
+
+Alternatively, have a go at using our old trusty `predict()` function to calculate the fitted values and standard errors. Add the fitted values and 95% confidence intervals to a plot of bird abundance and graze level (to add your upper and lower confidence intervals will need to use either the `segments()` or `arrows()` function). 
+
+Or we can even use the `ggplot2` package. Check out the solutions code if you're thoroughly confused!
+
+```{r Q11a, eval=SOLUTIONS, echo=SOLUTIONS, collapse=FALSE}
+# Using the gplots package, you may need to install this package first
+# install.packages('gplots')
+
+loyn$FGRAZE <- relevel(loyn$FGRAZE, ref = "1")
+library(gplots)
+plotmeans(ABUND ~ FGRAZE, xlab = "grazing level",
+  ylab = "bird abundance", data = loyn, connect = FALSE)
+```
+
+```{r Q11b, eval=SOLUTIONS, echo=SOLUTIONS, collapse=FALSE}
+# Using the effects package, you may need to install this package first
+# install.packages('effects')
+
+library(effects)
+loyn_effects <- allEffects(birds_lm)
+plot(loyn_effects,"FGRAZE", lty = 0)
+```
+
+```{r Q11c, eval=SOLUTIONS, echo=SOLUTIONS, collapse=FALSE}
+# and finally using old faithful the predict function and base R graphics
+# with the segments function
+
+my_data <- data.frame(FGRAZE = c("1", "2", "3", "4", "5"))
+pred_vals <- predict(birds_lm, newdata = my_data, se.fit = TRUE)
+
+# now plot these values
+
+plot(1:5, seq(0, 50, length=5), type = "n", xlab = "Graze intensity", ylab = "Bird Abundance")
+points(1:5, pred_vals$fit)
+segments(1:5, pred_vals$fit, 1:5, pred_vals$fit - 1.96 * pred_vals$se.fit)
+segments(1:5, pred_vals$fit, 1:5, pred_vals$fit + 1.96 * pred_vals$se.fit)
+```
+
+```{r Q11d, eval=SOLUTIONS, echo=SOLUTIONS, collapse=FALSE}
+# using old faithful the predict function and base R graphics 
+# with the arrows function 
+
+my_data <- data.frame(FGRAZE = c("1", "2", "3", "4", "5"))
+pred_vals <- predict(birds_lm, newdata = my_data, se.fit = TRUE)
+
+# now plot these values
+
+plot(1:5, seq(0, 50, length=5), type = "n", xlab = "Graze intensity level", ylab = "Bird Abundance")
+arrows(1:5, pred_vals$fit, 1:5, pred_vals$fit - 1.96 * pred_vals$se.fit,
+    angle = 90, code = 2, length = 0.05, col = "blue")
+arrows(1:5, pred_vals$fit, 1:5, pred_vals$fit + 1.96 * pred_vals$se.fit,
+       angle = 90, code = 2, length = 0.05, col = "blue")
+points(1:5, pred_vals$fit, pch = 16)
+```
+
+```{r Q11e, eval=SOLUTIONS, echo=SOLUTIONS, collapse=FALSE}
+# or using the ggplot2 package
+library(ggplot2) # make the functions in ggplot2 available
+
+
+# This plot will plot the means for each level of FGRAZE 
+# and also the 95% confidence intervals
+
+ggplot(loyn, aes(x = FGRAZE, y = ABUND)) + 
+  stat_summary(fun = mean, geom = "point", color = "firebrick",
+        size = 3, position=position_nudge(x = 0.15)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", 
+        width = 0.1, position=position_nudge(x = 0.15))
+
+
+# and as an added bonus, if you wanted to also plot the 
+# raw data along with the means for FGRAZE
+
+ggplot(loyn, aes(x = FGRAZE, y = ABUND)) + 
+  geom_point(color = "firebrick", size = 3, alpha = 0.6) + 
+  stat_summary(fun = mean, geom = "point", color = "firebrick",
+        size = 3, position=position_nudge(x = 0.15)) +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", 
+        width = 0.1, position=position_nudge(x = 0.15))
+
+
+```
 
 \  
 

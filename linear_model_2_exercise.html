@@ -30,6 +30,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -206,6 +207,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -384,6 +388,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Exercises</h1>
@@ -399,16 +411,16 @@ class="section level2">
 variable</h2>
 <p> </p>
 <p>1. As in previous exercises, either create a new R script (perhaps
-call it linear_model_2) or continue with your previous R script in your
-RStudio Project. Again, make sure you include any metadata you feel is
-appropriate (title, description of task, date of creation etc) and don’t
-forget to comment out your metadata with a <code>#</code> at the
+call it ‘linear_model_2’) or continue with your previous R script in
+your RStudio Project. Again, make sure you include any metadata you feel
+is appropriate (title, description of task, date of creation etc) and
+don’t forget to comment out your metadata with a <code>#</code> at the
 beginning of the line.</p>
 <p> </p>
-<p>2. Import the data file ‘loyn.txt’ into R and take a look at the
-structure of this dataframe using the <code>str()</code> function. In
-this exercise you will investigate whether the abundance of birds
-(<code>ABUND</code>) is different in areas with different grazing
+<p>2. Once again import the data file ‘loyn.txt’ into R and take a look
+at the structure of this dataframe using the <code>str()</code>
+function. In this exercise you will investigate whether the abundance of
+birds (<code>ABUND</code>) is different in areas with different grazing
 intensities (<code>GRAZE</code>). Remember, the <code>GRAZE</code>
 variable is an index of livestock grazing intensity. Level 1 = low
 grazing intensity and level 5 = high grazing intensity.</p>
@@ -418,9 +430,9 @@ grazing intensity and level 5 = high grazing intensity.</p>
 2, 3, 4, 5). In this exercise we actually want to treat
 <code>GRAZE</code> as a categorical variable with five levels (aka a
 factor). So the first thing we need to do is create a new variable in
-the loyn dataframe called <code>FGRAZE</code> in which we store the
-<code>GRAZE</code> variable coerced to be a categorical variable with
-the <code>factor()</code> function (you can also use the
+the <code>loyn</code> dataframe called <code>FGRAZE</code> in which we
+store the <code>GRAZE</code> variable coerced to be a categorical
+variable with the <code>factor()</code> function (you can also use the
 <code>as.factor()</code> function if you prefer).</p>
 <p> </p>
 <p>4. Explore any potential differences in bird abundance between each
@@ -434,7 +446,7 @@ birds for each level of <code>FGRAZE</code>?</p>
 the response variable, <code>ABUND</code>, with the explanatory variable
 <code>FGRAZE</code>. Remember to use the <code>data =</code> argument.
 Assign this linear model to an appropriately named object
-(<code>birds.lm</code> if your imagination fails you!).</p>
+(<code>birds_lm</code> if your imagination fails you!).</p>
 <p> </p>
 <p>6. Produce the ANOVA table using the <code>anova()</code> function on
 the model object. What null hypothesis is being tested? Do you reject or
@@ -446,21 +458,23 @@ produce the table of parameter estimates (remember these are called
 coefficients in R). Using this output what is the estimate of the
 intercept and what does this represent? What is the null hypothesis
 associated with the intercept? do you reject or fail to reject this
-hypothesis? Next we move onto the the <code>FGRAZE2</code> parameter,
-how do you interpret this parameter? (remember they are contrasts).
-Again, what is the null hypothesis associated with the
-<code>FGRAZE2</code> parameter? do you reject or fail to reject this
-hypothesis? Repeat this interpretation for the <code>FGRAZE3</code>,
+hypothesis?</p>
+<p>Next we move onto the the <code>FGRAZE2</code> parameter, how do you
+interpret this parameter? (remember they are contrasts). Again, what is
+the null hypothesis associated with the <code>FGRAZE2</code> parameter?
+do you reject or fail to reject this hypothesis?</p>
+<p>Repeat this interpretation for the <code>FGRAZE3</code>,
 <code>FGRAZE4</code> and <code>FGRAZE5</code> parameters. Summarise this
 as a comment in your R script.</p>
 <p> </p>
 <p>8. Now that you have interpreted all the contrasts with
-<code>FGRAZE</code> level 1, reset the intercept to <code>FGRAZE</code>
-level 2 using the <code>relevel()</code> function, refit the model,
-produce the new table of parameter estimates using the
-<code>summary()</code> function again and interpret. Repeat this for
-<code>FGRAZE</code> levels 3, 4 and 5. Can you summarise which levels of
-<code>FGRAZE</code> are different from each other?</p>
+<code>FGRAZE</code> level 1 as the intercept, set the intercept to
+<code>FGRAZE</code> level 2 using the <code>relevel()</code> function,
+refit the model, produce the new table of parameter estimates using the
+<code>summary()</code> function again and interpret.</p>
+<p>Repeat this for <code>FGRAZE</code> levels 3, 4 and 5. Can you
+summarise which levels of <code>FGRAZE</code> are different from each
+other?</p>
 <p> </p>
 <p>9. Staying with the summary table of parameter estimates, how much of
 the variation in bird abundance does the explanatory variable
@@ -480,13 +494,15 @@ these assumptions in your R script.</p>
 I’ll give you the code in the solutions so don’t overly stress about
 this! Use Google (yep, this is OK!) to figure out how to plot your
 fitted values and 95% confidence intervals. Try Googling the
-<code>gplots</code> package or the <code>effects</code> package.
-Alternatively, have a go at using our old trusty <code>predict()</code>
-function to calculate the fitted values and standard error (this time
-you will need to use either the <code>segments()</code> or
-<code>arrows()</code> function to add these to the plot instead of the
-<code>lines()</code> function we used before). Check out the solutions
-code if you’re thoroughly confused!</p>
+<code>gplots</code> package or the <code>effects</code> package.</p>
+<p>Alternatively, have a go at using our old trusty
+<code>predict()</code> function to calculate the fitted values and
+standard errors. Add the fitted values and 95% confidence intervals to a
+plot of bird abundance and graze level (to add your upper and lower
+confidence intervals will need to use either the <code>segments()</code>
+or <code>arrows()</code> function).</p>
+<p>Or we can even use the <code>ggplot2</code> package. Check out the
+solutions code if you’re thoroughly confused!</p>
 <p> </p>
 <p>End of the linear model with single categorical explanatory variable
 exercise</p>
@@ -525,6 +541,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

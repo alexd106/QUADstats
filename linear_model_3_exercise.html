@@ -420,10 +420,10 @@ explanatory variable). This is the third of four complementary
 exercises, based on the <code>loyn</code> data set.</p>
 <p> </p>
 <p>1. As in previous exercises, either create a new R script (perhaps
-call it linear_model_3) or continue with your previous R script in your
-RStudio Project. Again, make sure you include any metadata you feel is
-appropriate (title, description of task, date of creation etc) and don’t
-forget to comment out your metadata with a <code>#</code> at the
+call it ‘linear_model_3’) or continue with your previous R script in
+your RStudio Project. Again, make sure you include any metadata you feel
+is appropriate (title, description of task, date of creation etc) and
+don’t forget to comment out your metadata with a <code>#</code> at the
 beginning of the line.</p>
 <p> </p>
 <p>2. Import the data file ‘loyn.txt’ into R and take a look at the
@@ -439,19 +439,17 @@ grazing intensity? Could the fit of the <code>ABUND ~ LOGAREA</code>
 model for the large patches be improved if we accounted for grazing
 intensity in the patches?</p>
 <p> </p>
-<p> </p>
 <p>3. As previously we want to treat <code>AREA</code> as a
 log<sub>10</sub>-transformed area to limit the influence of the couple
-of disproportionately large patches, and <code>GRAZE</code> as a
+of disproportionately large forest patches, and <code>GRAZE</code> as a
 categorical variable with five levels. So the first thing we need to do
 is create the corresponding variables in the <code>loyn</code>
 dataframe, called <code>LOGAREA</code> and <code>FGRAZE</code>.</p>
 <p> </p>
-<p> </p>
 <p>4. Explore the relationship between bird abundance and log
 transformed forest patch area for each level of grazing. You could
 manually create a separate plot for each graze level but it’s more
-efficient to use a conditional scatter plot (aka coplot, see <a
+efficient to use a conditional scatterplot (aka coplot, see <a
 href="https://intro2r.com/simple-base-r-plots.html#coplots">section
 4.2.6</a> of the R book or the help page for the function
 <code>coplot()</code>). A coplot lets you visualise the relationship
@@ -465,17 +463,15 @@ asking if the slopes of the relationship between <code>ABUND</code> and
 <code>LOGAREA</code> are different for each <code>FGRAZE</code> level -
 this is called an interaction.</p>
 <p> </p>
-<p> </p>
 <p>5. Fit an appropriate linear model in R to explain the variation in
 the response variable <code>ABUND</code> with the explanatory variables
 <code>LOGAREA</code> and <code>FGRAZE</code>. Also include the
 interaction between <code>LOGAREA</code> and <code>FGRAZE</code>. Hint:
 <code>:</code> is the interaction symbol! Remember to use the
 <code>data =</code> argument. Assign this linear model to an
-appropriately named object, like <code>birds.inter.1</code>. Optional:
+appropriately named object, like <code>birds_inter1</code>. Optional:
 Can you remember how to specify the model using the ‘shortcut’ version
 (with <code>*</code>) instead?</p>
-<p> </p>
 <p> </p>
 <p>6. As conscientious researchers, let’s first check the assumptions of
 our linear model by creating plots of the residuals. Remember, that you
@@ -484,7 +480,6 @@ can split your plotting device into 2 rows and 2 columns using the
 the assumptions using these plots and report whether your model meets
 these assumptions.</p>
 <p> </p>
-<p> </p>
 <p>7. Use the <code>anova()</code> function to produce the ANOVA table
 of your linear model. Remember, this ANOVA table is based on sequential
 sums of squares (the order of the explanatory variables matters). The
@@ -492,62 +487,64 @@ only P value that we should interpret is the one that occurs in the
 second to last row of the table (the one above ‘Residuals’). This is the
 interaction term between <code>FGRAZE</code> and <code>LOGAREA</code>
 (<code>FGRAZE:LOGAREA</code>). What is the null hypothesis associated
-with this interaction term? Do we reject or fail to reject this
-hypothesis? What is the biological interpretation of this interaction
-term? Can we say anything about the hypotheses for the main effects of
+with this interaction term?</p>
+<p>Do we reject or fail to reject this hypothesis?</p>
+<p>What is the biological interpretation of this interaction term? Can
+we say anything about the hypotheses for the main effects of
 <code>FGRAZE</code> or <code>LOGAREA</code>?</p>
+<p> </p>
 <p>8. OK, now for the part you all know and love! Use the
 <code>summary()</code> function on your model object to produce the
 table of parameter estimates. Using this output, take each line in turn
-and answer the following questions: (A) what does this parameter
-estimate? (B) What is the biological interpretation of the corresponding
-estimate? (C) What is the null hypothesis associated with it? (D) Do you
-reject or fail to reject this hypothesis? Also compare the multiple
-R<sup>2</sup> from this model the models you created in the previous two
-exercises. I encourage you to get someone to discuss your answers with
-you if you are confused :).</p>
-<p> </p>
+and answer the following questions:</p>
+<ul>
+<li>what does this parameter estimate?</li>
+<li>What is the biological interpretation of the corresponding
+estimate?</li>
+<li>What is the null hypothesis associated with it?</li>
+<li>Do you reject or fail to reject this hypothesis?</li>
+</ul>
+<p>Also compare the multiple R<sup>2</sup> from this model the models
+you created in the previous two exercises.</p>
+<p>Please ask one of the course instructors to take you through this if
+you’re confused :).</p>
 <p> </p>
 <p>9. Right, now hang onto your hat! Let’s plot the predictions from
 your model to figure out how it really fits the data (and help us
 understand the output from the <code>summary()</code> function :).
 Here’s a general recipe, using the <code>predict()</code> function.</p>
 <ul>
-<li>plot the raw data, using a different colour for points from each
-<code>FGRAZE</code> level</li>
-<li>for each <code>FGRAZE</code> level in turn:</li>
+<li><p>plot the raw data, using a different colour for points from each
+<code>FGRAZE</code> level</p></li>
+<li><p>for each <code>FGRAZE</code> level in turn:</p>
+<ul>
 <li>create a sequence of <code>LOGAREA</code> from the minimum value to
 the maximum within the grazing level (unless you wish to predict outside
 the range of observed values, probably best not too!).</li>
-<li>store it in a data frame (e.g. <code>dat4pred</code>) containing the
+<li>store it in a data frame (i.e. <code>dat4pred</code>) containing the
 variables <code>FGRAZE</code> and <code>LOGAREA.</code> Remember that
 <code>FGRAZE</code> is a factor, so its value need to be placed in
-quotes.</li>
+quotes (i.e. <code>FGRAZE = "1"</code>).</li>
 <li>Create a vector of predicted bird abundances using our new dataframe
-using the <code>predict()</code> function.</li>
-<li>Add the predicted to your plot using the <code>lines()</code>
-function with the appropriate colours.</li>
+(<code>dat4pred</code>) using the <code>predict()</code> function.</li>
+<li>Add the predicted values to the plot using the <code>lines()</code>
+function with the appropriate colour (same points colour for each
+<code>FGRAZE</code> level above).</li>
+</ul></li>
 </ul>
-<p>See the script below, for one of many ways of doing this. Now this
-might seem like a huge amount of code just to plot your predicted values
-(and admittedly it is!) but most of the code is just repeated for each
-level of graze. Just work through it slowly and logically and hopefully
-it will make sense (please ask if you are confused). I will also show
-you some alternative (easier?) ways to do this below.</p>
-<p> </p>
-<p><img src="linear_model_3_exercise_files/figure-html/Q9a-1.png" width="672" /></p>
-<p> </p>
-<p><strong>(Optional, for the geeks)</strong> Alternative method, using
-a loop. Just keep this code in case you ever want to do something like
-this in the future.</p>
-<p> </p>
-<p><img src="linear_model_3_exercise_files/figure-html/Q9b-1.png" width="672" /></p>
+<p>See the solutions for one of many ways of doing this. Now this might
+seem like a huge amount of code just to plot your predicted values (and
+admittedly it is!) but most of the code is just repeated for each level
+of graze. Just work through it slowly and logically and hopefully it
+will make sense (please ask if you are confused). I will also show you
+some alternative (easier?) ways to do this in the solutions.</p>
+<p><strong>(Optional, for the geeks)</strong> Alternative method given
+in the solutions using a<code>for</code> loop. Just keep this code in
+case you ever want to do something like this in the future.</p>
 <p><strong>(Optional, for the lazy!)</strong> And, if you want an even
-easier way, then we can use the <code>ggolot2</code> package. Note: you
-will need to install the <code>ggplot2</code> package first if you don’t
-already have it.</p>
-<p> </p>
-<p><img src="linear_model_3_exercise_files/figure-html/Q9c-1.png" width="672" /></p>
+easier way, then we can use the <code>ggolot2</code> package (code in
+the solutions). Note: you will need to install the <code>ggplot2</code>
+package first if you don’t already have it.</p>
 <p> </p>
 <p>End of the Linear model with continuous and categorical explanatory
 variables exercise</p>

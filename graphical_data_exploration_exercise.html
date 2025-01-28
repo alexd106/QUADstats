@@ -30,6 +30,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -206,6 +207,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -384,6 +388,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Exercises</h1>
@@ -400,8 +412,8 @@ class="section level2">
 create a new RStudio Project (select File –&gt; New Project on the main
 menu). Create the Project in a new directory by selecting ‘New
 Directory’ and then select ‘New Project’. Give the Project a suitable
-name (‘pgr_stats’ maybe) in the ‘Directory name:’ box and choose where
-you would like to create this Project directory by clicking on the
+name (‘quadrat_stats’ maybe) in the ‘Directory name:’ box and choose
+where you would like to create this Project directory by clicking on the
 ‘Browse’ button. Finally create the project by clicking on the ‘Create
 Project’ button. This will be your main RStudio Project file and
 directory which you will use throughout this course. See <a
@@ -443,61 +455,70 @@ to do some slight ‘tweaking’ of these data to improve usability for this
 course. The aim of the study was to relate bird density in 67 forest
 patches to a number of different environmental variables and management
 practices. A summary of the variables is: <strong>ABUND</strong>:
-Density of birds, Continuous response; <strong>AREA</strong>: Size of
-forest patch, Continuous explanatory; <strong>DIST</strong>: Distance to
-nearest patch, Continuous explanatory; <strong>LDIST</strong>: Distance
-to nearest larger patch, Continuous explanatory; <strong>ALT</strong>:
-Mean altitude of patch, Continuous explanatory;
-<strong>YR.ISOL</strong>: Year of isolation of clearance, Continuous
-explanatory; <strong>GRAZE</strong>: Index of livestock grazing
-intensity, 5 level Categorical explanatory 1= low graze, 5 = high graze.
-Copy this information to your R script (make sure you comment it out
-with a <code>#</code> - can you remember the keyboard <a
-href="https://intro2r.com/proj_doc.html#proj_doc">shortcut</a>?) and
+Density of birds, continuous response variable; <strong>AREA</strong>:
+Size of forest patch, continuous explanatory variable;
+<strong>DIST</strong>: Distance to nearest patch, continuous
+explanatory; <strong>LDIST</strong>: Distance to nearest larger patch,
+continuous explanatory; <strong>ALT</strong>: Mean altitude of patch,
+continuous explanatory; <strong>YR.ISOL</strong>: Year of isolation of
+clearance, continuous explanatory; <strong>GRAZE</strong>: Index of
+livestock grazing intensity, 5 level categorical explanatory 1= low
+graze, 5 = high graze. Copy this information to your R script (make sure
+you comment it out with a <code>#</code> - can you remember the keyboard
+<a href="https://intro2r.com/proj_doc.html#proj_doc">shortcut</a>?) and
 clearly highlight which variable is the response variable and which
 variables are potential explanatory variables.</p>
 <p> </p>
-<p>4. Import your <em>‘loyn.txt’</em> file into R using the
-<code>read.table()</code> function and assign it to an object called
-<code>loyn</code> (checkout <a
+<p>4. Import your tab delimited file from Q2 (<em>‘loyn.txt’</em>) into
+R using the <code>read.table()</code> function and assign it to an
+object called <code>loyn</code> (checkout <a
 href="https://intro2r.com/importing-data.html#import_fnc">Section
 3.3.2</a> if you need a reminder). Use the <code>str()</code> function
 to display the structure of the dataset and the <code>summary()</code>
 function to summarise the dataset. Copy and paste the output of
 <code>str()</code> and <code>Summary()</code> to your R code as a
 record. Don’t forget to comment this code with a <code>#</code> at the
-beginning of each line. How many observations are in this dataset? How
-many variables does the dataframe contain? Are there any missing values
-(coded as <code>NA</code>) in any variable? How is the variable
-<code>GRAZE</code> coded? (as a number or a string?). If you think this
-will cause a problem (hint: it will!), create a new variable called
-<code>FGRAZE</code> <strong>in</strong> the dataframe with
-<code>GRAZE</code> recoded as a factor. See <a
+beginning of each line (use the keyboard to comment code blocks <a
+href="https://intro2r.com/proj_doc.html#proj_doc">shortcut</a>?).</p>
+<p>How many observations are in this dataset? How many variables does
+the dataframe contain?</p>
+<p>Are there any missing values (coded as <code>NA</code>) in any
+variable?</p>
+<p>How is the variable <code>GRAZE</code> coded? (as a number or a
+string?). If you think this will cause a problem (hint: it will!),
+create a new variable called <code>FGRAZE</code> <strong>in the
+dataframe</strong> with <code>GRAZE</code> recoded as a factor. See <a
 href="https://intro2r.com/data-types.html#data-types">here</a> to see
-how to convert/coerce a numeric variable into a factor (TLDR: use the
+how to convert/coerce a numeric variable into a factor (TL;DR: use the
 <code>as.factor()</code> or <code>factor()</code> function).</p>
 <p> </p>
 <p>5. Use the function <code>table()</code> (or <code>xtabs()</code>) to
-determine how many observations are in each <code>FGRAZE</code> level.
-See <a href="https://intro2r.com/summarising-data-frames.html">section
-3.5</a> of the Introduction to R book to remind yourself how to do
-this.</p>
+determine how many observations were recorded for each
+<code>FGRAZE</code> category (level). See <a
+href="https://intro2r.com/summarising-data-frames.html">section 3.5</a>
+of the Introduction to R book to remind yourself how to do this.</p>
 <p> </p>
 <p>6. Using the <code>tapply()</code> function what is the mean bird
-abundance (<code>ABUND</code>) for each level of <code>FGRAZE</code>?
-Can you also determine the variance for each <code>FGRAZE</code> level?
-Again see <a
+abundance (<code>ABUND</code>) for each level of
+<code>FGRAZE</code>?</p>
+<p>Can you also determine the variance for each <code>FGRAZE</code>
+level? Again see <a
 href="https://intro2r.com/summarising-data-frames.html">section 3.5</a>
 of the Introduction to R book to remind yourself how to do this.</p>
 <p> </p>
 <p>7. Now onto some plotting action. Plot a Cleveland dotchart (<a
 href="https://intro2r.com/simple-base-r-plots.html#dotcharts">Section
-4.2.4</a>) of each variable separately to assess whether there are any
-outliers (unusually large or small values) in the response variable
-(<code>ABUND</code>) or any of the continuous explanatory variables (see
-Q3). If you feel in the mood, output these plots to an external PDF file
+4.2.4</a>) of each <strong>numeric</strong> variable separately to
+assess whether there are any outliers (unusually large or small values)
+in the response variable (<code>ABUND</code>) or any of the continuous
+explanatory variables (see Q3).</p>
+<p>If you feel in the mood, output these plots to an external PDF file
 in an <code>output</code> directory within your RStudio project (don’t
-forget to create the directory first).</p>
+forget to create the directory first if required). If you would like to
+include all of the plots on a single ‘page’ (technically a device) then
+you can split your page into two rows and three columns using
+<code>par(mfrow = c(2,3))</code> before you run your plot code for each
+plot. Make a note of which variables contain outliers.</p>
 <p> </p>
 <p>8. If you do spot any unusual observations have a think about what
 you want to do with them (NOTE: do <strong>not</strong> just remove them
@@ -505,24 +526,29 @@ without justification!). If you’re unsure, please speak to an instructor
 to discuss your options during the practical session. Perhaps you should
 apply a data transformation to see if this reduces the magnitude of any
 outlier. The best thing to do here is to play around with different
-transformations (i.e. <code>log</code>, <code>sqrt</code>) to see which
-one does what you want it to do. After you have applied these data
-transformations make sure you re-plot your dotcharts with any
-transformed variable to double check what the transformation is doing.
-Hint: a log<sub>10</sub> transformation might help reduce the magnitude
-of the outliers for some of the variables.</p>
+transformations (i.e. <code>log10</code>, <code>sqrt</code>) to see
+which transformation does what you want it to do. When applying a data
+transformation to a variable, it’s best practice to create a new
+variable <strong>in your dataframe</strong> to contain your transformed
+variable rather than overwrite your original data.</p>
+<p>After you have applied these data transformations make sure you
+re-plot your dotcharts with any transformed variable to double check
+whether the transformation is doing something sensible. Hint: a
+log<sub>10</sub> transformation might help reduce the magnitude of the
+outliers for some of the variables.</p>
 <p> </p>
 <p>9. Next, check if there is any potential collinearity between any of
 the <strong>explanatory variables</strong>. Remember, collinearity is
 <em>strong</em> relationships between your explanatory variables. Plot
 these variables using the <code>pairs()</code> function (<a
 href="https://intro2r.com/simple-base-r-plots.html#pairs-plots">Section
-4.2.5</a>). You will need to extract your explanatory variables from the
+4.2.5</a>).</p>
+<p>You will need to extract your explanatory variables from the
 <code>loyn</code> dataframe (using <code>[]</code>) either before you
 use the <code>pairs()</code> function or whilst using it (don’t forget
-to plot the transformed versions of any variables from Q8). Optionally,
-include the correlation coefficient between variables in the upper panel
-of the pairs plot (see <a
+to plot the transformed versions of any variables from Q8).</p>
+<p>Optionally, include the correlation coefficient between variables in
+the upper panel of the pairs plot (see <a
 href="https://intro2r.com/simple-base-r-plots.html#pairs-plots">section
 4.2.5</a> of the introduction to R book for details) to help you decide
 whether collinearity is an issue.</p>
@@ -531,11 +557,13 @@ whether collinearity is an issue.</p>
 there are any clear relationships between the response variable
 (<code>ABUND</code>) and individual explanatory variables. Use
 appropriate plotting functions (<code>plot()</code>,
-<code>boxplot()</code> etc) to visualise these relationships. Don’t
-forget, if you have applied a data transformation to any of your
-variables (Q8) you will need to plot these transformed variables instead
-of the original variables. Also, don’t forget, you can split your
-plotting device up to allow you to plot multiple graphs (<a
+<code>boxplot()</code>, <code>pairs()</code> etc) to visualise these
+relationships.</p>
+<p>Don’t forget, if you have applied a data transformation to any of
+your variables (Q8) you will need to plot these transformed variables
+instead of the original variables.</p>
+<p>Also, don’t forget, you can split your plotting device up to allow
+you to plot multiple graphs (<a
 href="https://intro2r.com/mult_graphs.html#mult_graphs">Section 4.4</a>)
 or again use a function like <code>pairs()</code> to create a
 multi-panel plot. Output these plots to the <code>output</code>
@@ -550,18 +578,21 @@ affected the number of birds, but this was dependent on the intensity of
 the grazing regime (in other words, there is an interaction between
 <code>AREA</code> and <code>GRAZE</code> - don’t worry if you haven’t
 heard of an interaction term, we will go through this later on in the
-course). Use an appropriate plotting function to explore these data for
-such an interaction (perhaps a <code>coplot()</code> or
-<code>xyplot()</code> in <a
+course).</p>
+<p>Use an appropriate plotting function to explore these data for such
+an interaction (perhaps a <code>coplot()</code> or <code>xyplot()</code>
+in <a
 href="https://intro2r.com/simple-base-r-plots.html#coplots">Section
-4.2.6</a> might be helpful?). Again, don’t forget, if you have applied a
-data transformation to your <code>AREA</code> variable you need to use
-the transformed variable in this plot <strong>not</strong> the original
-<code>AREA</code> variable. Likewise, as we’ve converted the
-<code>GRAZE</code> variable into a factor type variable we should use
-our new factor <code>FGRAZE</code> (or whatever you have called it).
-Save this plot as a PDF to your <code>output</code> directory and add
+4.2.6</a> might be helpful?).</p>
+<p>Again, don’t forget, if you have applied a data transformation to
+your <code>AREA</code> variable you need to use the transformed variable
+in this plot <strong>not</strong> the original <code>AREA</code>
+variable. Likewise, as we’ve converted the <code>GRAZE</code> variable
+into a factor type variable we should use our new factor
+<code>FGRAZE</code> (or whatever you have called it).</p>
+<p>Save this plot as a PDF to your <code>output</code> directory and add
 some comments to your R code to describe any patterns you observe.</p>
+<p> </p>
 <p> </p>
 <p><sup>1</sup> Loyn, R. (1987). Effects of patch area and habitat on
 bird abundances, species numbers and tree health in fragmented Victoria
@@ -612,6 +643,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

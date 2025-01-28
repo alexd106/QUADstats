@@ -11,7 +11,7 @@
 
 
 
-<title>Exercise Solutions</title>
+<title>Exercises</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -508,7 +508,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Exercise Solutions</h1>
+<h1 class="title toc-ignore">Exercises</h1>
 
 </div>
 
@@ -521,21 +521,20 @@ class="section level2">
 variable</h2>
 <p> </p>
 <p>1. As in previous exercises, either create a new R script (perhaps
-call it linear_model_2) or continue with your previous R script in your
-RStudio Project. Again, make sure you include any metadata you feel is
-appropriate (title, description of task, date of creation etc) and don’t
-forget to comment out your metadata with a <code>#</code> at the
+call it ‘linear_model_2’) or continue with your previous R script in
+your RStudio Project. Again, make sure you include any metadata you feel
+is appropriate (title, description of task, date of creation etc) and
+don’t forget to comment out your metadata with a <code>#</code> at the
 beginning of the line.</p>
 <p> </p>
-<p>2. Import the data file ‘loyn.txt’ into R and take a look at the
-structure of this dataframe using the <code>str()</code> function. In
-this exercise you will investigate whether the abundance of birds
-(<code>ABUND</code>) is different in areas with different grazing
+<p>2. Once again import the data file ‘loyn.txt’ into R and take a look
+at the structure of this dataframe using the <code>str()</code>
+function. In this exercise you will investigate whether the abundance of
+birds (<code>ABUND</code>) is different in areas with different grazing
 intensities (<code>GRAZE</code>). Remember, the <code>GRAZE</code>
 variable is an index of livestock grazing intensity. Level 1 = low
 grazing intensity and level 5 = high grazing intensity.</p>
-<p> </p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./data/loyn.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/loyn.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">str</span>(loyn)</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    67 obs. of  8 variables:</span></span>
@@ -553,11 +552,10 @@ grazing intensity and level 5 = high grazing intensity.</p>
 2, 3, 4, 5). In this exercise we actually want to treat
 <code>GRAZE</code> as a categorical variable with five levels (aka a
 factor). So the first thing we need to do is create a new variable in
-the loyn dataframe called <code>FGRAZE</code> in which we store the
-<code>GRAZE</code> variable coerced to be a categorical variable with
-the <code>factor()</code> function (you can also use the
+the <code>loyn</code> dataframe called <code>FGRAZE</code> in which we
+store the <code>GRAZE</code> variable coerced to be a categorical
+variable with the <code>factor()</code> function (you can also use the
 <code>as.factor()</code> function if you prefer).</p>
-<p> </p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># create factor GRAZE as it was originally coded as an integer</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>loyn<span class="sc">$</span>FGRAZE <span class="ot">&lt;-</span> <span class="fu">factor</span>(loyn<span class="sc">$</span>GRAZE)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
@@ -571,7 +569,6 @@ level of <code>FGRAZE</code> graphically using an appropriate plot
 plot? What might you expect to see in your analysis? Write your
 predictions in your R script as a comment. What is the mean number of
 birds for each level of <code>FGRAZE</code>?</p>
-<p> </p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">boxplot</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">xlab =</span> <span class="st">&quot;Grazing level&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Bird abundance&quot;</span>, <span class="at">data =</span> loyn)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q4-1.png" width="672" /></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
@@ -591,16 +588,14 @@ birds for each level of <code>FGRAZE</code>?</p>
 the response variable, <code>ABUND</code>, with the explanatory variable
 <code>FGRAZE</code>. Remember to use the <code>data =</code> argument.
 Assign this linear model to an appropriately named object
-(<code>birds.lm</code> if your imagination fails you!).</p>
-<p> </p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>birds.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span></code></pre></div>
+(<code>birds_lm</code> if your imagination fails you!).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>birds_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span></code></pre></div>
 <p> </p>
 <p>6. Produce the ANOVA table using the <code>anova()</code> function on
 the model object. What null hypothesis is being tested? Do you reject or
 fail to reject the null hypothesis? What summary statistics would you
 report? Summarise in your R script as a comment.</p>
-<p> </p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">anova</span>(birds.lm)</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">anova</span>(birds_lm)</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="do">## Response: ABUND</span></span>
@@ -624,15 +619,15 @@ produce the table of parameter estimates (remember these are called
 coefficients in R). Using this output what is the estimate of the
 intercept and what does this represent? What is the null hypothesis
 associated with the intercept? do you reject or fail to reject this
-hypothesis? Next we move onto the the <code>FGRAZE2</code> parameter,
-how do you interpret this parameter? (remember they are contrasts).
-Again, what is the null hypothesis associated with the
-<code>FGRAZE2</code> parameter? do you reject or fail to reject this
-hypothesis? Repeat this interpretation for the <code>FGRAZE3</code>,
+hypothesis?</p>
+<p>Next we move onto the the <code>FGRAZE2</code> parameter, how do you
+interpret this parameter? (remember they are contrasts). Again, what is
+the null hypothesis associated with the <code>FGRAZE2</code> parameter?
+do you reject or fail to reject this hypothesis?</p>
+<p>Repeat this interpretation for the <code>FGRAZE3</code>,
 <code>FGRAZE4</code> and <code>FGRAZE5</code> parameters. Summarise this
 as a comment in your R script.</p>
-<p> </p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">summary</span>(birds.lm)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">summary</span>(birds_lm)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## lm(formula = ABUND ~ FGRAZE, data = loyn)</span></span>
@@ -682,18 +677,18 @@ as a comment in your R script.</p>
 <span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a><span class="co"># significantly different from graze level 5.</span></span></code></pre></div>
 <p> </p>
 <p>8. Now that you have interpreted all the contrasts with
-<code>FGRAZE</code> level 1, reset the intercept to <code>FGRAZE</code>
-level 2 using the <code>relevel()</code> function, refit the model,
-produce the new table of parameter estimates using the
-<code>summary()</code> function again and interpret. Repeat this for
-<code>FGRAZE</code> levels 3, 4 and 5. Can you summarise which levels of
-<code>FGRAZE</code> are different from each other?</p>
-<p> </p>
+<code>FGRAZE</code> level 1 as the intercept, set the intercept to
+<code>FGRAZE</code> level 2 using the <code>relevel()</code> function,
+refit the model, produce the new table of parameter estimates using the
+<code>summary()</code> function again and interpret.</p>
+<p>Repeat this for <code>FGRAZE</code> levels 3, 4 and 5. Can you
+summarise which levels of <code>FGRAZE</code> are different from each
+other?</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Set FGRAZE level 2 to be the intercept</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>loyn<span class="sc">$</span>FGRAZE <span class="ot">&lt;-</span> <span class="fu">relevel</span>(loyn<span class="sc">$</span>FGRAZE, <span class="at">ref =</span> <span class="st">&quot;2&quot;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>birds.lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">summary</span>(birds.lm2)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>birds_lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">summary</span>(birds_lm2)</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="do">## lm(formula = ABUND ~ FGRAZE, data = loyn)</span></span>
@@ -721,8 +716,8 @@ produce the new table of parameter estimates using the
 <span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co"># the same model we have just changed the intercept and therefore the contrasts).</span></span>
 <span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a></span>
 <span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a>loyn<span class="sc">$</span>FGRAZE <span class="ot">&lt;-</span> <span class="fu">relevel</span>(loyn<span class="sc">$</span>FGRAZE, <span class="at">ref =</span> <span class="st">&quot;3&quot;</span>)</span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a>birds.lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
-<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="fu">summary</span>(birds.lm3)</span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a>birds_lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="fu">summary</span>(birds_lm3)</span>
 <span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a><span class="do">## lm(formula = ABUND ~ FGRAZE, data = loyn)</span></span>
@@ -748,8 +743,8 @@ produce the new table of parameter estimates using the
 <span id="cb8-57"><a href="#cb8-57" tabindex="-1"></a><span class="co"># The intercept is now FGRAZE level 3, we can now compare between levels &#39;3 and 4&#39;, &#39;and 3 and 5&#39;</span></span>
 <span id="cb8-58"><a href="#cb8-58" tabindex="-1"></a></span>
 <span id="cb8-59"><a href="#cb8-59" tabindex="-1"></a>loyn<span class="sc">$</span>FGRAZE <span class="ot">&lt;-</span> <span class="fu">relevel</span>(loyn<span class="sc">$</span>FGRAZE, <span class="at">ref =</span> <span class="st">&quot;4&quot;</span>)</span>
-<span id="cb8-60"><a href="#cb8-60" tabindex="-1"></a>birds.lm4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
-<span id="cb8-61"><a href="#cb8-61" tabindex="-1"></a><span class="fu">summary</span>(birds.lm4)</span>
+<span id="cb8-60"><a href="#cb8-60" tabindex="-1"></a>birds_lm4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
+<span id="cb8-61"><a href="#cb8-61" tabindex="-1"></a><span class="fu">summary</span>(birds_lm4)</span>
 <span id="cb8-62"><a href="#cb8-62" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb8-63"><a href="#cb8-63" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb8-64"><a href="#cb8-64" tabindex="-1"></a><span class="do">## lm(formula = ABUND ~ FGRAZE, data = loyn)</span></span>
@@ -777,7 +772,6 @@ produce the new table of parameter estimates using the
 <p>9. Staying with the summary table of parameter estimates, how much of
 the variation in bird abundance does the explanatory variable
 <code>FGRAZE</code> explain?</p>
-<p> </p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># The multiple R-squared value is 0.491 and therefore 49.1% of</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># the variation in ABUND is explained by FGRAZE</span></span></code></pre></div>
 <p> </p>
@@ -790,12 +784,11 @@ split your plotting device into 2 rows and 2 columns using the
 <code>par()</code> function before you create the plots. Check each of
 the assumptions using these plots and report whether your model meets
 these assumptions in your R script.</p>
-<p> </p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># first split the plotting device into 2 rows and 2 columns</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># now create the residuals plots</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="fu">plot</span>(birds.lm)</span></code></pre></div>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="fu">plot</span>(birds_lm)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q10-1.png" width="672" /></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># To test the normality of residuals assumption we use the Normal Q-Q plot. Although the majority of the residuals </span></span>
@@ -819,9 +812,9 @@ these assumptions in your R script.</p>
 <span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co"># for example </span></span>
 <span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a></span>
 <span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>loyn<span class="sc">$</span>ABUND.SQRT <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(loyn<span class="sc">$</span>ABUND)</span>
-<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>birds.lm.sqrt <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND.SQRT <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>birds_lm_sqrt <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND.SQRT <span class="sc">~</span> FGRAZE, <span class="at">data =</span> loyn)</span>
 <span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="fu">plot</span>(birds.lm.sqrt)</span></code></pre></div>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="fu">plot</span>(birds_lm_sqrt)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q10-2.png" width="672" /></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># Sadly this doesn&#39;t seemed to have improved things!</span></span>
@@ -833,14 +826,15 @@ these assumptions in your R script.</p>
 I’ll give you the code in the solutions so don’t overly stress about
 this! Use Google (yep, this is OK!) to figure out how to plot your
 fitted values and 95% confidence intervals. Try Googling the
-<code>gplots</code> package or the <code>effects</code> package.
-Alternatively, have a go at using our old trusty <code>predict()</code>
-function to calculate the fitted values and standard error (this time
-you will need to use either the <code>segments()</code> or
-<code>arrows()</code> function to add these to the plot instead of the
-<code>lines()</code> function we used before). Check out the solutions
-code if you’re thoroughly confused!</p>
-<p> </p>
+<code>gplots</code> package or the <code>effects</code> package.</p>
+<p>Alternatively, have a go at using our old trusty
+<code>predict()</code> function to calculate the fitted values and
+standard errors. Add the fitted values and 95% confidence intervals to a
+plot of bird abundance and graze level (to add your upper and lower
+confidence intervals will need to use either the <code>segments()</code>
+or <code>arrows()</code> function).</p>
+<p>Or we can even use the <code>ggplot2</code> package. Check out the
+solutions code if you’re thoroughly confused!</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Using the gplots package, you may need to install this package first</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co"># install.packages(&#39;gplots&#39;)</span></span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
@@ -849,44 +843,64 @@ code if you’re thoroughly confused!</p>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="fu">plotmeans</span>(ABUND <span class="sc">~</span> FGRAZE, <span class="at">xlab =</span> <span class="st">&quot;grazing level&quot;</span>,</span>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;bird abundance&quot;</span>, <span class="at">data =</span> loyn, <span class="at">connect =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11a-1.png" width="672" /></p>
-<p> </p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Using the effects package, you may need to install this package first</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co"># install.packages(&#39;effects&#39;)</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>loyn.effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(birds.lm)</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">plot</span>(loyn.effects,<span class="st">&quot;FGRAZE&quot;</span>, <span class="at">lty =</span> <span class="dv">0</span>)</span></code></pre></div>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>loyn_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(birds_lm)</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">plot</span>(loyn_effects,<span class="st">&quot;FGRAZE&quot;</span>, <span class="at">lty =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11b-1.png" width="672" /></p>
-<p> </p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># and finally using old faithful the predict function and base R graphics</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># with the segments function</span></span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>my.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>pred.vals <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.lm, <span class="at">newdata =</span> my.data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>pred_vals <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds_lm, <span class="at">newdata =</span> my_data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
 <span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co"># now plot these values</span></span>
 <span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a></span>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">length=</span><span class="dv">5</span>), <span class="at">type =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Graze intensity&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Bird Abundance&quot;</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit)</span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit)</span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit)</span></code></pre></div>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit)</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> pred_vals<span class="sc">$</span>se.fit)</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred_vals<span class="sc">$</span>se.fit)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11c-1.png" width="672" /></p>
-<p> </p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># using old faithful the predict function and base R graphics </span></span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co"># with the arrows function </span></span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>my.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>pred.vals <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds.lm, <span class="at">newdata =</span> my.data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FGRAZE =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>pred_vals <span class="ot">&lt;-</span> <span class="fu">predict</span>(birds_lm, <span class="at">newdata =</span> my_data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co"># now plot these values</span></span>
 <span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a></span>
 <span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">length=</span><span class="dv">5</span>), <span class="at">type =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Graze intensity level&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Bird Abundance&quot;</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit,</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> pred_vals<span class="sc">$</span>se.fit,</span>
 <span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>    <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">code =</span> <span class="dv">2</span>, <span class="at">length =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred.vals<span class="sc">$</span>se.fit,</span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> pred_vals<span class="sc">$</span>se.fit,</span>
 <span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>       <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">code =</span> <span class="dv">2</span>, <span class="at">length =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred.vals<span class="sc">$</span>fit, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, pred_vals<span class="sc">$</span>fit, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
 <p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11d-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># or using the ggplot2 package</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># make the functions in ggplot2 available</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="co"># This plot will plot the means for each level of FGRAZE </span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="co"># and also the 95% confidence intervals</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="fu">ggplot</span>(loyn, <span class="fu">aes</span>(<span class="at">x =</span> FGRAZE, <span class="at">y =</span> ABUND)) <span class="sc">+</span> </span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">color =</span> <span class="st">&quot;firebrick&quot;</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">3</span>, <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.15</span>)) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_normal, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, </span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>        <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.15</span>))</span></code></pre></div>
+<p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11e-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># and as an added bonus, if you wanted to also plot the </span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co"># raw data along with the means for FGRAZE</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">ggplot</span>(loyn, <span class="fu">aes</span>(<span class="at">x =</span> FGRAZE, <span class="at">y =</span> ABUND)) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">color =</span> <span class="st">&quot;firebrick&quot;</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">3</span>, <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.15</span>)) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_normal, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, </span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>        <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.15</span>))</span></code></pre></div>
+<p><img src="linear_model_2_exercise_solutions_files/figure-html/Q11e-2.png" width="672" /></p>
 <p> </p>
 <p>End of the linear model with single categorical explanatory variable
 exercise</p>

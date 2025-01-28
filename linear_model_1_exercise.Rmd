@@ -1,12 +1,15 @@
 ---
-title: "Exercises"
+title: 'Exercises'
 output: 
   html_document:
-   toc: false
+    toc: false
+    code_folding: hide
 ---
 
-```{r setup, echo=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALSE, cache = FALSE)
+
+```{r setup, echo=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, eval = FALSE, cache = FALSE)
+SOLUTIONS <- FALSE
 ```
 
 \  
@@ -15,55 +18,270 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALS
 
 \  
 
-1\. Either create a new R script (perhaps call it linear_model_1) or continue with your previous data exploration R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
+1\. Either create a new R script (perhaps call it 'linear_model_1') or continue with your previous data exploration R script in your RStudio Project. Again, make sure you include any metadata you feel is appropriate (title, description of task, date of creation etc) and  don't forget to comment out your metadata with a `#` at the beginning of the line. 
 
 \  
 
-2\. Import the data file 'loyn.txt' into R and take a look at the summary of the graphical data exploration you performed during the previous exercise. The aim of this exercise is to get familiar with fitting a simple linear model with a continuous response variable, bird abundance (`ABUND`) and a single continuous explanatory variable forest area (`AREA`) in R. Ignore the other explanatory variables for now. 
+2\. Import the data file 'loyn.txt' you used in the previous exercise into R and remind yourself of the data exploration of these data you have already performed (graphical data exploration exercise). The aim of this exercise is to get familiar with fitting a simple linear model with a continuous response variable, bird abundance (`ABUND`) and a single continuous explanatory variable forest area (`AREA`) in R. Ignore the other explanatory variables for now. 
+
+```{r Q2, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+loyn <- read.table("data/loyn.txt", header = TRUE, 
+                   stringsAsFactors = TRUE)
+str(loyn)
+
+# 67 observations and 8 variables (from str())
+```
 
 \  
 
-3\. Create a scatterplot of bird abundance and forest patch area to remind yourself what this relationship looks like. Remember you may have to transform the `AREA` variable, return to your data exploration if in doubt. Try to remember which is your response variable (y axis) and which is your explanatory variable (x axis). Now fit an appropriate linear model to describe this relationship using the `lm()` function. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`loyn.lm` if you imagination fails you!).
+3\. Create a scatterplot of bird abundance and forest patch area to remind yourself what this relationship looks like. You may have to transform the `AREA` variable to address potential issues that you identified in your previous data exploration. Try to remember which is your response variable (y axis) and which is your explanatory variable (x axis). Now fit an appropriate linear model to describe this relationship using the `lm()` function. Remember to use the `data =` argument. Assign this linear model to an appropriately named object (`loyn_lm` if you imagination fails you!).
+
+```{r Q3, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# let's first log10 transform the AREA variable due to the couple 
+# of unusually large forest area values (check you data exploration)
+# to remind yourself
+
+loyn$LOGAREA <- log10(loyn$AREA)
+
+# make a scatterplot of bird abundance and log10 Area
+
+plot(loyn$LOGAREA, loyn$ABUND, xlab = "log10 forest area", 
+     ylab = "bird abundance", ylim = c(0, 55))
+
+# now fit the linear model
+loyn_lm <- lm(ABUND ~ LOGAREA, data = loyn)
+```
 
 \  
 
-4\. Obtain the ANOVA table by using the `anova()` function on your model object. What is the null hypothesis you are testing here? Do you reject or fail to reject this null hypothesis? Explore the ANOVA table and make sure you understand the different components. Refer back to the lectures if you need to remind yourself or ask an instructor to take you through it.
+4\. Display the ANOVA table by using the `anova()` function on your model object. What is the null hypothesis you are testing here? Do you reject or fail to reject this null hypothesis? Explore the ANOVA table and make sure you understand the different components. Refer back to the lectures if you need to remind yourself or ask an instructor to take you through it.
+
+```{r Q4, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# ANOVA table
+anova(loyn_lm)
+
+# The null hypothesis is that the slope of the relationship
+# between LOGAREA and ABUND = 0
+# i.e. there is no relationship
+
+# The p value is very small (3.81e-14) therefore we 
+# reject this null hypothesis (i.e. the slope is different
+# from 0)
+```
 
 \  
 
-5\. Now display the table of parameter estimates using the `summary()` function on your model object. Again, make sure you understand the different components of this output and be sure to ask if in doubt. What are the estimates of the intercept and slope? Write down the word equation of this linear model including your parameter estimates (hint: think y = a + bx).
+5\. Now display the table of parameter (coefficient) estimates using the `summary()` function on your model object. Again, make sure you understand the different components of this output and be sure to ask if in doubt. What are the estimates of the intercept and slope? Write down the word equation of this linear model including your parameter estimates (hint: think y = a + bx).
+
+```{r Q5, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+summary(loyn_lm)
+
+# the estimate of the intercept = 10.4
+# the estimate of the slope = 9.78
+
+# word equation
+# ABUND = 10.40 + 9.78 * LOGAREA
+```
 
 \  
 
 6\. What is the null hypothesis associated with the intercept? What is the null hypothesis associated with the slope? Do you reject or fail to reject these hypotheses?
 
+```{r Q6, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+
+# the null hypothesis for the intercept is that the intercept = 0
+# the p value is very small (certainly less than the (not so magic) 0.05)
+# therefore we reject this null hypothesis and conclude that the intercept
+# is different from zero.
+
+# the null hypothesis for the slope is that the slope = 0
+# the p value is very small (3.81e-14)
+# therefore we reject this null hypothesis and conclude that the slope
+# is different from zero (i.e. there is a significant relationship between
+# LOGAREA and ABUND).
+```
+
 \  
 
 7\. Looking again at the output from the `summary()` function how much variation in bird abundance is explained by your log transformed `AREA` variable?
 
+```{r Q7, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+summary(loyn_lm)
+
+# The multiple R-squared value is 0.588 and therefore 58.8% of
+# the variation in ABUND is explained by LOGAREA
+```
+
 \  
 
-8\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object (`loyn.lm` or whatever you called it). Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using the `par()` function before you create the plots ([Section 4.4](https://intro2r.com/mult_graphs.html#mult_graphs)). Can you remember which plot is used to check the assumption of normality of the residuals? What is you assessment of this assumption? Next, check the homogeneity of variance of residuals assumption. Can you see any patterns in the residuals versus fitted value plots? Is there more or less equal spread of the residuals? Finally, take a look at the leverage and Cooks distance plot to assess whether you have any residuals with high leverage or any influential residuals. What is your assessment? Write a couple of sentences to summarise your assessment of the modelling assumptions as a comment in your R code. 
+8\. Now onto a really important part of the model fitting process. Let's check the assumptions of your linear model by creating plots of the residuals from the model. Remember, you can easily create these plots by using the `plot()` function on your model object (`loyn_lm` or whatever you called it). Also remember that if you want to see all plots at once then you should split your plotting device into 2 rows and 2 columns using `par(mfrow = c(2,2))` before you create the plots ([Section 4.4](https://intro2r.com/mult_graphs.html#mult_graphs)).  
+
+Can you remember which plot is used to check the assumption of normality of the residuals? What is you assessment of this assumption? Next, check the homogeneity of variance of residuals assumption. Can you see any patterns in the 'residuals versus fitted' or the 'Scale-Location' plots? Is there more or less equal spread of the residuals? Finally, take a look at the leverage and Cooks distance plot to assess whether you have any residuals with high leverage or any influential residuals. What is your assessment? Write a couple of sentences to summarise your assessment of the modelling assumptions as a comment in your R code. 
+
+```{r Q8, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# first split the plotting device into 2 rows and 2 columns
+par(mfrow = c(2,2))
+
+# now create the residuals plots
+plot(loyn_lm)
+
+# The normal Q-Q plot is used to assess normality of the residuals (top right).
+# If perfectly normal then all residuals would lie exactly on the 1:1 line.
+# In reality this is never going to happen so we are looking for obvious large 
+# departures. In this plot they don't look too bad, although the lower quantiles
+# do seem to deviate. All in all I would be cautiously optimistic.
+
+# To check homogeneity of variance assumption we look at both the Residuals vs Fitted (top left)
+# and the Scale-Location plots (bottom left). 
+# There doesn't appear to be any obvious patterns of the residuals in these plots, 
+# although you can see the two residuals associated with the two large forest patch areas 
+# are below the zero line (negative residuals) on the right hand side of these plots
+# despite the log transformation. Perhaps something to bear in mind as we progress. 
+# But in short, the homogeneity of variance assumption looks ok.
+
+# From the Residuals vs Leverage plot (bottom right) you can see that there are no residuals 
+# with a Cooks distance greater than 1. In fact they are all well below 0.5. If you want to 
+# produce a plot of just Cooks distance (perhaps this is clearer)
+
+par(mfrow = c(1,1))
+plot(loyn_lm, which = 4)
+# Going back to the Residuals vs Leverage plot (bottom right) you can see 
+# three residuals that are somewhat unusual in terms of their leverage as 
+# they stick out a bit to the right compared to the rest of the residuals. 
+# Two of these residuals are our two large forest patch areas again. However,
+# leverage still seems to be on the low side, so at least on the scale of the
+# log transformation things look ok.
+```
 
 \  
 
-9\. Using your word equation from Question 5, how many birds do you predict if `AREA` is 100 from your model?
+9\. Using your word equation from Question 5, how many birds do you predict if `AREA` is 100?
+
+```{r Q9, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# to predict bird abundance if AREA == 100
+
+# if you log base 10 transformed the AREA variable
+bird_abundance100 = 10.4 + (9.78 * log10(100))
+bird_abundance100
+
+# if you used the natural log (i.e. log()) then you would use log()
+# not log10()
+```
 
 \  
 
-10\. Calculate the fitted values from your model using the `predict()` function and store these predicted values in an object called `pred.vals`. Remember, you will first need to create a dataframe object containing the values of log transformed `AREA` you want to make predictions from. Refer back to the model interpretation video if you need a quick reminder of how to do this or ask an instructor to take you through it if you're in any doubt (they'd be happy to take you through it).
+10\. Calculate the fitted values from your model using the `predict()` function and store these predicted values in an object called `pred_vals`. Remember, you will first need to create a dataframe object containing the values of log transformed `AREA` you want to make predictions from. Refer back to the model interpretation video if you need a quick reminder of how to do this or ask an instructor to take you through it if you're in any doubt (they'd be happy to take you through it).
+
+```{r Q10, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# We need to create a dataframe object with a column of LOGAREA values to predict from.
+# note you need to call the column the same as used in the model
+my_data <- data.frame(LOGAREA = seq(from = min(loyn$LOGAREA),
+                                  to = max(loyn$LOGAREA),
+                                  length = 50))
+
+# use predict function to calculate predicted values of abundance based on the 
+# new LOGAREA values in the data frame my.data (use the newdata argument)
+pred_vals <- predict(loyn_lm, newdata = my_data)
+```
 
 \  
 
 11\. Now, use the `plot()` function to plot the relationship between bird abundance (`ABUND`) and your log transformed `AREA` variable. Also add some axes labels to aid interpretation of the plot. Once you've created the plot then add the fitted values calculated in Question 10 as a line on the plot (you will need to use the `lines()` function to do this but only after you have created the plot). 
 
+```{r Q11, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# plot the lines on the plot. The x values are the new LOGAREA values from the my.data
+# dataframe, the predicted values are from pred.vals 
+plot(loyn$LOGAREA, loyn$ABUND, xlab = "Log10 Patch Area", 
+     ylab = "Bird Abundance", ylim = c(0, 55))
+
+lines(my_data$LOGAREA, pred_vals, lty = 1,col = "firebrick")
+# for those of you who are into plotting using the ggplot2 package,
+# this is one of those occasions where things are a little simpler!
+# Don't forget, you will need to install the ggplot2 package if
+# you've never used it before
+
+# install.packages('ggplot2')
+
+library(ggplot2)
+ggplot(mapping = aes(x = LOGAREA, y = ABUND), data = loyn) +
+    geom_point() +
+    xlab("Log10 Patch Area") +
+    ylab("Bird Abundance") +
+    geom_smooth(method = "lm", se = FALSE, colour = "firebrick") +
+    theme_classic()
+```
+
 \  
 
-12\. OK, this is an optional question so feel free to skip if you've had enough! (you can find the R code for this question in the exercise solutions if you want to refer to it at a later date). Let's recreate the plot you made in Question 11, but this time we'll add the 95% confidence intervals in addition to the fitted values. Remember, you will need to use the `predict()` function again but this time include the`se.fit = TRUE` argument (store these new values in a new object called `pred.vals.se`). When you use the `se.fit = TRUE` argument with the `predict()` function the returned object will have a slightly different structure compared to when you used it before. Use the `str()` function on the `pred.vals.se` to take a look at the structure. See if you can figure out how to access the fitted values and the standard errors. Once you've got your head around this you can now use the `lines()` function three times to add the fitted values (as before) and also the upper and lower 95% confidence intervals. Don't forget, if you want the 95% confidence intervals then you will need to multiply your standard error values by the critical value of 1.96. If you need a reminder then take a look at the video on confidence intervals on the course MyAberdeen site (in the 'Introductory statistics lectures' folder which you can find in the 'Course Information' learning module).  
+12\. OK, this is an optional question so feel free to skip if you've had enough! (you can find the R code for this question in the exercise solutions if you want to refer to it at a later date). Let's recreate the plot you made in Question 11, but this time we'll add the 95% confidence intervals in addition to the fitted values. Remember, you will need to use the `predict()` function again but this time include the`se.fit = TRUE` argument (store these new values in a new object called `pred_vals_se`). When you use the `se.fit = TRUE` argument with the `predict()` function the returned object will have a slightly different structure compared to when you used it before. Use the `str()` function on the `pred.vals.se` to take a look at the structure. See if you can figure out how to access the fitted values and the standard errors. Once you've got your head around this you can now use the `lines()` function three times to add the fitted values (as before) and also the upper and lower 95% confidence intervals. Don't forget, if you want the 95% confidence intervals then you will need to multiply your standard error values by the critical value of 1.96. If you need a reminder then take a look at the video on confidence intervals on the course MyAberdeen site (in the 'Introductory statistics lectures' folder which you can find in the 'Course Information' learning module).  
+
+```{r Q12, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+pred_vals_se <- predict(loyn_lm, newdata = my_data, se.fit = TRUE) # note the use of the se.fit argument
+
+# check out the structure of pred_vals_se
+# you can see we now have 4 vectors in this object
+# $fit = fitted values
+# $se.fit = standard error of fitted values
+# $df = degrees of freedom
+# $residual.scale = residual standard error
+
+# so we will need to access our fitted values and standard errors using 
+# pred.val.se$fit and pred.vals.se$se.fit respectively
+str(pred_vals_se)
+
+# now create the plot
+plot(x = loyn$LOGAREA, y = loyn$ABUND,
+     xlab = "Log10 Patch Area",
+     ylab = "Bird abundance", ylim = c(0, 55))
+    
+
+# add the fitted values as before but now we need to use 
+# pred.vals.se$fit
+lines(my_data$LOGAREA, pred_vals_se$fit, lty = 1,col = "firebrick")
+
+# add the upper 95% confidence interval
+lines(my_data$LOGAREA, pred_vals_se$fit + (1.96 * pred_vals_se$se.fit), lty = 2, col = "firebrick")
+
+# add the lower 95% confidence interval
+lines(my_data$LOGAREA, pred_vals_se$fit - (1.96 * pred_vals_se$se.fit), lty = 2, col = "firebrick")
+
+# And the ggplot way of doing things
+
+ggplot(mapping = aes(x = LOGAREA, y = ABUND), data = loyn) +
+    geom_point() +
+    xlab("Log10 Patch Area") +
+    ylab("Bird Abundance") +
+    geom_smooth(method = "lm", se = TRUE, colour = "firebrick") +
+    theme_classic()
+```
 
 \  
 
-13\. And another optional question (honestly, it's optional!). This time plot the relationship between bird abundance (`ABUND`) and the original untransformed `AREA` variable. Now back-transform your fitted values (remember you got these with the `predict()` function) to the original scale and add these to the plot as a line. Hint 1: you don't need to reuse the `predict()` function, you just need to back-transform your `LOGAREA` values. Hint 2: remember if you used a log~10~ transformation (`log10()`) then you can back-transform using `10^LOGAREA` and if you used a natural log transformation then use `exp(LOGAREA)` to back-transform. Comment on the differences between the plot on the transformed (log) scale and the plot on the back-transformed scale in your R script.
+13\. And another optional question (honestly, it's optional!). This time plot the relationship between bird abundance (`ABUND`) and the original untransformed `AREA` variable. Now back-transform your fitted values (remember you got these with the `predict()` function) to the original scale and add these to the plot as a line. Hint 1: you don't need to reuse the `predict()` function, you just need to back-transform your `my.data$LOGAREA` values. Hint 2: remember if you used a log~10~ transformation (`log10()`) then you can back-transform using `10^my.data$LOGAREA` and if you used a natural log transformation then use `exp(my.data$LOGAREA)` to back-transform. Comment on the differences between the plot on the transformed (log) scale and the plot on the back-transformed scale in your R script.
+
+```{r Q13, eval=SOLUTIONS, echo=SOLUTIONS, collapse=TRUE}
+# back transformed LOGAREA and 95% confidence intervals
+
+# re-plot but this time use the original untransformed AREA variable
+plot(x = loyn$AREA, y = loyn$ABUND, ylim = c(0,55),
+     xlab = "Patch Area",
+     ylab = "Bird abundance")
+
+# now add the fitted lines and upper and lower 95% confidence intervals
+# remember we only log10 transformed the LOGAREA variable so this is the only
+# variable that we need to back-transform
+
+lines(10^(my_data$LOGAREA), pred_vals_se$fit, lty = 1,col = "firebrick")
+lines(10^(my_data$LOGAREA), pred_vals_se$fit + (1.96 * pred_vals_se$se.fit), lty = 2, col = "firebrick")
+lines(10^(my_data$LOGAREA), pred_vals_se$fit - (1.96 * pred_vals_se$se.fit), lty = 2, col = "firebrick")
+
+# the model doesn't look too great now! Technically, if we transform variables in our model
+# then we should only really interpret the model on the scale of the transformation.
+
+# If we interpret on the back transformed scale, you can see the model doesn't really fit the 
+# data very well, especially for the two large forest patch AREAs and also those patches with
+# high bird abundance.
+```
 
 \  
 
