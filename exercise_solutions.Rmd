@@ -24,7 +24,7 @@ Follow the links below for solutions to each of the exercises you have completed
 
 \  
 
-```{r sol_GDE, results='asis', eval = isTRUE(show_text_GDE)}
+```{r sol_GDE, results='asis', eval=TRUE}
 link_name <- "Graphical data exploration exercise"
 file_name <- "graphical_data_exploration_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
@@ -37,14 +37,14 @@ cat(sep="\n\n")
 
 \  
 
-```{r sol_lm1, results='asis', eval = isTRUE(show_text_lm1)}
+```{r sol_lm1, results='asis', eval=TRUE}
 link_name <- "Linear model with single continuous explanatory variable exercise"
 file_name <- "linear_model_1_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
 cat(sep="\n\n")
 ```
 
-```{r sol_lm2, results='asis', eval = isTRUE(show_text_lm2)}
+```{r sol_lm2, results='asis', eval=TRUE}
 link_name <- "Linear model with single categorical explanatory variable exercise"
 file_name <- "linear_model_2_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
@@ -57,7 +57,7 @@ cat(sep="\n\n")
 
 \  
 
-```{r sol_lm3, results='asis', eval = isTRUE(show_text_lm3)}
+```{r sol_lm3, results='asis', eval=TRUE}
 link_name <- "Linear model with continuous and categorical explanatory variables exercise"
 file_name <- "linear_model_3_exercise_solutions.html"
 paste0("- [", link_name, "](", file_name, ")") %>%
